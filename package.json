@@ -33,7 +33,8 @@
     "main": "yarn main:monorepo && yarn main:submodules",
     "main:monorepo": "git checkout main && git pull ${GHOST_UPSTREAM:-origin} main && yarn",
     "main:submodules": "git submodule sync && git submodule update && git submodule foreach \"git checkout main && git pull ${GHOST_UPSTREAM:-origin} main && yarn\"",
-    "prepare": "husky install .github/hooks"
+    "prepare": "husky install .github/hooks",
+    "deploy:test": "ssh ubuntu@54.249.167.108 \"cd /home/ubuntu/ksnews-Ghost && git pull origin main && yarn && pm2 reload --only ksnews-Ghost\""
   },
   "resolutions": {
     "@tryghost/logging": "2.3.2",
