@@ -1,16 +1,16 @@
 <section class="gh-dashboard-section gh-dashboard-attribution">
     <article class="gh-dashboard-box" {{did-insert this.loadData}}>
         {{#if (is-empty this.sources)}}
-            <h3 class="gh-dashboard-metric-label">Top sources</h3>
+            <h3 class="gh-dashboard-metric-label">{{t "Manual.Dashboard.Top_sources"}}</h3>
             <div class="attribution-list-empty">
                 {{svg-jar "members-outline"}}
-                <h4>No new members in the past {{this.chartPeriod}} days</h4>
-                <p>Once someone signs up, you’ll be able to see where they came from here.</p>
+                <h4>{{{t "Manual.Dashboard.No_new_members_in_the_past_days" chartPeriod="{{this.chartPeriod}}" }}}</h4>
+                <p>{{t "Manual.Dashboard.Once_someone_signs_up,_you’ll_be_able_to_see_where_they_came_from_here."}}</p>
             </div>
         {{else}}
         <div class="gh-dashboard-attribution-grid">
             <div>
-                <h3 class="gh-dashboard-metric-label">Top sources</h3>
+                <h3 class="gh-dashboard-metric-label">{{t "Manual.Dashboard.Top_sources"}}</h3>
                 <MemberAttribution::SourceAttributionTable
                     @sources={{this.sources}}
                     @sortColumn={{this.selectedSortColumn}}

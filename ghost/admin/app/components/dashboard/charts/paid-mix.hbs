@@ -2,12 +2,12 @@
     <div class="gh-dashboard-content">
         <div class="gh-dashboard-data">
             <Dashboard::Parts::Metric
-                @label="Paid mix" />
+                @label={{t "Manual.Dashboard.Paid_mix"}} />
 
             {{#if this.isChartCadence}}
                 <div class="gh-dashboard-legend">
-                    <div class="gh-dashboard-legend-item">Monthly</div>
-                    <div class="gh-dashboard-legend-item">Annual</div>
+                    <div class="gh-dashboard-legend-item">{{t "Manual.Dashboard.Monthly"}}</div>
+                    <div class="gh-dashboard-legend-item">{{t "Manual.Dashboard.Annual"}}</div>
                 </div>
             {{/if}}
         </div>
@@ -50,7 +50,7 @@
                 @horizontalPosition="right"
                 as |option|
             >
-                {{#if option.name}}{{option.name}}{{else}}<span class="red">Unknown option</span>{{/if}}
+                {{#if option.name}}{{option.name}}{{else}}<span class="red">{{t "Manual.Dashboard.Unknown_option"}}</span>{{/if}}
             </PowerSelect>
         </div>
     {{/if}}

@@ -45,8 +45,14 @@ const STATE_OPTIONS = [
 export default class ControlPanel extends Component {
     @service dashboardStats;
     @service dashboardMocks;
+    @service intl;
     
-    stateOptions = STATE_OPTIONS;
+    stateOptions = STATE_OPTIONS.map((_) => {
+        return {
+            ..._,
+            name: this.intl.t(`Manual.Dashboard.${_.name.split(' ').join('_')}`)
+        };
+    });
 
     @tracked state = STATE_OPTIONS[1].value;
 

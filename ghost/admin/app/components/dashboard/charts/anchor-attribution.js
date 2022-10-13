@@ -57,8 +57,14 @@ export default class Anchor extends Component {
     @tracked chartDisplay = 'mrr';
     @tracked resizing = false;
     @tracked resizeTimer = null;
+    @service intl;
 
-    displayOptions = DISPLAY_OPTIONS;
+    displayOptions = DISPLAY_OPTIONS.map((_) => {
+        return {
+            ..._,
+            name: this.intl.t(`Manual.Dashboard.${_.name.replace(' ', '_')}`)
+        };
+    });
 
     willDestroy(...args) {
         super.willDestroy(...args);

@@ -17,6 +17,7 @@ const STATUS_OPTIONS = [{
 
 export default class Engagement extends Component {
     @service dashboardStats;
+    @service intl;
 
     @action
     loadCharts() {
@@ -27,7 +28,12 @@ export default class Engagement extends Component {
     }
 
     @tracked status = 'total';
-    statusOptions = STATUS_OPTIONS;
+    statusOptions = STATUS_OPTIONS.map((_) => {
+        return {
+            ..._,
+            name: this.intl.t(`Manual.Dashboard.${_.name.split(' ').join('')}`)
+        };
+    });
 
     get selectedStatusOption() {
         return this.statusOptions.find(option => option.value === this.status);

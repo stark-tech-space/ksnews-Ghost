@@ -1636,7 +1636,14 @@
       "Tiers": "Tiers",
       "Paid_mix": "Paid mix",
       "Monthly": "Monthly",
-      "Annual": "Annual"
+      "Annual": "Annual",
+      "MRR": "MRR",
+      "Top_sources": "Top sources",
+      "No_new_members_in_the_past_days": "No new members in the past {chartPeriod} days",
+      "Once_someone_signs_up,_you’ll_be_able_to_see_where_they_came_from_here.": "Once someone signs up, you’ll be able to see where they came from here.",
+      "Free_signups": "Free signups",
+      "Paid_conversions": "Paid conversions",
+      "See_all_member_activity": "See all member activity"
     },
     "Settings": {
       "Sending": "Sending...",

@@ -14,7 +14,7 @@
                     @horizontalPosition="left"
                     as |option|
                 >
-                    {{#if option.name}}{{option.name}}{{else}}<span class="red">Unknown option</span>{{/if}}
+                    {{#if option.name}}{{option.name}}{{else}}<span class="red">{{t "Manual.Dashboard.Unknown_option"}}</span>{{/if}}
                 </PowerSelect>
             </div>
             {{#if (eq this.selectedChartDisplay "mrr")}}
@@ -33,7 +33,7 @@
             {{/if}}
         {{else}}
             <Dashboard::Parts::Metric
-                @label="Total members"
+                @label={{t "Manual.Dashboard.Total_members"}}
                 @value={{format-number this.totalMembers}}
                 @trends={{this.hasTrends}}
                 @percentage={{this.totalMembersTrend}}

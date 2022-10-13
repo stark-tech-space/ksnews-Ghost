@@ -14,7 +14,14 @@ const DISPLAY_OPTIONS = [{
 export default class Recents extends Component {
     @service dashboardStats;
     @tracked sortColumn = 'signups';
-    displayOptions = DISPLAY_OPTIONS;
+    @service intl;
+
+    displayOptions = DISPLAY_OPTIONS.map((_) => {
+        return {
+            ..._,
+            name: this.intl.t(`Manual.Dashboard.${_.name.split(' ').join('')}`)
+        };
+    });
 
     @action
     onDisplayChange(selected) {

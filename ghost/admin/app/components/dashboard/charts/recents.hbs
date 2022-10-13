@@ -3,24 +3,24 @@
         <div class="gh-dashboard-tabs">
             <button type="button" class="gh-dashboard-tab {{if this.postsTabSelected 'is-selected'}}" {{on "click" this.changeTabToPosts}}>
                 <Dashboard::Parts::Metric
-                    @label="Recent posts" />
+                    @label={{t "Manual.Dashboard.Recent_posts"}} />
             </button>
             {{#if this.areMembersEnabled}}
                 <button type="button" class="gh-dashboard-tab {{if this.activityTabSelected 'is-selected'}}" {{on "click" this.changeTabToActivity}}>
                     <Dashboard::Parts::Metric
-                        @label="Member activity" />
+                        @label={{t "Manual.Members.Member_activity"}} />
                 </button>
             {{/if}}
         </div>
         {{#if this.postsTabSelected}}
             <div class="gh-dashboard-recents-posts gh-dashboard-list {{unless this.areNewslettersEnabled 'is-single'}}">
                 <div class="gh-dashboard-list-header">
-                    <div class="gh-dashboard-list-title">Title</div>
+                    <div class="gh-dashboard-list-title">{{t "Manual.Dashboard.Title"}}</div>
                     {{#if this.areNewslettersEnabled}}
-                        <div class="gh-dashboard-list-title">Sends</div>
-                        <div class="gh-dashboard-list-title">Open rate</div>
+                        <div class="gh-dashboard-list-title">{{t "Manual.Dashboard.Sends"}}</div>
+                        <div class="gh-dashboard-list-title">{{t "Manual.Dashboard.Open_rate"}}</div>
                     {{else}}
-                        <div class="gh-dashboard-list-title">Published</div>
+                        <div class="gh-dashboard-list-title">{{t "Manual.Dashboard.Published"}}</div>
                     {{/if}}
                 </div>
                 <div class="gh-dashboard-list-body">
@@ -57,26 +57,26 @@
                         </LinkTo>
                     {{else}}
                         <div class="gh-dashboard-list-empty">
-                            <p>No published posts yet.</p>
+                            <p>{{t "Manual.Dashboard.No_published_posts_yet."}}</p>
                         </div>
                     {{/each}}
                 </div>
                 <div class="gh-dashboard-list-footer">
-                    <LinkTo @route="posts" @query={{reset-query-params "posts"}}>See all posts &rarr;</LinkTo>
+                    <LinkTo @route="posts" @query={{reset-query-params "posts"}}>{{t "Manual.Dashboard.See_all_posts"}} &rarr;</LinkTo>
                 </div>
             </div>
         {{else}}
             <div class="gh-dashboard-recents-activity gh-dashboard-list" data-test-dashboard-member-activity>
                 <div class="gh-dashboard-list-header">
-                    <div class="gh-dashboard-list-title">Member</div>
-                    <div class="gh-dashboard-list-title">Event</div>
-                    <div class="gh-dashboard-list-title">Time</div>
+                    <div class="gh-dashboard-list-title">{{t "Manual.Dashboard.Member"}}</div>
+                    <div class="gh-dashboard-list-title">{{t "Manual.Dashboard.Event"}}</div>
+                    <div class="gh-dashboard-list-title">{{t "Manual.Dashboard.Time"}}</div>
                 </div>
                 <div class="gh-dashboard-list-body">
                     {{#let (members-event-fetcher filter=(members-event-filter excludeEmailEvents=true) pageSize=5) as |eventsFetcher|}}
                         {{#if eventsFetcher.isError}}
                             <div class="gh-dashboard-list-error">
-                                <p>There was an error loading events</p>
+                                <p>{{t "Manual.Dashboard.There_was_an_error_loading_events"}}</p>
                                 {{#if eventsFetcher.errorMessage}}
                                     <code>{{eventsFetcher.errorMessage}}</code>
                                 {{/if}}
@@ -119,14 +119,14 @@
                                 {{/each}}
                             {{else}}
                                 <div class="gh-dashboard-list-empty" data-test-no-member-activities>
-                                    <p>No activity yet.</p>
+                                    <p>{{t "Manual.Dashboard.No_activity_yet."}}</p>
                                 </div>
                             {{/if}}
                         {{/if}}
                     {{/let}}
                 </div>
                 <div class="gh-dashboard-list-footer">
-                    <LinkTo @route="members-activity" @query={{reset-query-params "members-activity"}}>See all member activity &rarr;</LinkTo>
+                    <LinkTo @route="members-activity" @query={{reset-query-params "members-activity"}}>{{t "Manual.Dashboard.See_all_member_activity"}} &rarr;</LinkTo>
                 </div>
             </div>
         {{/if}}

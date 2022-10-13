@@ -1,13 +1,13 @@
 <div class="gh-main-section prototype-control-panel" {{did-insert this.onInsert}}>
-    <h4 class="gh-main-section-header small bn">Prototype control panel</h4>
+    <h4 class="gh-main-section-header small bn">{{t "Manual.Dashboard.Prototype_control_panel"}}</h4>
 
     <div class="gh-expandable">
         <div class="gh-expandable-block">
             <div class="gh-expandable-header">
                 <div>
-                    <h4 class="gh-expandable-title">Enable fake data</h4>
+                    <h4 class="gh-expandable-title">{{t "Manual.Dashboard.Enable_fake_data"}}</h4>
                     <p class="gh-expandable-description">
-                        Replace real data with mocked data to test the dashboard
+                        {{t "Manual.Dashboard.Replace_real_data_with_mocked_data_to_test_the_dashboard"}}
                     </p>
                 </div>
                 <div class="for-switch">
@@ -23,9 +23,9 @@
             <div class="gh-expandable-block">
                 <div class="gh-expandable-header">
                     <div>
-                        <h4 class="gh-expandable-title">Emulated state</h4>
+                        <h4 class="gh-expandable-title">{{t "Manual.Dashboard.Emulated_state"}}</h4>
                         <p class="gh-expandable-description">
-                            Choose a state you want to emulate for this site
+                            {{t "Manual.Dashboard.Choose_a_state_you_want_to_emulate_for_this_site"}}
                         </p>
                     </div>
                     <div>
@@ -40,7 +40,7 @@
                             @matchTriggerWidth={{false}}
                             as |option|
                         >
-                            {{#if option.name}}{{option.name}}{{else}}<span class="red">Unknown option</span>{{/if}}
+                            {{#if option.name}}{{option.name}}{{else}}<span class="red">{{t "Manual.Dashboard.Unknown_option"}}</span>{{/if}}
                         </PowerSelect>
                     </div>
                 </div>
@@ -49,9 +49,9 @@
             <div class="gh-expandable-block">
                 <div class="gh-expandable-header">
                     <div>
-                        <h4 class="gh-expandable-title">Newsletters enabled</h4>
+                        <h4 class="gh-expandable-title">{{t "Manual.Dashboard.Newsletters_enabled"}}</h4>
                         <p class="gh-expandable-description">
-                            All email related charts shown
+                          {{t "Manual.Dashboard.All_email_related_charts_shown"}}
                         </p>
                     </div>
                     <div class="for-switch">
@@ -66,9 +66,9 @@
             <div class="gh-expandable-block">
                 <div class="gh-expandable-header">
                     <div>
-                        <h4 class="gh-expandable-title">Members enabled</h4>
+                        <h4 class="gh-expandable-title">{{t "Manual.Dashboard.Members_enabled"}}</h4>
                         <p class="gh-expandable-description">
-                            Setting subscription access to other value than 'Nobody'
+                           {{t "Manual.Dashboard.Setting_subscription_access_to_other_value_than_'Nobody'"}}
                         </p>
                     </div>
                     <div class="for-switch">
@@ -84,9 +84,9 @@
                 <div class="gh-expandable-block">
                     <div class="gh-expandable-header">
                         <div>
-                            <h4 class="gh-expandable-title">Has paid tiers and Stripe connected</h4>
+                            <h4 class="gh-expandable-title">{{t "Manual.Dashboard.Has_paid_tiers_and_Stripe_connected"}}</h4>
                             <p class="gh-expandable-description">
-                                Paid memberships
+                                {{t "Manual.Dashboard.Paid_memberships"}}
                             </p>
                         </div>
                         <div class="for-switch">
@@ -101,9 +101,9 @@
                 <div class="gh-expandable-block">
                     <div class="gh-expandable-header">
                         <div>
-                            <h4 class="gh-expandable-title">Has multiple paid tiers</h4>
+                            <h4 class="gh-expandable-title">{{t "Manual.Dashboard.Has_multiple_paid_tiers"}}</h4>
                             <p class="gh-expandable-description">
-                                Adds the ability to show paid mix per tier
+                                {{t "Manual.Dashboard.Adds_the_ability_to_show_paid_mix_per_tier"}}
                             </p>
                         </div>
                         <div class="for-switch">

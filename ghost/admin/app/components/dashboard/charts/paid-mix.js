@@ -194,6 +194,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
 
 export default class PaidMix extends Component {
     @service dashboardStats;
+    @service intl;
 
     /**
      * Call this method when you need to fetch new data from the server. 
@@ -210,7 +211,12 @@ export default class PaidMix extends Component {
     }
 
     @tracked mode = 'cadence';
-    modeOptions = MODE_OPTIONS;
+    modeOptions = MODE_OPTIONS.map((_) => {
+        return {
+            ..._,
+            name: this.intl.t(`Manual.Dashboard.${_.name}`)
+        };
+    });
 
     get selectedModeOption() {
         return this.modeOptions.find(option => option.value === this.mode);
