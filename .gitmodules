@@ -1,3 +1,6 @@
 [submodule "ghost/core/content/themes/casper"]
 	path = ghost/core/content/themes/casper
 	url = ../../TryGhost/Casper.git
+[submodule "ghost/core/content/themes/headline"]
+	path = ghost/core/content/themes/headline
+	url = git@github.com:stark-tech-space/ksnews-Ghost-themes-headline.git

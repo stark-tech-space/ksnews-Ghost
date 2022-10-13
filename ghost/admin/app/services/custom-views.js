@@ -105,6 +105,7 @@ export default class CustomViewsService extends Service {
     @service router;
     @service session;
     @service settings;
+    @service intl;
 
     get viewList() {
         let {settings, session} = this;
@@ -123,7 +124,10 @@ export default class CustomViewsService extends Service {
         // contributors can only see their own draft posts so it doesn't make
         // sense to show them default views which change the status/type filter
         if (!session.user.isContributor) {
-            viewList.push(...DEFAULT_VIEWS);
+            viewList.push(...DEFAULT_VIEWS.map(item => ({
+                ...item,
+                name: this.intl.t(`Manual.JS.${item.name}`)
+            })));
         }
 
         viewList.push(...views.map((view) => {

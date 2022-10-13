@@ -174,10 +174,10 @@
     "edition": "octane"
   },
   "lint-staged": {
-    "*.hbs": "ember-template-lint",
     "*.js": "eslint"
   },
   "dependencies": {
+    "ember-intl": "^5.7.2",
     "path-browserify": "1.0.1",
     "webpack": "5.74.0"
   }
