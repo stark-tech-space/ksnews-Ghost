@@ -12,7 +12,7 @@ module.exports = {
     test : {
       user : 'ubuntu',
       host : '54.249.167.108',
-      ref  : 'origin/master',
+      ref  : 'origin/main',
       repo : 'git@github.com:stark-tech-space/ksnews-Ghost.git',
       path : '/home/ubuntu/ksnews-Ghost',
       'post-deploy' : 'yarn && pm2 reload ecosystem.config.js --only ksnews-Ghost',
