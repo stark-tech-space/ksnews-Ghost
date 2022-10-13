@@ -15,7 +15,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'git@github.com:stark-tech-space/ksnews-Ghost.git',
       path : '/home/ubuntu/ksnews-Ghost',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production',
+      'post-deploy' : 'yarn && pm2 reload ecosystem.config.js --only ksnews-Ghost',
       'pre-setup': 'yarn setup'
     }
   }
