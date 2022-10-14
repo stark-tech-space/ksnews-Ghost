@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // # Mail
 // Handles sending email for Ghost
 const _ = require('lodash');
@@ -25,20 +26,22 @@ function getDomain() {
 function getFromAddress(requestedFromAddress) {
     const configAddress = config.get('mail') && config.get('mail').from;
 
-    const address = requestedFromAddress || configAddress;
-    // If we don't have a from address at all
-    if (!address) {
-        // Default to noreply@[blog.url]
-        return getFromAddress(`noreply@${getDomain()}`);
-    }
+    //  这里强制使用配置中的邮箱地址，因为网站域名和现在使用的邮箱域名不一致
+    return configAddress;
+    // const address = requestedFromAddress || configAddress;
+    // // If we don't have a from address at all
+    // if (!address) {
+    //     // Default to noreply@[blog.url]
+    //     return getFromAddress(`noreply@${getDomain()}`);
+    // }
 
-    // If we do have a from address, and it's just an email
-    if (validator.isEmail(address, {require_tld: false})) {
-        const defaultSiteTitle = settingsCache.get('title') ? settingsCache.get('title').replace(/"/g, '\\"') : tpl(messages.title, {domain: getDomain()});
-        return `"${defaultSiteTitle}" <${address}>`;
-    }
+    // // If we do have a from address, and it's just an email
+    // if (validator.isEmail(address, {require_tld: false})) {
+    //     const defaultSiteTitle = settingsCache.get('title') ? settingsCache.get('title').replace(/"/g, '\\"') : tpl(messages.title, {domain: getDomain()});
+    //     return `"${defaultSiteTitle}" <${address}>`;
+    // }
 
-    return address;
+    // return address;
 }
 
 /**
