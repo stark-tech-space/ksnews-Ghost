@@ -311,5 +311,7 @@ module.exports = function apiRoutes() {
 
     router.get('/links', mw.authAdminApi, http(api.links.browse));
 
+    // ## Ota user
+    router.post('/thirdparty/user/session', mw.authAdminApi, http(api.thirdparty.session));
     return router;
 };

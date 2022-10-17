@@ -235,5 +235,10 @@ module.exports = {
 
     get feedbackMembers() {
         return apiFramework.pipeline(require('./feedback-members'), localUtils, 'members');
-    }   
+    },
+
+    get thirdparty() {
+        return apiFramework.pipeline(require('./thirdparty'), localUtils);
+    }
+
 };
