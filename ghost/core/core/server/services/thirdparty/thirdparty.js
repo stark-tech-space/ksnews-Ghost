@@ -6,7 +6,13 @@ const urlUtils = require('../../../shared/url-utils');
 const uuid = require('uuid');
 const jwt = require('jsonwebtoken');
 const jose = require('node-jose');
+const SingleUseTokenProvider = require('../members/SingleUseTokenProvider');
+const {URL} = require('url');
+
 const issuer = urlUtils.urlFor('admin', true);
+
+const TOKEN_VALIDITY = 5 * 60 * 1000;
+const tokenProvider = new SingleUseTokenProvider(models.SingleUseToken, TOKEN_VALIDITY);
 
 const dangerousPrivateKey = settings.get('ghost_private_key');
 const keyStore = jose.JWK.createKeyStore();
@@ -93,8 +99,21 @@ function decodeToken(token) {
     });
 }
 
+async function genMemberLoginUrl({email}) {
+    const token = await tokenProvider.create({email});
+    const type = 'signin';
+
+    const siteUrl = urlUtils.urlFor({relativeUrl: '/members/'}, true);
+    const signinURL = new URL(siteUrl);
+    signinURL.searchParams.set('token', token);
+    signinURL.searchParams.set('action', type);
+
+    return signinURL.toString();
+}
+
 module.exports = {
     getSetUser,
     genToken,
-    decodeToken
+    decodeToken,
+    genMemberLoginUrl
 };

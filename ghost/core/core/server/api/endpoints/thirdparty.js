@@ -17,5 +17,13 @@ module.exports = {
             const user = await thirdparty.genToken(frame.data);
             return user;
         }
+    },
+
+    memberLoginUrl: {
+        permissions: true,
+        async query(frame) {
+            const url = await thirdparty.genMemberLoginUrl(frame.data);
+            return url;
+        }
     }
 };

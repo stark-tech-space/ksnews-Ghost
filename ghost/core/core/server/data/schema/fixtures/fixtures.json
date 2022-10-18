@@ -625,6 +625,11 @@
           "name": "GET Third Party User Token",
           "action_type": "token",
           "object_type": "thirdparty"
+        },
+        {
+          "name": "Get Third Party Member Login Url",
+          "action_type": "memberLoginUrl",
+          "object_type": "thirdparty"
         }
       ]
     },
