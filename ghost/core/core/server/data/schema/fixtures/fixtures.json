@@ -617,8 +617,13 @@
           "object_type": "comment"
         },
         {
-          "name": "Get Third Party User Session",
-          "action_type": "session",
+          "name": "Add Third Party User",
+          "action_type": "user",
+          "object_type": "thirdparty"
+        },
+        {
+          "name": "GET Third Party User Token",
+          "action_type": "token",
           "object_type": "thirdparty"
         }
       ]

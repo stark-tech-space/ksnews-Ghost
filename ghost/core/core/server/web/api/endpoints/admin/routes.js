@@ -209,6 +209,7 @@ module.exports = function apiRoutes() {
         http(api.session.add)
     );
     router.del('/session', mw.authAdminApi, http(api.session.delete));
+    router.post('/session/thirdparty', http(api.session.thirdpartyToken));
 
     // ## Identity
     router.get('/identities', mw.authAdminApi, http(api.identities.read));
@@ -312,6 +313,7 @@ module.exports = function apiRoutes() {
     router.get('/links', mw.authAdminApi, http(api.links.browse));
 
     // ## Ota user
-    router.post('/thirdparty/user/session', mw.authAdminApi, http(api.thirdparty.session));
+    router.post('/thirdparty/user', mw.authAdminApi, http(api.thirdparty.user));
+    router.post('/thirdparty/user/token', mw.authAdminApi, http(api.thirdparty.token));
     return router;
 };

@@ -3,6 +3,7 @@ const tpl = require('@tryghost/tpl');
 const errors = require('@tryghost/errors');
 const models = require('../../models');
 const auth = require('../../services/auth');
+const thirdparty = require('../../services/thirdparty');
 const api = require('./index');
 
 const messages = {
@@ -63,6 +64,28 @@ const session = {
     delete() {
         return Promise.resolve((req, res, next) => {
             auth.session.destroySession(req, res, next);
+        });
+    },
+    thirdpartyToken(frame) {
+        const {token} = frame.data;
+        
+        if (!token) {
+            return Promise.reject(new errors.UnauthorizedError({
+                message: tpl(messages.accessDenied)
+            }));
+        }
+
+        const decoded = thirdparty.decodeToken(token);
+        const {userId} = decoded;
+        return models.User.findOne({
+            id: userId
+        }).then((user) => {
+            return Promise.resolve((req, res, next) => {
+                req.user = user;
+                auth.session.createSession(req, res, next);
+            });
+        }).catch(async (err) => {
+            throw err;
         });
     }
 };
