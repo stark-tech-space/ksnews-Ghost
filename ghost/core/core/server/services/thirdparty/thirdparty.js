@@ -99,8 +99,8 @@ function decodeToken(token) {
     });
 }
 
-async function genMemberLoginUrl({email}) {
-    const token = await tokenProvider.create({email});
+async function genMemberLoginUrl({email, name}) {
+    const token = await tokenProvider.create({email, name});
     const type = 'signin';
 
     const siteUrl = urlUtils.urlFor({relativeUrl: '/members/'}, true);

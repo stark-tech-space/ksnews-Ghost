@@ -835,7 +835,8 @@
             "edit"
           ],
           "explore": "read",
-          "comment": "all"
+          "comment": "all",
+          "thirdparty": "all"
         },
         "Editor": {
           "notification": "all",
