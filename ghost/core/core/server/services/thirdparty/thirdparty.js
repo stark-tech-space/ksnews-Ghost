@@ -25,7 +25,7 @@ const getKeyID = async () => {
 
 const messages = {
     accountSuspended: 'Your account was suspended.',
-    roleNotMatch: 'The role of the user is invalid.'
+    roleNotMatch: 'The role of the user is invalid.',
 };
 
 const VALID_ROLES = ['Administrator', 'Editor', 'Author', 'Contributor'];
@@ -42,60 +42,70 @@ async function getSetUser({email, name, role}) {
     }
 
     // if no role is specified, use the default role
-    if (!role){
+    if (!role) {
         role = 'Contributor';
     } else if (!VALID_ROLES.includes(role)) {
         throw new errors.ValidationError({
-            message: tpl(messages.roleNotMatch)
+            message: tpl(messages.roleNotMatch),
         });
     }
 
-    // check if user exists  
+    // check if user exists
     let user = await models.User.getByEmail(email, {withRelated: ['roles']});
     if (user) {
         if (user.isInactive()) {
             throw new errors.NoPermissionError({
-                message: tpl(messages.accountSuspended)
+                message: tpl(messages.accountSuspended),
             });
         }
         // if user exists, update the name and role
-        await models.User.edit({
-            name,
-            roles: [role]
-        }, {id: user.id});
+        await models.User.edit(
+            {
+                name,
+                roles: [role],
+            },
+            {id: user.id}
+        );
     } else {
         // create a new user
         const options = {context: {internal: true}};
-        await models.User.add({
-            email,
-            name,
-            password: uuid.v1(),
-            roles: [role]
-        }, options);
+        await models.User.add(
+            {
+                email,
+                name,
+                password: uuid.v1(),
+                roles: [role],
+            },
+            options
+        );
         user = await models.User.getByEmail(email);
     }
 
     return user;
 }
 
-async function genToken({email, name, role}) {
+async function genToken({email, name, role, expiresIn}) {
     const user = await getSetUser({email, name, role});
     const kid = await getKeyID();
-    const token = jwt.sign({
-        userId: user.id
-    }, dangerousPrivateKey,{
-        issuer,
-        expiresIn: '5m',
-        algorithm: 'RS256',
-        keyid: kid
-    });
+    const token = jwt.sign(
+        {
+            userId: user.id,
+        },
+        dangerousPrivateKey,
+        {
+            issuer,
+            expiresIn: expiresIn || '5m',
+            algorithm: 'RS256',
+            keyid: kid,
+        }
+    );
     return token;
 }
 
 function decodeToken(token) {
     return jwt.verify(token, dangerousPrivateKey, {
         algorithms: ['RS256'],
-        issuer
+        issuer,
     });
 }
 
@@ -115,5 +125,5 @@ module.exports = {
     getSetUser,
     genToken,
     decodeToken,
-    genMemberLoginUrl
+    genMemberLoginUrl,
 };

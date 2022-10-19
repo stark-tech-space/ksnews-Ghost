@@ -6,6 +6,7 @@ const limitService = require('../../../services/limits');
 const {legacyApiPathMatch} = require('../../../services/api-version-compatibility');
 const tpl = require('@tryghost/tpl');
 const _ = require('lodash');
+const thirdparty = require('../../thirdparty');
 
 const messages = {
     incorrectAuthHeaderFormat: 'Authorization header format is "Authorization: Ghost [token]"',
@@ -13,24 +14,24 @@ const messages = {
     invalidToken: 'Invalid token',
     adminApiKidMissing: 'Admin API kid missing.',
     unknownAdminApiKey: 'Unknown Admin API Key',
-    invalidApiKeyType: 'Invalid API Key type'
+    invalidApiKeyType: 'Invalid API Key type',
 };
 
 let JWT_OPTIONS_DEFAULTS = {
     algorithms: ['HS256'],
-    maxAge: '5m'
+    maxAge: '5m',
 };
 
 /**
- * Remove 'Ghost' from raw authorization header and extract the JWT token.
+ * Remove 'Ghost'/'OTA' from raw authorization header and extract the JWT token.
  * Eg. Authorization: Ghost ${JWT}
  * @param {string} header
  */
 const _extractTokenFromHeader = function extractTokenFromHeader(header) {
     const [scheme, token] = header.split(' ');
 
-    if (/^Ghost$/i.test(scheme)) {
-        return token;
+    if (/^Ghost$/i.test(scheme) || /^OTA$/i.test(scheme)) {
+        return [scheme, token];
     }
 };
 
@@ -51,25 +52,35 @@ const authenticate = (req, res, next) => {
         req.api_key = null;
         return next();
     }
-    const token = _extractTokenFromHeader(req.headers.authorization);
+    const _token = _extractTokenFromHeader(req.headers.authorization);
 
-    if (!token) {
-        return next(new errors.UnauthorizedError({
-            message: tpl(messages.incorrectAuthHeaderFormat),
-            code: 'INVALID_AUTH_HEADER'
-        }));
+    if (!_token) {
+        return next(
+            new errors.UnauthorizedError({
+                message: tpl(messages.incorrectAuthHeaderFormat),
+                code: 'INVALID_AUTH_HEADER',
+            })
+        );
     }
 
-    return authenticateWithToken(req, res, next, {token, JWT_OPTIONS: JWT_OPTIONS_DEFAULTS});
+    const [scheme, token] = _token;
+
+    if (scheme === 'OTA') {
+        return authenticateWithThirdPartyToken(req, res, next, {token});
+    } else {
+        return authenticateWithToken(req, res, next, {token, JWT_OPTIONS: JWT_OPTIONS_DEFAULTS});
+    }
 };
 
 const authenticateWithUrl = (req, res, next) => {
     const token = _extractTokenFromUrl(req.originalUrl);
     if (!token) {
-        return next(new errors.UnauthorizedError({
-            message: tpl(messages.invalidTokenWithMessage, {message: 'No token found in URL'}),
-            code: 'INVALID_JWT'
-        }));
+        return next(
+            new errors.UnauthorizedError({
+                message: tpl(messages.invalidTokenWithMessage, {message: 'No token found in URL'}),
+                code: 'INVALID_JWT',
+            })
+        );
     }
     // CASE: Scheduler publish URLs can have long maxAge but controllerd by expiry and neverBefore
     return authenticateWithToken(req, res, next, {token, JWT_OPTIONS: _.omit(JWT_OPTIONS_DEFAULTS, 'maxAge')});
@@ -93,41 +104,52 @@ const authenticateWithToken = async (req, res, next, {token, JWT_OPTIONS}) => {
     const decoded = jwt.decode(token, {complete: true});
 
     if (!decoded || !decoded.header) {
-        return next(new errors.BadRequestError({
-            message: tpl(messages.invalidToken),
-            code: 'INVALID_JWT'
-        }));
+        return next(
+            new errors.BadRequestError({
+                message: tpl(messages.invalidToken),
+                code: 'INVALID_JWT',
+            })
+        );
     }
 
     const apiKeyId = decoded.header.kid;
 
     if (!apiKeyId) {
-        return next(new errors.BadRequestError({
-            message: tpl(messages.adminApiKidMissing),
-            code: 'MISSING_ADMIN_API_KID'
-        }));
+        return next(
+            new errors.BadRequestError({
+                message: tpl(messages.adminApiKidMissing),
+                code: 'MISSING_ADMIN_API_KID',
+            })
+        );
     }
 
     try {
         const apiKey = await models.ApiKey.findOne({id: apiKeyId}, {withRelated: ['integration']});
 
         if (!apiKey) {
-            return next(new errors.UnauthorizedError({
-                message: tpl(messages.unknownAdminApiKey),
-                code: 'UNKNOWN_ADMIN_API_KEY'
-            }));
+            return next(
+                new errors.UnauthorizedError({
+                    message: tpl(messages.unknownAdminApiKey),
+                    code: 'UNKNOWN_ADMIN_API_KEY',
+                })
+            );
         }
 
         if (apiKey.get('type') !== 'admin') {
-            return next(new errors.UnauthorizedError({
-                message: tpl(messages.invalidApiKeyType),
-                code: 'INVALID_API_KEY_TYPE'
-            }));
+            return next(
+                new errors.UnauthorizedError({
+                    message: tpl(messages.invalidApiKeyType),
+                    code: 'INVALID_API_KEY_TYPE',
+                })
+            );
         }
 
         // CASE: blocking all non-internal: "custom" and "builtin" integration requests when the limit is reached
-        if (limitService.isLimited('customIntegrations')
-            && (apiKey.relations.integration && !['internal', 'core'].includes(apiKey.relations.integration.get('type')))) {
+        if (
+            limitService.isLimited('customIntegrations') &&
+            apiKey.relations.integration &&
+            !['internal', 'core'].includes(apiKey.relations.integration.get('type'))
+        ) {
             // NOTE: using "checkWouldGoOverLimit" instead of "checkIsOverLimit" here because flag limits don't have
             //       a concept of measuring if the limit has been surpassed
             await limitService.errorIfWouldGoOverLimit('customIntegrations');
@@ -147,24 +169,32 @@ const authenticateWithToken = async (req, res, next, {token, JWT_OPTIONS}) => {
 
         if (version) {
             // CASE: legacy versioned api request
-            options = Object.assign({
-                audience: new RegExp(`/?${version}/${api}/?$`)
-            }, JWT_OPTIONS);
+            options = Object.assign(
+                {
+                    audience: new RegExp(`/?${version}/${api}/?$`),
+                },
+                JWT_OPTIONS
+            );
         } else {
-            options = Object.assign({
-                audience: new RegExp(`/?${api}/?$`)
-            }, JWT_OPTIONS);
+            options = Object.assign(
+                {
+                    audience: new RegExp(`/?${api}/?$`),
+                },
+                JWT_OPTIONS
+            );
         }
 
         try {
             jwt.verify(token, secret, options);
         } catch (err) {
             if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
-                return next(new errors.UnauthorizedError({
-                    message: tpl(messages.invalidTokenWithMessage, {message: err.message}),
-                    code: 'INVALID_JWT',
-                    err
-                }));
+                return next(
+                    new errors.UnauthorizedError({
+                        message: tpl(messages.invalidTokenWithMessage, {message: err.message}),
+                        code: 'INVALID_JWT',
+                        err,
+                    })
+                );
             }
 
             // unknown error
@@ -175,10 +205,7 @@ const authenticateWithToken = async (req, res, next, {token, JWT_OPTIONS}) => {
 
         if (apiKey.get('user_id')) {
             // fetch the user and store it on the request for later checks and logging
-            const user = await models.User.findOne(
-                {id: apiKey.get('user_id'), status: 'active'},
-                {require: true}
-            );
+            const user = await models.User.findOne({id: apiKey.get('user_id'), status: 'active'}, {require: true});
 
             req.user = user;
         }
@@ -196,7 +223,32 @@ const authenticateWithToken = async (req, res, next, {token, JWT_OPTIONS}) => {
     }
 };
 
+const authenticateWithThirdPartyToken = async (req, res, next, {token}) => {
+    try {
+        const decoded = thirdparty.decodeToken(token);
+        const {userId} = decoded;
+
+        const user = await models.User.findOne({id: userId, status: 'active'}, {require: true});
+        req.user = user;
+
+        next();
+    } catch (err) {
+        if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
+            return next(
+                new errors.UnauthorizedError({
+                    message: tpl(messages.invalidTokenWithMessage, {message: err.message}),
+                    code: 'INVALID_JWT',
+                    err,
+                })
+            );
+        }
+
+        // unknown error
+        return next(new errors.InternalServerError({err}));
+    }
+};
+
 module.exports = {
     authenticate,
-    authenticateWithUrl
+    authenticateWithUrl,
 };
