@@ -14,7 +14,7 @@ function corsOptionsDelegate(req, callback) {
     const corsOptions = {
         origin: false, // disallow cross-origin requests by default
         credentials: true, // required to allow admin-client to login to private sites
-        maxAge: config.get('caching:cors:maxAge')
+        maxAge: config.get('caching:cors:maxAge'),
     };
 
     if (!origin || origin === 'null') {
@@ -47,6 +47,14 @@ function corsOptionsDelegate(req, callback) {
     if (config.get('admin:url')) {
         const adminUrl = new URL(config.get('admin:url'));
         if (originUrl.host === adminUrl.host) {
+            corsOptions.origin = true;
+        }
+    }
+
+    // 增加允许微前端的跨域
+    if (config.get('microFrontend:url')) {
+        const microFrontendUrl = new URL(config.get('microFrontend:url'));
+        if (originUrl.host === microFrontendUrl.host) {
             corsOptions.origin = true;
         }
     }

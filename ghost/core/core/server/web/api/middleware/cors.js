@@ -15,9 +15,7 @@ const DISABLE_CORS = {origin: false};
 function getIPs() {
     const ifaces = os.networkInterfaces();
 
-    const ips = [
-        'localhost'
-    ];
+    const ips = ['localhost'];
 
     Object.keys(ifaces).forEach((ifname) => {
         ifaces[ifname].forEach((iface) => {
@@ -37,6 +35,13 @@ function getUrls() {
     const blogHost = url.parse(urlUtils.urlFor('home', true)).hostname;
     const adminHost = url.parse(urlUtils.urlFor('admin', true)).hostname;
     const urls = [];
+
+    // 增加允许微前端的跨域
+    if (config.get('microFrontend:url')) {
+        const microFrontendUrl = new url.URL(config.get('microFrontend:url'));
+        const microFrontendHost = microFrontendUrl.hostname;
+        urls.push(microFrontendHost);
+    }
 
     urls.push(blogHost);
 
