@@ -883,7 +883,10 @@
       "archived": "archived",
       "sent": "sent",
       "draft": "draft",
-      "Sort_by": "Sort by"
+      "Sort_by": "Sort by",
+      "Recommended": "Recommended",
+      "characters": "characters",
+      "You’ve_used": "You’ve used"
     },
     "Pages": {
       "Pages": "Pages",
@@ -2274,7 +2277,13 @@
       "Do_you_want_to_activate_it_now?": "Do you want to activate it now?",
       "already_exists._Do_you_want_to_overwrite_it?": "already exists. Do you want to overwrite it?",
       "This_theme_is_invalid_and_cannot_be_activated._Fix_the_following_errors_and_re-upload_the_theme.": "This theme is invalid and cannot be activated. Fix the following errors and re-upload the theme.",
-      "Label": "Label"
+      "Label": "Label",
+      "Failed_to_send_newsletter._": "Failed to send newsletter. ",
+      "to_be_sent_to_": "to be sent to ",
+      "to_": "to ",
+      "member": "member",
+      "but_failed_to_send_newsletter.": "but failed to send newsletter.",
+      "to_be_published": "to be published"
     },
     "Designsandbox": {
       "Components": "Components",
@@ -2666,7 +2675,10 @@
       "_successfully_reverted_to_a_draft.": " successfully reverted to a draft.",
       "7_Days": "7 days",
       "30_Days": "30 days",
-      "90_Days": "90 days"
+      "90_Days": "90 days",
+      "Newest_first": "Newest first",
+      "Oldest_first": "Oldest first",
+      "Recently_updated": "Recently updated"
     },
     "Errors": {
       "Please_enter_an_email": "Please enter an email",

@@ -19,13 +19,8 @@ module.exports = {
             ]
         }
     },
-    plugins: [
-        'ghost',
-        'react'
-    ],
-    extends: [
-        'plugin:ghost/ember'
-    ],
+    plugins: ['ghost', 'react', 'prettier'],
+    extends: ['plugin:ghost/ember', 'prettier'],
     rules: {
         'no-shadow': ['error'],
 

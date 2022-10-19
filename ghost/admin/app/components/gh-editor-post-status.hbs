@@ -1,41 +1,41 @@
 {{!-- template-lint-disable no-invalid-interactive --}}
 <div {{on "mouseover" this.onMouseover}} {{on "mouseleave" this.onMouseleave}} data-test-editor-post-status ...attributes>
     {{#if (and this.isSaving @post.isDraft)}}
-        Saving...
+        {{t "Manual.Components.Saving"}}...
     {{else if @post.isSent}}
         {{#if @post.didEmailFail }}
-            <span class="newsletter-failed">Failed to send newsletter. </span>
+            <span class="newsletter-failed">{{t "Manual.Components.Failed_to_send_newsletter._"}}</span>
             <button
                 type="button"
                 class="gh-retry-trigger"
                 {{on "click" @publishManagement.openPublishFlow}}
                 disabled={{@publishManagement.publishOptions.isLoading}}
             >
-                <span>Retry now</span>
+                <span>{{t "Manual.Components.Retry"}}</span>
             </button>
         {{else}}
-            <button type="button" {{on "click" @openUpdateFlow}} class="gh-editor-post-status-btn">Sent</button>
-            to {{gh-pluralize @post.email.emailCount "member"}}
+            <button type="button" {{on "click" @openUpdateFlow}} class="gh-editor-post-status-btn">{{t "Manual.Components.Sent"}}</button>
+            {{t "Manual.Components.to_"}}{{concat @post.email.emailCount (t "Manual.Components.member")}}
         {{/if}}
     {{else if (and @post.emailOnly @post.isScheduled)}}
-        Scheduled
+        {{t "Manual.Components.Scheduled_"}}
         {{#if this.isHovered}}
             <time datetime="{{@post.publishedAtUTC}}" class="ml1 green-d1" data-test-schedule-countdown>
-                to be sent to <GhRecipientFilterCount @filter={{@post.fullRecipientFilter}} @newsletter={{@post.newsletter}} />
+                {{t "Manual.Components.to_be_sent_to_"}}<GhRecipientFilterCount @filter={{@post.fullRecipientFilter}} @newsletter={{@post.newsletter}} />
                 {{this.scheduledTime}}
             </time>
         {{/if}}
     {{else if (or @post.isPublished @post.pastScheduledTime)}}
         <span class="{{if (eq @post.email.status "failed") "newsletter-failed" ""}}">
-            Published
+            {{t "Manual.Components.Published_"}}
         </span>
         {{#if (or (eq @post.email.status "submitting") (eq @post.email.status "submitting"))}}
-            and sending to {{gh-pluralize @post.email.emailCount "member"}}
+            {{t "Manual.Others.and_sending_to"}}{{concat @post.email.emailCount (t "Manual.Components.member")}}
         {{else if (eq @post.email.status "submitted")}}
-            and sent to {{gh-pluralize @post.email.emailCount "member"}}
+            {{t "Manual.Others.and_sent_to"}}{{concat @post.email.emailCount (t "Manual.Components.member")}}
         {{else if (eq @post.email.status "failed")}}
             <span class="newsletter-failed">
-                but failed to send newsletter.
+                {{t "Manual.Components.but_failed_to_send_newsletter."}}
             </span>
             <button
                 type="button"
@@ -43,24 +43,24 @@
                 {{on "click" @publishManagement.openPublishFlow}}
                 disabled={{@publishManagement.publishOptions.isLoading}}
             >
-                <span>Retry now</span>
+                <span>{{t "Manual.Components.Retry"}}</span>
             </button>
         {{/if}}
     {{else if @post.isScheduled}}
         <time datetime="{{@post.publishedAtUTC}}" class="ml1 green-d1" data-test-schedule-countdown>
-            Scheduled
+            {{t "Manual.Components.Scheduled_"}}
             {{#if this.isHovered}}
-                to be published
+                {{t "Manual.Components.to_be_published"}}
                 {{#if (and @post.newsletter (not @post.email))}}
-                    and sent to <GhRecipientFilterCount @filter={{@post.fullRecipientFilter}} @newsletter={{@post.newsletter}} />
+                    {{t "Manual.Others.and_sent_to"}}<GhRecipientFilterCount @filter={{@post.fullRecipientFilter}} @newsletter={{@post.newsletter}} />
                 {{/if}}
                 {{this.scheduledTime}}
             {{/if}}
         </time>
     {{else if @post.isNew}}
-        New
+        {{t "Manual.Posts.New"}}
     {{else}}
-        Draft
-        {{unless @hasDirtyAttributes "- Saved"}}
+        {{t "Manual.Posts.Draft"}}
+        {{unless @hasDirtyAttributes (concat "- " (t "Manual.Components.Saved"))}}
     {{/if}}
 </div>

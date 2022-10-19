@@ -4,22 +4,32 @@ import {inject as service} from '@ember/service';
 import {task} from 'ember-concurrency';
 
 // Options 30 and 90 need an extra day to be able to distribute ticks/gridlines evenly
-const DAYS_OPTIONS = [{
-    name: '7 Days',
-    value: 7
-}, {
-    name: '30 Days',
-    value: 30 + 1
-}, {
-    name: '90 Days',
-    value: 90 + 1
-}];
+const DAYS_OPTIONS = [
+    {
+        name: '7 Days',
+        value: 7
+    },
+    {
+        name: '30 Days',
+        value: 30 + 1
+    },
+    {
+        name: '90 Days',
+        value: 90 + 1
+    }
+];
 
 export default class DashboardController extends Controller {
     @service dashboardStats;
     @service membersUtils;
+    @service intl;
 
-    daysOptions = DAYS_OPTIONS;
+    daysOptions = DAYS_OPTIONS.map((_) => {
+        return {
+            ..._,
+            name: this.intl.t(`Manual.Dashboard.${_.name.toLowerCase().split(' ').join('_')}`)
+        };
+    });
 
     @task
     *loadSiteStatusTask() {
@@ -41,7 +51,7 @@ export default class DashboardController extends Controller {
     }
 
     get selectedDaysOption() {
-        return this.daysOptions.find(d => d.value === this.days);
+        return this.daysOptions.find((d) => d.value === this.days);
     }
 
     get isLoading() {

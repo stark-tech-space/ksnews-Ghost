@@ -4,47 +4,62 @@ import {action} from '@ember/object';
 import {inject as service} from '@ember/service';
 import {tracked} from '@glimmer/tracking';
 
-const TYPES = [{
-    name: 'All posts',
-    value: null
-}, {
-    name: 'Draft posts',
-    value: 'draft'
-}, {
-    name: 'Published posts',
-    value: 'published'
-}, {
-    name: 'Scheduled posts',
-    value: 'scheduled'
-}, {
-    name: 'Featured posts',
-    value: 'featured'
-}];
+const TYPES = [
+    {
+        name: 'All posts',
+        value: null
+    },
+    {
+        name: 'Draft posts',
+        value: 'draft'
+    },
+    {
+        name: 'Published posts',
+        value: 'published'
+    },
+    {
+        name: 'Scheduled posts',
+        value: 'scheduled'
+    },
+    {
+        name: 'Featured posts',
+        value: 'featured'
+    }
+];
 
-const VISIBILITIES = [{
-    name: 'All access',
-    value: null
-}, {
-    name: 'Public',
-    value: 'public'
-}, {
-    name: 'Members-only',
-    value: 'members'
-}, {
-    name: 'Paid members-only',
-    value: 'paid'
-}];
+const VISIBILITIES = [
+    {
+        name: 'All access',
+        value: null
+    },
+    {
+        name: 'Public',
+        value: 'public'
+    },
+    {
+        name: 'Members-only',
+        value: 'members'
+    },
+    {
+        name: 'Paid members-only',
+        value: 'paid'
+    }
+];
 
-const ORDERS = [{
-    name: 'Newest first',
-    value: null
-}, {
-    name: 'Oldest first',
-    value: 'published_at asc'
-}, {
-    name: 'Recently updated',
-    value: 'updated_at desc'
-}];
+const ORDERS = [
+    {
+        name: 'Newest first',
+        value: null
+    },
+    {
+        name: 'Oldest first',
+        value: 'published_at asc'
+    },
+    {
+        name: 'Recently updated',
+        value: 'updated_at desc'
+    }
+];
 
 export default class PostsController extends Controller {
     @service config;
@@ -52,6 +67,7 @@ export default class PostsController extends Controller {
     @service router;
     @service session;
     @service store;
+    @service intl;
 
     // default values for these are set in constructor and defined in `helpers/reset-query-params`
     queryParams = ['type', 'visibility', 'author', 'tag', 'order'];
@@ -62,8 +78,18 @@ export default class PostsController extends Controller {
     @tracked tag = null;
     @tracked order = null;
 
-    availableTypes = TYPES;
-    availableVisibilities = VISIBILITIES;
+    availableTypes = TYPES.map((_) => {
+        return {
+            ..._,
+            name: this.intl.t(`Manual.JS.${_.name}`)
+        };
+    });
+    availableVisibilities = VISIBILITIES.map((_) => {
+        return {
+            ..._,
+            name: this.intl.t(`Manual.JS.${_.name}`)
+        };
+    });
     availableOrders = ORDERS;
 
     _availableTags = this.store.peekAll('tag');
@@ -83,6 +109,13 @@ export default class PostsController extends Controller {
                 value: 'email.open_rate desc'
             });
         }
+
+        this.availableOrders = this.availableOrders.map((_) => {
+            return {
+                ..._,
+                name: this.intl.t(`Manual.JS.${_.name}`)
+            };
+        });
     }
 
     get postsInfinityModel() {
@@ -109,11 +142,13 @@ export default class PostsController extends Controller {
 
     get availableTags() {
         const tags = this._availableTags
-            .filter(tag => tag.get('id') !== null)
+            .filter((tag) => tag.get('id') !== null)
             .sort((tagA, tagB) => tagA.name.localeCompare(tagB.name, undefined, {ignorePunctuation: true}));
 
         const options = tags.toArray();
         options.unshift({name: 'All tags', slug: null});
+
+        options[0].name = this.intl.t(`Manual.JS.${options[0].name}`);
 
         return options;
     }
@@ -130,6 +165,8 @@ export default class PostsController extends Controller {
         const options = authors.toArray();
 
         options.unshift({name: 'All authors', slug: null});
+
+        options[0].name = this.intl.t(`Manual.JS.${options[0].name}`);
 
         return options;
     }

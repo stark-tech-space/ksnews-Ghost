@@ -27,7 +27,7 @@
                                 <LinkTo @route={{pluralize this.post.displayName }} class="gh-btn-editor gh-editor-back-button" data-test-link={{pluralize this.post.displayName}}>
                                     <span>
                                         {{svg-jar "arrow-left"}}
-                                        {{capitalize (pluralize this.post.displayName)}}
+                                        {{t (concat "Manual.Integrations." (capitalize (pluralize this.post.displayName)))}}
                                     </span>
                                 </LinkTo>
                             {{/if}}
@@ -66,11 +66,11 @@
             <GhKoenigEditor
                 @title={{readonly this.post.titleScratch}}
                 @titleAutofocus={{this.shouldFocusTitle}}
-                @titlePlaceholder={{concat (capitalize this.post.displayName) " title"}}
+                @titlePlaceholder={{concat (capitalize (t (concat "Manual.Components." this.post.displayName))) (t "Manual.Posts.title")}}
                 @onTitleChange={{this.updateTitleScratch}}
                 @onTitleBlur={{perform this.saveTitleTask}}
                 @body={{readonly this.post.scratch}}
-                @bodyPlaceholder={{concat "Begin writing your " this.post.displayName "..."}}
+                @bodyPlaceholder={{concat (t "Manual.Posts.Begin_writing_your_") (t (concat "Manual.Components." this.post.displayName)) "..."}}
                 @onBodyChange={{this.updateScratch}}
                 @headerOffset={{editor.headerHeight}}
                 @scrollContainerSelector=".gh-koenig-editor"
@@ -96,7 +96,7 @@
 
             <div class="gh-editor-wordcount-container">
                 <div class="gh-editor-wordcount">
-                    {{gh-pluralize this.wordCount.wordCount "word"}}
+                    {{concat this.wordCount.wordCount (t "Manual.Posts.words")}}
                 </div>
                 <a href="https://ghost.org/help/using-the-editor/" class="flex" target="_blank" rel="noopener noreferrer">{{svg-jar "help"}}</a>
             </div>
@@ -113,7 +113,7 @@
         {{/if}}
     </div>
 
-    <button type="button" class="settings-menu-toggle gh-btn gh-btn-editor gh-btn-icon icon-only gh-btn-action-icon" title="Settings" {{on "click" this.toggleSettingsMenu}} data-test-psm-trigger>
+    <button type="button" class="settings-menu-toggle gh-btn gh-btn-editor gh-btn-icon icon-only gh-btn-action-icon" title={{t "Manual.Settings.Settings"}} {{on "click" this.toggleSettingsMenu}} data-test-psm-trigger>
         {{#if this.showSettingsMenu}}
             <span class="settings-menu-open">{{svg-jar "sidemenu-open"}}</span>
         {{else}}

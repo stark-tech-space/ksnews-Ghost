@@ -880,7 +880,10 @@
       "archived": "封存",
       "sent": "寄出",
       "draft": "草稿",
-      "Sort_by": "分類"
+      "Sort_by": "分類",
+      "Recommended": "建議",
+      "characters": "個字符",
+      "You’ve_used": "您已使用了"
     },
     "Pages": {
       "Pages": "頁面",
@@ -2282,7 +2285,13 @@
       "Do_you_want_to_activate_it_now?": "您想要現在啟用嗎？",
       "already_exists._Do_you_want_to_overwrite_it?": "已存在。您想要取代嗎？",
       "This_theme_is_invalid_and_cannot_be_activated._Fix_the_following_errors_and_re-upload_the_theme.": "此主題無法使用並無法安裝。請修復錯誤並重新上傳。",
-      "Label": "標籤"
+      "Label": "標籤",
+      "Failed_to_send_newsletter._": "電子報發送失败. ",
+      "to_be_sent_to_": "傳送",
+      "to_": "給",
+      "member": "會員",
+      "but_failed_to_send_newsletter.": "但是電子報發送失败. ",
+      "to_be_published": "發布"
     },
     "Designsandbox": {
       "Components": "Components",
@@ -2452,7 +2461,7 @@
       "in": "在",
       "opens": " opens",
       "Scheduled": "Scheduled",
-      "settings": "settings",
+      "settings": "設定",
       "Preview": "Preview",
       "Set_post_to_email_only": "Set post to email only",
       "Post_access": "Post access",
@@ -2670,7 +2679,9 @@
       "_successfully_reverted_to_a_draft.": "成功回覆為草稿",
       "7_Days": "7天",
       "30_Days": "30天",
-      "90_Days": "90天"
+      "90_Days": "90天",
+      "Newest first": "最新",
+      "Oldest first": "最舊的"
     },
     "Errors": {
       "Please_enter_an_email": "請輸入電子郵件",
