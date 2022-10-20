@@ -26,7 +26,7 @@
     <div class="modal-footer">
         <button class="gh-btn" type="button" {{on "click" @close}}><span>Cancel</span></button>
         {{#if this.isUploading}}
-            <button class="gh-btn gh-btn-black right gh-btn-icon disabled" type="button"><span>Save</span></button>
+            <button class="gh-btn gh-btn-black right gh-btn-icon disabled" type="button"><span>{{t "Manual.Components.Save"}}</span></button>
         {{else}}
             <GhTaskButton
                 @task={{this.uploadImageTask}}

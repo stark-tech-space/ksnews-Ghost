@@ -231,7 +231,7 @@
                                 </GhFormGroup>
 
                                 <GhFormGroup @errors={{this.post.errors}} @hasValidated={{this.post.hasValidated}} @property="canonicalUrl">
-                                    <label for="canonicalUrl">{{t "Manual.Posts.Canonical_URL"}}</label>
+                                    <label for="canonicalUrl">{{t "Manual.Tags.Canonical_URL"}}</label>
                                     <GhTextInput
                                         @class="post-setting-canonicalUrl"
                                         @name="post-setting-canonicalUrl"
@@ -274,7 +274,7 @@
                             <form {{action "discardEnter" on="submit"}} aria-label="Twitter card settings">
                                 <GhImageUploaderWithPreview
                                     @image={{this.post.twitterImage}}
-                                    @text="Add Twitter image"
+                                    @text={{t "Manual.Tags.Add_Twitter_image"}}
                                     @allowUnsplash={{true}}
                                     @update={{action "setTwitterImage"}}
                                     @remove={{action "clearTwitterImage"}}
@@ -349,7 +349,7 @@
                             <form {{action "discardEnter" on="submit"}} aria-label="Facebook card settings">
                                 <GhImageUploaderWithPreview
                                     @image={{this.post.ogImage}}
-                                    @text="Add Facebook image"
+                                    @text={{t "Manual.Tags.Add_Facebook_image"}}
                                     @allowUnsplash={{true}}
                                     @update={{action "setOgImage"}}
                                     @remove={{action "clearOgImage"}}

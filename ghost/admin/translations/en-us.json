@@ -1010,7 +1010,9 @@
       "Save_before_you_go!": "Save before you go!",
       "Hey_there!_It_looks_like_you_didn't_save_the_changes_you_made.": "Hey there! It looks like you didn't save the changes you made.",
       "Stay": "Stay",
-      "Leave": "Leave"
+      "Leave": "Leave",
+      "Newest_first": "Newest first",
+      "Oldest_first": "Oldest first"
     },
     "Tags": {
       "Public_tags": "Public tags",
@@ -1088,7 +1090,8 @@
       "plus_Add_image": "+ Add image",
       "_image": " image",
       "Remove_custom_Facebook_image": "Remove custom Facebook image",
-      "Remove_custom_Twitter_image": "Remove custom Twitter image"
+      "Remove_custom_Twitter_image": "Remove custom Twitter image",
+      "Edit_tag": "Edit tag"
     },
     "Members": {
       "Member": "Member",
@@ -2316,7 +2319,9 @@
       "This user was": "This user was",
       "This label was": "This label was",
       "This tag was": "This tag was",
-      "will_be": "will be"
+      "will_be": "will be",
+      "Page": "Page",
+      "posts": "posts"
     },
     "Designsandbox": {
       "Components": "Components",
@@ -2712,7 +2717,9 @@
       "90_Days": "90 days",
       "Newest_first": "Newest first",
       "Oldest_first": "Oldest first",
-      "Recently_updated": "Recently updated"
+      "Recently_updated": "Recently updated",
+      "Newest first": "Newest first",
+      "Oldest first": "Oldest first"
     },
     "Errors": {
       "Please_enter_an_email": "Please enter an email",

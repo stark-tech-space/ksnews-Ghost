@@ -4,12 +4,12 @@
             <div class="flex flex-column">
                 <div class="gh-canvas-breadcrumb">
                     <LinkTo @route="tags" data-test-link="tags-back">
-                        Tags
+                        {{t "Manual.Tags.Tags"}}
                     </LinkTo>
-                    {{svg-jar "arrow-right-small"}} {{if this.tag.isNew "New tag" "Edit tag"}}
+                    {{svg-jar "arrow-right-small"}} {{if this.tag.isNew (t "Manual.Tags.New_tag") (t "Manual.Tags.Edit_tag")}}
                 </div>
                 <h2 class="gh-canvas-title" data-test-screen-title>
-                    {{if this.tag.isNew "New tag" this.tag.name}}
+                    {{if this.tag.isNew (t "Manual.Tags.New_tag") this.tag.name}}
                 </h2>
             </div>
 
@@ -19,6 +19,9 @@
                     @type="button"
                     @class="gh-btn gh-btn-primary gh-btn-icon"
                     @data-test-button="save"
+                    @buttonText={{t "Manual.Components.Save"}}
+                    @runningText={{t "Manual.Components.Saving"}}
+                    @successText={{t "Manual.Components.Saved"}}
                     {{on-key "cmd+s"}}
                 />
             </section>
@@ -30,7 +33,7 @@
     {{#unless this.tag.isNew}}
         <div>
             <button type="button" class="gh-btn gh-btn-red gh-btn-icon" {{on "click" this.confirmDeleteTag}} data-test-button="delete-tag">
-                <span>Delete tag</span>
+                <span>{{t "Manual.Tags.Delete_tag"}}</span>
             </button>
         </div>
     {{/unless}}

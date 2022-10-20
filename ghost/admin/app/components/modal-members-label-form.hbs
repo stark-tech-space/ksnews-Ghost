@@ -60,9 +60,9 @@
         {{/if}}
 
         <GhTaskButton
-            @buttonText="Save"
+            @buttonText={{t "Manual.Components.Save"}}
             @runningText="Saving..."
-            @successText="Saved"
+            @successText={{t "Manual.Components.Saved"}}
             @task={{this.saveTask}}
             @taskArgs={{this.label}}
             @class="gh-btn gh-btn-black gh-btn-icon"

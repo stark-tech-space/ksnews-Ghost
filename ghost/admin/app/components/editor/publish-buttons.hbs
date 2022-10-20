@@ -12,9 +12,9 @@
     {{/if}}
 
     <GhTaskButton
-        @buttonText="Save"
+        @buttonText={{t "Manual.Components.Save"}}
         @task={{@publishManagement.saveTask}}
-        @runningText="Saving"
+        @runningText={{t "Manual.Components.Saving"}}
         @class="gh-btn gh-btn-icon gh-btn-editor gh-editor-save-trigger contributor-save-button"
         data-test-button="contributor-save" />
 {{else}}

@@ -1001,7 +1001,9 @@
       "Are_you_sure_you_want_to_delete_this_page?": "你確定要刪除這個頁面嗎？",
       "You're_about_to_delete": "你即將刪除",
       "._This_is_permanent!_We_warned_you,_k?": ". 此項操作將是永久的！",
-      "Hey_there!_It_looks_like_you're_in_the_middle_of_writing_something_and_you_haven't_saved_all_of_your_content.": "嗨！看起來您沒有儲存進行的更動"
+      "Hey_there!_It_looks_like_you're_in_the_middle_of_writing_something_and_you_haven't_saved_all_of_your_content.": "嗨！看起來您沒有儲存進行的更動",
+      "Newest_first": "新~舊",
+      "Oldest_first": "舊～新"
     },
     "Drafts": {
       "Drafts": "草稿"
@@ -1084,7 +1086,8 @@
       "plus_Add_image": "+ 新增圖片",
       "_image": "圖片",
       "Remove_custom_Facebook_image": "刪除自定Facebook圖片",
-      "Remove_custom_Twitter_image": "刪除自定Twitter圖片"
+      "Remove_custom_Twitter_image": "刪除自定Twitter圖片",
+      "Edit_tag": "修改標籤"
     },
     "Members": {
       "Member": "會員",
@@ -2324,7 +2327,9 @@
       "This user was": "這個用戶已",
       "This label was": "這個標籤已",
       "This tag was": "這個標籤已",
-      "will_be": "將會"
+      "will_be": "將會",
+      "Page": "頁面",
+      "posts": "文章"
     },
     "Designsandbox": {
       "Components": "Components",

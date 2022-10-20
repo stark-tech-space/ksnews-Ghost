@@ -13,10 +13,10 @@
         </div>
         <section class="view-actions">
             <GhTaskButton
-                @buttonText="Save"
+                @buttonText={{t "Manual.Components.Save"}}
                 @task={{this.saveSettingsTask}}
-                @successText="Saved"
-                @runningText="Saving"
+                @successText={{t "Manual.Components.Saved"}}
+                @runningText={{t "Manual.Components.Saving"}}
                 @class="gh-btn gh-btn-primary gh-btn-icon"
                 {{on-key "cmd+s"}}
                 data-test-button="save-settings"

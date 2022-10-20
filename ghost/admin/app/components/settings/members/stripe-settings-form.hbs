@@ -46,8 +46,8 @@
             <GhTaskButton
                 @buttonText="Save settings"
                 @task={{this.saveSettingsTask}}
-                @successText="Saved"
-                @runningText="Saving"
+                @successText={{t "Manual.Components.Saved"}}
+                @runningText={{t "Manual.Components.Saving"}}
                 @class="gh-btn gh-btn-primary gh-btn-icon"
                 data-test-button="save-members-settings"
             />
@@ -118,9 +118,9 @@
                     @buttonText="Save Stripe settings"
                     @task={{this.saveStripeSettingsTask}}
                     @unlinkedTask={{true}}
-                    @successText="Saved"
+                    @successText={{t "Manual.Components.Saved"}}
                     @disabled={{is-empty this.settings.stripeConnectIntegrationToken}}
-                    @runningText="Saving"
+                    @runningText={{t "Manual.Components.Saving"}}
                     @class="gh-btn gh-btn-green gh-btn-icon"
                 />
             </div>

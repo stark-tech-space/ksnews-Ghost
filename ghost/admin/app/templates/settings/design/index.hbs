@@ -20,10 +20,10 @@
             </div>
 
             <GhTaskButton
-                @buttonText="Save"
+                @buttonText={{t "Manual.Components.Save"}}
                 @task={{this.saveTask}}
-                @successText="Saved"
-                @runningText="Saving"
+                @successText={{t "Manual.Components.Saved"}}
+                @runningText={{t "Manual.Components.Saving"}}
                 @class="gh-btn gh-btn-primary gh-btn-icon"
                 data-test-button="save-settings"
             />

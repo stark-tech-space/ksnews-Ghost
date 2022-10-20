@@ -12,7 +12,7 @@
             </h2>
         </div>
         <section class="view-actions">
-            <GhTaskButton @buttonText="Save" @task={{this.saveTask}} @class="gh-btn gh-btn-primary gh-btn-icon" data-test-button="save" />
+            <GhTaskButton @buttonText={{t "Manual.Components.Save"}} @task={{this.saveTask}} @class="gh-btn gh-btn-primary gh-btn-icon" data-test-button="save" />
         </section>
     </GhCanvasHeader>
 
@@ -173,7 +173,7 @@
                 <div class="gh-expandable-block">
                     <div class="gh-expandable-header">
                         <div>
-                            <h4 class="gh-expandable-title">Twitter card</h4>
+                            <h4 class="gh-expandable-title">{{t "Manual.Tags.Twitter_card"}}</h4>
                             <p class="gh-expandable-description">Customize structured data of your site for Twitter</p>
                         </div>
                         <button type="button" class="gh-btn" {{action (toggle "twitterCardOpen" this)}} data-test-toggle-twitter><span>{{if this.twitterCardOpen "Close" "Expand"}}</span></button>
@@ -183,18 +183,18 @@
                         <div class="gh-setting-content-extended">
                             <div class="gh-twitter-settings">
                                 <div class="gh-twitter-settings-left flex-basis-1-2-m flex-basis-2-3-l">
-                                    <label>Twitter image</label>
+                                    <label>{{t "Manual.Tags.Twitter_image"}}</label>
                                     <GhFormGroup>
                                         <GhImageUploaderWithPreview
                                             @image={{this.settings.twitterImage}}
-                                            @text="Add Twitter image"
+                                            @text={{t "Manual.Tags.Add_Twitter_image"}}
                                             @allowUnsplash={{true}}
                                             @update={{action (mut this.settings.twitterImage)}}
                                             @remove={{action (mut this.settings.twitterImage) ""}}
                                         />
                                     </GhFormGroup>
                                     <GhFormGroup @errors={{this.settings.errors}} @hasValidated={{this.settings.hasValidated}} @property="twitterTitle">
-                                        <label for="twitterTitle">Twitter title</label>
+                                        <label for="twitterTitle">{{t "Manual.Tags.Twitter_title"}}</label>
                                         <GhTextInput
                                             @id="twitterTitle"
                                             @type="text"
@@ -206,7 +206,7 @@
                                         <GhErrorMessage @errors={{this.settings.errors}} @property="twitterTitle" data-test-error="twitterTitle" />
                                     </GhFormGroup>
                                     <GhFormGroup @errors={{this.settings.errors}} @hasValidated={{this.settings.hasValidated}} @property="twitterDescription">
-                                        <label for="twitterDescription">Twitter description</label>
+                                        <label for="twitterDescription">{{t "Manual.Tags.Twitter_description"}}</label>
                                         <GhTextarea
                                             @id="twitterDescription"
                                             @placeholder={{truncate this.settings.description 300}}
@@ -218,7 +218,7 @@
                                     </GhFormGroup>
                                 </div>
                                 <div class="flex-basis-1-2-m flex-basis-1-3-l">
-                                    <label>Twitter preview</label>
+                                    <label>{{t "Manual.Tags.Twitter_preview"}}</label>
                                     <div class="gh-twitter-container">
                                         <div class="flex ma4">
                                             <span>{{svg-jar "social-twitter" class="social-icon"}}</span>
@@ -261,7 +261,7 @@
                 <div class="gh-expandable-block">
                     <div class="gh-expandable-header">
                         <div>
-                            <h4 class="gh-expandable-title">Facebook card</h4>
+                            <h4 class="gh-expandable-title">{{t "Manual.Tags.Facebook_card"}}</h4>
                             <p class="gh-expandable-description">Customize structured data of your site</p>
                         </div>
                         <button type="button" class="gh-btn" {{action (toggle "facebookCardOpen" this)}} data-test-toggle-facebook><span>{{if this.facebookCardOpen "Close" "Expand"}}</span></button>
@@ -271,18 +271,18 @@
                             <div class="gh-setting-content-extended">
                                 <div class="gh-og-settings">
                                     <div class="gh-og-settings-left flex-basis-1-2-m flex-basis-2-3-l">
-                                        <label>Facebook image</label>
+                                        <label>{{t "Manual.Tags.Facebook_image"}}</label>
                                         <GhFormGroup>
                                             <GhImageUploaderWithPreview
                                                 @image={{this.settings.ogImage}}
-                                                @text="Add Facebook image"
+                                                @text={{t "Manual.Tags.Add_Facebook_image"}}
                                                 @allowUnsplash={{true}}
                                                 @update={{action (mut this.settings.ogImage)}}
                                                 @remove={{action (mut this.settings.ogImage) ""}}
                                             />
                                         </GhFormGroup>
                                         <GhFormGroup @errors={{this.settings.errors}} @hasValidated={{this.settings.hasValidated}} @property="ogTitle">
-                                            <label for="ogTitle">Facebook title</label>
+                                            <label for="ogTitle">{{t "Manual.Tags.Facebook_title"}}</label>
                                             <GhTextInput
                                                 @id="ogTitle"
                                                 @type="text"
@@ -294,7 +294,7 @@
                                             <GhErrorMessage @errors={{this.settings.errors}} @property="ogTitle" data-test-error="ogTitle" />
                                         </GhFormGroup>
                                         <GhFormGroup @errors={{this.settings.errors}} @hasValidated={{this.settings.hasValidated}} @property="ogDescription">
-                                            <label for="ogDescription">Facebook description</label>
+                                            <label for="ogDescription">{{t "Manual.Tags.Facebook_description"}}</label>
                                             <GhTextarea
                                                 @id="ogDescription"
                                                 @placeholder={{truncate this.settings.description 300}}
@@ -306,7 +306,7 @@
                                         </GhFormGroup>
                                     </div>
                                     <div class="flex-basis-1-2-m flex-basis-1-3-l">
-                                        <label>Facebook preview</label>
+                                        <label>{{t "Manual.Tags.Facebook_preview"}}</label>
                                         <div class="gh-og-container">
                                             <div class="flex ma3 mb2">
                                                 <span>{{svg-jar "social-facebook" class="social-icon"}}</span>
