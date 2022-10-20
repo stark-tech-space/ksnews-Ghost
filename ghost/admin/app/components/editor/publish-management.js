@@ -29,6 +29,8 @@ export default class PublishManagement extends Component {
 
     @tracked previewTab = 'browser';
 
+    @service intl;
+
     publishFlowModal = null;
     updateFlowModal = null;
 
@@ -45,7 +47,7 @@ export default class PublishManagement extends Component {
 
         const isValid = await this._validatePost();
 
-        if (isValid && !this.publishFlowModal || this.publishFlowModal?.isClosing) {
+        if ((isValid && !this.publishFlowModal) || this.publishFlowModal?.isClosing) {
             this.publishOptions.resetPastScheduledAt();
 
             this.publishFlowModal = this.modals.open(PublishFlowModal, {
@@ -72,7 +74,7 @@ export default class PublishManagement extends Component {
 
         const isValid = await this._validatePost();
 
-        if (isValid && !this.updateFlowModal || this.updateFlowModal.isClosing) {
+        if ((isValid && !this.updateFlowModal) || this.updateFlowModal.isClosing) {
             this.updateFlowModal = this.modals.open(UpdateFlowModal, {
                 publishOptions: this.publishOptions,
                 saveTask: this.publishTask
@@ -232,8 +234,9 @@ export default class PublishManagement extends Component {
         try {
             yield this.publishTask.perform({taskName: 'revertToDraftTask'});
 
-            const postType = capitalize(this.args.post.displayName);
-            this.notifications.showNotification(`${postType} successfully reverted to a draft.`, {type: 'success'});
+            const postType = this.intl.t(`Manual.Components.${capitalize(this.args.post.displayName)}`);
+            const revertStr = this.intl.t('Manual.JS._successfully_reverted_to_a_draft.');
+            this.notifications.showNotification(`${postType}${revertStr}`, {type: 'success'});
 
             return true;
         } catch (e) {

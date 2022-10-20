@@ -12,7 +12,7 @@
                 <button type="button" {{on "click" (perform this.copyPreviewUrl)}} class="gh-post-preview-url">
                     <span class="green-d1">
                         {{#if this.copyPreviewUrl.isRunning}}
-                            {{svg-jar "check-circle" class="check v-mid mr1 ml2"}} Copied
+                            {{svg-jar "check-circle" class="check v-mid mr1 ml2"}} {{t "Manual.Others.Copied"}}
                         {{else}}
                             {{svg-jar "copy" class="w4 ml3 v-mid fill-darkgrey"}}
                         {{/if}}

@@ -16,6 +16,8 @@ export default class PublishFlowOptions extends Component {
 
     @tracked errorMessage;
 
+    @service intl;
+
     // store any derived state from PublishOptions on creation so the copy
     // doesn't change whilst the post is saving
     willEmail = this.args.publishOptions.willEmail;
@@ -44,6 +46,10 @@ export default class PublishFlowOptions extends Component {
         }
     };
 
+    get isZhLocale() {
+        return this.settings.get('locale') ? this.settings.get('locale').startsWith('zh') : true;
+    }
+
     get publishType() {
         const {publishOptions} = this.args;
 
@@ -59,17 +65,34 @@ export default class PublishFlowOptions extends Component {
     get confirmButtonText() {
         let buttonText = '';
 
+        const isZhLocale = this.isZhLocale;
+
         buttonText = this.buttonTextMap[this.publishType].idle;
+        if (buttonText) {
+            buttonText = this.intl.t(`Manual.Posts.${buttonText.replace(/ /g, '_')}`);
+        }
 
         if (this.publishType === 'publish') {
-            buttonText += ` ${this.args.publishOptions.post.displayName}`;
+            const displayName = this.intl.t(`Manual.Components.${this.args.publishOptions.post.displayName}`);
+            buttonText += `${isZhLocale ? '' : ' '}${displayName}`;
         }
 
         if (this.args.publishOptions.isScheduled) {
             const scheduleMoment = moment.tz(this.args.publishOptions.scheduledAtUTC, this.settings.timezone);
-            buttonText += `, on ${scheduleMoment.format('MMMM Do')}`;
+
+            const scheduleStr = `${this.intl.t('Manual.Components._on_')}${scheduleMoment.format('MMMM Do')}`;
+            if (isZhLocale) {
+                buttonText = `${scheduleStr}${buttonText}`;
+            } else {
+                buttonText += `,${scheduleStr}`;
+            }
         } else {
-            buttonText += ', right now';
+            const rightNowStr = this.intl.t('Manual.Components._right_now');
+            if (isZhLocale) {
+                buttonText = `${rightNowStr}${buttonText}`;
+            } else {
+                buttonText += `,${rightNowStr}`;
+            }
         }
 
         return buttonText;
@@ -77,12 +100,12 @@ export default class PublishFlowOptions extends Component {
 
     get confirmRunningText() {
         const publishType = this.args.publishOptions.isScheduled ? 'schedule' : this.publishType;
-        return this.buttonTextMap[publishType].running;
+        return this.intl.t(`Manual.Posts.${this.buttonTextMap[publishType].running.replace(/ /g, '_')}`);
     }
 
     get confirmSuccessText() {
         const publishType = this.args.publishOptions.isScheduled ? 'schedule' : this.publishType;
-        return this.buttonTextMap[publishType].success;
+        return this.intl.t(`Manual.Posts.${this.buttonTextMap[publishType].success.replace(/ /g, '_')}`);
     }
 
     @task({drop: true})

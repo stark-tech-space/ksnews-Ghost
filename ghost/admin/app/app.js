@@ -30,11 +30,7 @@ const App = Application.extend({
 // TODO: remove once the validations refactor is complete
 // eslint-disable-next-line
 registerWarnHandler((message, options, next) => {
-    let skip = [
-        'ds.errors.add',
-        'ds.errors.remove',
-        'ds.errors.clear'
-    ];
+    let skip = ['ds.errors.add', 'ds.errors.remove', 'ds.errors.clear'];
 
     if (skip.includes(options.id)) {
         return;

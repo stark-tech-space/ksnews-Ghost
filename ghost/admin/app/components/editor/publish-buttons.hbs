@@ -7,7 +7,7 @@
             {{on-key "cmd+p" @publishManagement.togglePreview}}
             data-test-button="contributor-preview"
         >
-            <span>Preview</span>
+            <span>{{t "Manual.Posts.Preview"}}</span>
         </button>
     {{/if}}
 
@@ -26,7 +26,7 @@
             {{on-key "cmd+p" @publishManagement.togglePreview}}
             data-test-button="publish-preview"
         >
-            <span>Preview</span>
+            <span>{{t "Manual.Posts.Preview"}}</span>
         </button>
 
         <button
@@ -37,14 +37,14 @@
             disabled={{@publishManagement.publishOptions.isLoading}}
             data-test-button="publish-flow"
         >
-            <span>Publish</span>
+            <span>{{t "Manual.Posts.Publish"}}</span>
         </button>
     {{else}}
         <GhTaskButton
             @task={{@publishManagement.saveTask}}
-            @buttonText="Update"
-            @runningText="Updating..."
-            @successText="Updated"
+            @buttonText={{t "Manual.Components.Update"}}
+            @runningText={{t "Manual.Components.Updating"}}
+            @successText={{t "Manual.Components.Updated"}}
             @class="gh-btn gh-btn-editor gh-editor-save-trigger"
             @idleClass="green"
             @runningClass="midlightgrey"
@@ -64,7 +64,7 @@
                 data-test-button="update-flow"
             >
                 <span>
-                    {{if @publishManagement.post.isScheduled "Unschedule" "Unpublish"}}
+                    {{if @publishManagement.post.isScheduled (t "Manual.Components.Unschedule") (t "Manual.Components.Unpublish")}}
                 </span>
             </button>
         {{/if}}

@@ -12,7 +12,7 @@
                 {{on "change" this.onChange}}
                 data-test-publish-type={{option.value}}
             >
-            <label for="publish-type-{{option.value}}">{{option.label}}</label>
+            <label for="publish-type-{{option.value}}">{{t (concat "Manual.Posts." option.label)}}</label>
         </span>
     {{/each}}
 </fieldset>
@@ -23,11 +23,11 @@
     </p>
 {{else if (eq @publishOptions.totalMemberCount 0)}}
     <p class="gh-box gh-content-box" data-test-publish-type-error="no-members">
-        <LinkTo @route="members">Add members</LinkTo>
-        to start sending newsletters!
+        <LinkTo @route="members">{{t "Manual.Posts.Add_members_"}}</LinkTo>
+        {{t "Manual.Posts.to_start_sending_newsletters!"}}
     </p>
 {{else if (not @publishOptions.mailgunIsConfigured)}}
     <p class="gh-box gh-content-box" data-test-publish-type-error="no-mailgun">
-        Set up <a href="https://ghost.org/docs/newsletters/#bulk-email-configuration" target="_blank" rel="noreferrer noopener">Mailgun</a> to start sending newsletters!
+        {{t "Manual.Posts.Set_up_"}} <a href="https://ghost.org/docs/newsletters/#bulk-email-configuration" target="_blank" rel="noreferrer noopener">Mailgun</a> {{t "Manual.Posts.to_start_sending_newsletters!"}}
     </p>
 {{/if}}

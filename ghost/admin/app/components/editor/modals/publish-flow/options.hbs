@@ -1,6 +1,6 @@
 <div class="gh-publish-title" data-test-publish-flow="options">
-    <div class="green">Ready, set, publish.</div>
-    <div>Share it with the world.</div>
+    <div class="green">{{t "Manual.Posts.Ready,_set,_publish."}}</div>
+    <div>{{t "Manual.Posts.Share_it_with_the_world."}}</div>
 </div>
 
 <div class="gh-publish-settings">
@@ -8,7 +8,7 @@
         {{#if (or @publishOptions.emailUnavailable @publishOptions.publishDisabledError)}}
             <div class="gh-publish-setting-title {{if @publishOptions.publishDisabledError "disabled"}}" data-test-setting-title>
                 {{svg-jar "send-email"}}
-                <div class="gh-publish-setting-trigger">Publish on site</div>
+                <div class="gh-publish-setting-trigger">{{t "Manual.Posts.Publish_on_site"}}</div>
 
                 {{#if @publishOptions.publishDisabledError}}
                     <span>{{svg-jar "arrow-down" class="icon-expand"}}</span>
@@ -23,7 +23,7 @@
             <button type="button" class="gh-publish-setting-title" {{on "click" (fn this.toggleSection "publishType")}} data-test-setting-title>
                 {{svg-jar "send-email"}}
                 <div class="gh-publish-setting-trigger">
-                    <span>{{@publishOptions.selectedPublishTypeOption.display}}</span>
+                    <span>{{t (concat "Manual.Posts." @publishOptions.selectedPublishTypeOption.display) }}</span>
                 </div>
                 <span class="{{if (eq this.openSection "publishType") "expanded"}}">
                     {{svg-jar "arrow-down" class="icon-expand"}}
@@ -49,7 +49,7 @@
                 >
                     {{svg-jar "member"}}
                     <div class="gh-publish-setting-trigger">
-                        Not sent as newsletter
+                        {{t "Manual.Posts.Not_sent_as_newsletter"}}
                     </div>
                     <span>
                         {{svg-jar "arrow-down" class="icon-expand"}}
@@ -84,7 +84,7 @@
                                 {{/unless}}
                             {{/let}}
                         {{else}}
-                            Not sent as newsletter
+                            {{t "Manual.Posts.Not_sent_as_newsletter"}}
                         {{/if}}
                     </div>
                     <span class="{{if (eq this.openSection "emailRecipients") "expanded"}}">
@@ -131,7 +131,7 @@
                     {{#if @publishOptions.isScheduled}}
                         {{capitalize (gh-format-post-time @publishOptions.scheduledAtUTC draft=true)}}
                     {{else}}
-                        Right now
+                        {{t "Manual.Posts.Right_now"}}
                     {{/if}}
                 </span>
             </div>
@@ -153,7 +153,7 @@
 {{#unless @publishOptions.publishDisabledError}}
     <div class="gh-publish-cta">
         <button type="button" class="gh-btn gh-btn-black gh-btn-large" {{on "click" @confirm}} data-test-button="continue">
-            <span>Continue, final review &rarr;</span>
+            <span>{{t "Manual.Posts.Continue,_final_review"}} &rarr;</span>
         </button>
     </div>
 {{/unless}}

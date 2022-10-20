@@ -2,18 +2,12 @@ import AuthConfiguration from 'ember-simple-auth/configuration';
 import Route from '@ember/routing/route';
 import ShortcutsRoute from 'ghost-admin/mixins/shortcuts-route';
 import ctrlOrCmd from 'ghost-admin/utils/ctrl-or-cmd';
+import moment from 'moment-timezone';
 import windowProxy from 'ghost-admin/utils/window-proxy';
 import {InitSentryForEmber} from '@sentry/ember';
-import {
-    isAjaxError,
-    isNotFoundError,
-    isUnauthorizedError
-} from 'ember-ajax/errors';
+import {isAjaxError, isNotFoundError, isUnauthorizedError} from 'ember-ajax/errors';
 import {isArray as isEmberArray} from '@ember/array';
-import {
-    isMaintenanceError,
-    isVersionMismatchError
-} from 'ghost-admin/services/ajax';
+import {isMaintenanceError, isVersionMismatchError} from 'ghost-admin/services/ajax';
 import {inject as service} from '@ember/service';
 
 function K() {
@@ -48,6 +42,11 @@ export default Route.extend(ShortcutsRoute, {
         this._super(...arguments);
         const locale = this.settings.get('locale') || 'zh';
         this.intl.setLocale([locale, 'zh']);
+
+        if (locale === 'zh') {
+            this.settings.set('locale', 'zh');
+            moment.locale('zh-tw');
+        }
 
         this.router.on('routeDidChange', () => {
             this.notifications.displayDelayed();
@@ -107,7 +106,8 @@ export default Route.extend(ShortcutsRoute, {
                     params.push(routeInfo.params[key]);
                 }
 
-                let url = router.urlFor(routeInfo.name, ...params)
+                let url = router
+                    .urlFor(routeInfo.name, ...params)
                     .replace(/^#\//, '')
                     .replace(/^\//, '')
                     .replace(/^ghost\//, '');
@@ -139,7 +139,7 @@ export default Route.extend(ShortcutsRoute, {
                 }
             }
 
-            if (isAjaxError(error) || error && error.payload && isEmberArray(error.payload.errors)) {
+            if (isAjaxError(error) || (error && error.payload && isEmberArray(error.payload.errors))) {
                 this.notifications.showAPIError(error);
                 // don't show the 500 page if we weren't navigating
                 if (!transition) {
@@ -190,5 +190,4 @@ export default Route.extend(ShortcutsRoute, {
             this.billing.openBillingWindow(this.router.currentURL, '/pro');
         }
     }
-
 });

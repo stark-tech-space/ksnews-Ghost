@@ -2,7 +2,7 @@
     <header class="modal-header gh-post-preview-header" data-test-modal="preview-email">
         <div class="left">
             <button class="gh-btn-editor gh-editor-back-button" title="Close" type="button" {{on "click" @close}}>
-                <span>{{svg-jar "arrow-left"}} Editor</span>
+                <span>{{svg-jar "arrow-left"}} {{t "Manual.Posts.Editor"}}</span>
             </button>
         </div>
         <div class="gh-post-preview-btn-group">
@@ -23,7 +23,7 @@
                 class="gh-btn gh-btn-editor gh-editor-preview-trigger active"
                 {{on "click" @close}}
             >
-                <span>Preview</span>
+                <span>{{t "Manual.Posts.Preview"}}</span>
             </button>
 
             {{#if @data.publishOptions.user.isContributor}}
@@ -39,7 +39,7 @@
                     class="gh-btn gh-btn-editor darkgrey gh-publish-trigger"
                     {{on "click" @data.togglePreviewPublish}}
                 >
-                    <span>Publish</span>
+                    <span>{{t "Manual.Posts.Publish"}}</span>
                 </button>
             {{/if}}
 

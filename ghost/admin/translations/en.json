@@ -886,7 +886,17 @@
       "Sort_by": "Sort by",
       "Recommended": "Recommended",
       "characters": "characters",
-      "You’ve_used": "You’ve used"
+      "You’ve_used": "You’ve used",
+      "Publish and email": "Publish and email",
+      "Publish only": "Publish only",
+      "Email only": "Email only",
+      "Send_email": "Send email",
+      "Publishing_&_sending": "Publishing & sending",
+      "Published_&_sent": "Published & sent",
+      "Sending": "Sending",
+      "Publishing": "Publishing",
+      "Scheduling": "Scheduling",
+      "_on": "on"
     },
     "Pages": {
       "Pages": "Pages",
@@ -2283,7 +2293,30 @@
       "to_": "to ",
       "member": "member",
       "but_failed_to_send_newsletter.": "but failed to send newsletter.",
-      "to_be_published": "to be published"
+      "to_be_published": "to be published",
+      "Analytics": "Analytics",
+      "clicked": "clicked",
+      "conversions": "conversions",
+      "Are you sure you want to delete this post": "Are you sure you want to delete this post",
+      "Are you sure you want to delete this page": "Are you sure you want to delete this page",
+      "Are you sure you want to delete this user": "Are you sure you want to delete this user",
+      "Are you sure you want to delete this label": "Are you sure you want to delete this label",
+      "Are you sure you want to delete this tag": "Are you sure you want to delete this tag",
+      "free": "free",
+      "paid": "paid",
+      "specific": "specific",
+      "On": "On",
+      "This post has been": "This post has been",
+      "This page has been": "This page has been",
+      "This user has been": "This user has been",
+      "This label has been": "This label has been",
+      "This tag has been": "This tag has been",
+      "This post was": "This post was",
+      "This page was": "This page was",
+      "This user was": "This user was",
+      "This label was": "This label was",
+      "This tag was": "This tag was",
+      "will_be": "will be"
     },
     "Designsandbox": {
       "Components": "Components",
@@ -2561,7 +2594,8 @@
       "Your_profile": "Your profile",
       "Help_center": "Help center",
       "Resources_&_guides": "Resources & guides",
-      "Sign_out": "Sign out"
+      "Sign_out": "Sign out",
+      "and_sent": "and sent"
     },
     "JS": {
       "Drafts": "Draft",

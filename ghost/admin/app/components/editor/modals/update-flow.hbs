@@ -1,13 +1,13 @@
 <div class="flex flex-column h-100 items-center overflow-auto" data-test-modal="update-flow">
     <header class="gh-publish-header">
         <button class="gh-btn-editor gh-publish-back-button" title="Close" type="button" {{on "click" @close}}>
-            <span>{{svg-jar "arrow-left"}} Editor</span>
+            <span>{{svg-jar "arrow-left"}} {{t "Manual.Posts.Editor"}}</span>
         </button>
         <div class="flex">
             {{#let @data.publishOptions.post as |post|}}
                 {{#if (not (and post.isSent (not post.isPublished)))}}
                     <button class="gh-btn gh-btn-editor darkgrey gh-unpublish-trigger active" title="Close" type="button" {{on "click" @close}}>
-                        <span>{{if post.isScheduled "Unschedule" "Unpublish"}}</span>
+                        <span>{{if post.isScheduled (t "Manual.Components.Unschedule") (t "Manual.Components.Unpublish")}}</span>
                     </button>
                 {{/if}}
             {{/let}}
@@ -19,20 +19,20 @@
         <div class="gh-publish-settings-container gh-update-flow fade-in">
             <div class="gh-publish-title" data-test-update-flow-title>
                 {{#if (and post.isSent (not post.isPublished))}}
-                    This {{post.displayName}} was
-                    <span class="green">{{post.status}} by email</span>
+                    {{t (concat "Manual.Components." "This " post.displayName " was")}}
+                    <span class="green">{{t (concat "Manual.Posts." post.status)}}{{t "Manual.Posts._by_email"}}</span>
                 {{else}}
-                    This {{post.displayName}} has been
-                    <span class="green">{{post.status}}</span>
+                    {{t (concat "Manual.Components." "This " post.displayName " has been")}}
+                    <span class="green">{{t (concat "Manual.Posts." post.status)}}</span>
                 {{/if}}
             </div>
 
             <div class="gh-publish-confirmation" data-test-update-flow-confirmation>
                 <p>
-                    Your
-                    {{post.displayName}}
+                    {{t "Manual.Posts.Your_"}}
+                    {{t (concat "Manual.Components." post.displayName)}}
 
-                    {{if post.isScheduled "will be" "was"}}
+                    {{if post.isScheduled (t "Manual.Components.will_be") (t "Manual.Posts.was")}}
 
                     {{#if
                         (or post.hasBeenEmailed
@@ -40,9 +40,9 @@
                         )
                     }}
                         {{#if post.emailOnly}}
-                            sent to
+                            {{t "Manual.Posts.sent_to_"}}
                         {{else}}
-                            published and sent to
+                            {{t "Manual.Posts._published_and_sent_to_"}}
                         {{/if}}
 
                         {{#if post.isScheduled}}
@@ -55,19 +55,19 @@
                             {{#if this.showNewsletterName}}of <strong>{{post.newsletter.name}}</strong>{{/if}}
                         {{/if}}
                     {{else}}
-                        published on your site
+                        {{t "Manual.Posts.__published_on_your_site_"}}
                     {{/if}}
 
                     {{#let (moment-site-tz post.publishedAtUTC) as |publishedAt|}}
-                        on
+                        {{t "Manual.Posts._on"}}
                         {{moment-format publishedAt "D MMM YYYY"}}
-                        at
+                        {{t "Manual.Posts.at"}}
                         {{moment-format publishedAt "HH:mm"}}.
                     {{/let}}
 
                     {{#if post.isScheduled}}
                         {{#if (and post.isScheduled post.email)}}
-                            This post was previously emailed to
+                            {{t "Manual.Posts.This_post_was_previously_emailed_to"}}
 
                             <strong>{{pluralize post.email.emailCount "subscriber"}}</strong>
 
@@ -76,22 +76,22 @@
                             {{/if}}
 
                             {{#let (moment-site-tz post.email.createdAtUTC) as |sentAt|}}
-                                on
+                                {{t "Manual.Posts._on"}}
                                 {{moment-format sentAt "D MMM YYYY"}}
-                                at
+                                {{t "Manual.Posts.at"}}
                                 {{moment-format sentAt "HH:mm"}}.
                             {{/let}}
                         {{/if}}
 
                         <br><br>
-                        Need to make a change?
+                        {{t "Manual.Posts.Need_to_make_a_change?"}}
                         <button
                             type="button"
                             class="gh-revert-to-draft"
                             {{on "click" (fn @close (hash afterTask="revertToDraftTask"))}}
                             data-test-button="revert-to-draft"
                         >
-                            <span>Unschedule and revert to draft &rarr;</span>
+                            <span>{{t "Manual.Posts.Unschedule_and_revert_to_draft?"}} &rarr;</span>
                         </button>
                     {{else if (not post.emailOnly)}}
                         <br><br>
@@ -101,7 +101,7 @@
                             {{on "click" (fn @close (hash afterTask="revertToDraftTask"))}}
                             data-test-button="revert-to-draft"
                         >
-                            <span>Unpublish and revert to private draft &rarr;</span>
+                            <span>{{t "Manual.Posts.Unpublish_and_revert_to_private_draft"}} &rarr;</span>
                         </button>
                     {{/if}}
                 </p>
