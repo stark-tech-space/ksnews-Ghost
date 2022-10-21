@@ -15,14 +15,23 @@ export default class GhMemberAvatarComponent extends Component {
     get memberName() {
         let {member} = this.args;
 
-        return member?.name || member?.email || 'NM';
+        if (member && typeof member.get === 'function') {
+            return member.get('name') || member.get('email') || 'NM';
+        } else {
+            return member?.name || member?.email || 'NM';
+        }
     }
 
     get avatarImage() {
         let {member} = this.args;
 
         // to cover both ways avatar image is returned depending on where member data comes from
-        return member?.avatar_image || member?.avatarImage || null;
+
+        if (member && typeof member.get === 'function') {
+            return member.get('avatar_image') || member.get('avatarImage') || 'NM';
+        } else {
+            return member?.avatar_image || member?.avatarImage || null;
+        }
     }
 
     get backgroundStyle() {

@@ -1,4 +1,4 @@
-<h4 class="gh-main-section-header small bn">Activity</h4>
+<h4 class="gh-main-section-header small bn">{{t "Manual.Members.Activity"}}</h4>
 {{#if @member.isNew}}
     <div class="gh-main-section-content grey">
         <div class="gh-member-feed gh-member-feed-no-data">
@@ -58,7 +58,7 @@
                             {{/each}}
 
                             <div class="gh-member-feed-footer">
-                                <LinkTo @route="members-activity" @query={{hash excludedEvents=null member=@member.id}}>See all member activity &rarr;</LinkTo>
+                                <LinkTo @route="members-activity" @query={{hash excludedEvents=null member=@member.id}}>{{t "Manual.Members.See_all_member_activity"}} &rarr;</LinkTo>
                             </div>
                         {{else}}
                             <Member::ActivityFeedEmpty />

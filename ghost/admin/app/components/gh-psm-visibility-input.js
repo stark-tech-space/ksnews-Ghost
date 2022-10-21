@@ -13,6 +13,8 @@ const VISIBILITIES = [
 export default class GhPsmVisibilityInput extends Component {
     @service settings;
 
+    @service intl;
+
     // public attrs
     post = null;
 
@@ -24,9 +26,13 @@ export default class GhPsmVisibilityInput extends Component {
     init() {
         super.init(...arguments);
         this.availableVisibilities = [...VISIBILITIES];
-        this.availableVisibilities.push(
-            {label: 'Specific tier(s)', name: 'tiers'}
-        );
+        this.availableVisibilities.push({label: 'Specific tier(s)', name: 'tiers'});
+        this.availableVisibilities = this.availableVisibilities.map((_) => {
+            return {
+                ..._,
+                label: this.intl.t(`Manual.Settings.${_.label.replace(/ /g, '_')}`)
+            };
+        });
     }
 
     @action

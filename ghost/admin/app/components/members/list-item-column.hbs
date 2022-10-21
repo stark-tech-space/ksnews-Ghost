@@ -11,7 +11,7 @@
 {{else if (eq @filterColumn 'status')}}
     <LinkTo @route="member" @model={{@member}} class="gh-list-data middarkgrey f8" data-test-table-data={{@filterColumn}}>
         {{#if (not (is-empty @member.status))}}
-            <span>{{capitalize @member.status}}</span>
+            <span>{{t (concat "Manual.JS." (capitalize @member.status))}}</span>
         {{else}}
             <span class="midlightgrey">-</span>
         {{/if}}

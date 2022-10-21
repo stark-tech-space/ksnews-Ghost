@@ -14,16 +14,20 @@ import {inject as service} from '@ember/service';
 import {task, timeout} from 'ember-concurrency';
 import {tracked} from '@glimmer/tracking';
 
-const PAID_PARAMS = [{
-    name: 'All members',
-    value: null
-}, {
-    name: 'Free members',
-    value: 'false'
-}, {
-    name: 'Paid members',
-    value: 'true'
-}];
+const PAID_PARAMS = [
+    {
+        name: 'All members',
+        value: null
+    },
+    {
+        name: 'Free members',
+        value: 'false'
+    },
+    {
+        name: 'Paid members',
+        value: 'true'
+    }
+];
 
 export default class MembersController extends Controller {
     @service ajax;
@@ -63,6 +67,8 @@ export default class MembersController extends Controller {
 
     @tracked parseFilterParamCounter = 0;
 
+    @service intl;
+
     paidParams = PAID_PARAMS;
 
     constructor() {
@@ -76,14 +82,16 @@ export default class MembersController extends Controller {
         let {searchParam, selectedLabel, members} = this;
 
         if (members.loading) {
-            return 'Loading...';
+            return this.intl.t(`Manual.Members.Loading...`);
         }
 
         if (searchParam) {
-            return 'Search result';
+            return this.intl.t(`Manual.Members.Search_result`);
         }
 
-        let count = ghPluralize(members.length, 'member');
+        let memberStr = ghPluralize(members.length, 'member', {withoutCount: true});
+        memberStr = this.intl.t(`Manual.Members.${memberStr}`);
+        const count = `${members.length} ${memberStr}`;
 
         if (selectedLabel && selectedLabel.slug) {
             if (members.length > 1) {
@@ -97,9 +105,7 @@ export default class MembersController extends Controller {
     }
 
     get hideSearchBar() {
-        return !this.members.length
-            && !this.searchParam
-            && !this.searchIsFocused;
+        return !this.members.length && !this.searchParam && !this.searchIsFocused;
     }
 
     get showingAll() {
@@ -111,26 +117,34 @@ export default class MembersController extends Controller {
         // we don't want to show an order dropdown with only a single option
 
         if (this.feature.get('emailAnalytics')) {
-            return [{
-                name: 'Newest',
-                value: null
-            }, {
-                name: 'Open rate',
-                value: 'email_open_rate'
-            }];
+            return [
+                {
+                    name: 'Newest',
+                    value: null
+                },
+                {
+                    name: 'Open rate',
+                    value: 'email_open_rate'
+                }
+            ].map((_) => {
+                return {
+                    ..._,
+                    name: this.intl.t(`Manual.Members.${_.name.replace(' ', '_')}`)
+                };
+            });
         }
 
         return [];
     }
 
     get selectedOrder() {
-        return this.availableOrders.find(order => order.value === this.orderParam);
+        return this.availableOrders.find((order) => order.value === this.orderParam);
     }
 
     get availableLabels() {
         let labels = this._availableLabels
-            .filter(label => !label.isNew)
-            .filter(label => label.id !== null)
+            .filter((label) => !label.isNew)
+            .filter((label) => label.id !== null)
             .sort((labelA, labelB) => labelA.name.localeCompare(labelB.name, undefined, {ignorePunctuation: true}));
         let options = labels.toArray();
 
@@ -165,11 +179,14 @@ export default class MembersController extends Controller {
     get filterColumns() {
         const defaultColumns = ['name', 'email', 'email_open_rate', 'created_at', 'status', 'tier'];
         const availableFilters = this.filters.length ? this.filters : this.softFilters;
-        return availableFilters.map((filter) => {
-            return filter.type;
-        }).filter((f, idx, arr) => {
-            return arr.indexOf(f) === idx;
-        }).filter(d => !defaultColumns.includes(d));
+        return availableFilters
+            .map((filter) => {
+                return filter.type;
+            })
+            .filter((f, idx, arr) => {
+                return arr.indexOf(f) === idx;
+            })
+            .filter((d) => !defaultColumns.includes(d));
     }
 
     get filterColumnLabels() {
@@ -181,15 +198,23 @@ export default class MembersController extends Controller {
             'subscriptions.current_period_end': 'Next billing date',
             tier: 'Membership tier'
         };
-        return this.filterColumns.filter((d) => {
-            // Exclude Signup and conversions (data not yet available in backend when browsing members)
-            return !['signup', 'conversion', 'emails.post_id', 'clicked_links.post_id', 'opened_emails.post_id'].includes(d);
-        }).map((d) => {
-            return {
-                name: d,
-                label: filterColumnLabelMap[d] ? filterColumnLabelMap[d] : capitalize(d.replace(/_/g, ' '))
-            };
-        });
+        return this.filterColumns
+            .filter((d) => {
+                // Exclude Signup and conversions (data not yet available in backend when browsing members)
+                return ![
+                    'signup',
+                    'conversion',
+                    'emails.post_id',
+                    'clicked_links.post_id',
+                    'opened_emails.post_id'
+                ].includes(d);
+            })
+            .map((d) => {
+                return {
+                    name: d,
+                    label: filterColumnLabelMap[d] ? filterColumnLabelMap[d] : capitalize(d.replace(/_/g, ' '))
+                };
+            });
     }
 
     includeTierQuery() {
@@ -360,7 +385,9 @@ export default class MembersController extends Controller {
             onComplete: () => {
                 // reset, clear filters, and reload list and counts
                 this.store.unloadAll('member');
-                this.router.transitionTo('members.index', {queryParams: Object.assign(resetQueryParams('members.index'))});
+                this.router.transitionTo('members.index', {
+                    queryParams: Object.assign(resetQueryParams('members.index'))
+                });
                 this.membersStats.invalidate();
                 this.membersStats.fetchCounts();
             }
@@ -394,12 +421,13 @@ export default class MembersController extends Controller {
         let startDate = new Date();
 
         // bypass the stale data shortcut if params change
-        let forceReload = !params
-            || label !== this._lastLabel
-            || paidParam !== this._lastPaidParam
-            || searchParam !== this._lastSearchParam
-            || orderParam !== this._lastOrderParam
-            || filterParam !== this._lastFilterParam;
+        let forceReload =
+            !params ||
+            label !== this._lastLabel ||
+            paidParam !== this._lastPaidParam ||
+            searchParam !== this._lastSearchParam ||
+            orderParam !== this._lastOrderParam ||
+            filterParam !== this._lastFilterParam;
         this._lastLabel = label;
         this._lastPaidParam = paidParam;
         this._lastSearchParam = searchParam;
@@ -414,30 +442,37 @@ export default class MembersController extends Controller {
 
         this._startDate = startDate;
 
-        this.members = yield this.ellaSparse.array((range = {}, query = {}) => {
-            const searchQuery = this.getApiQueryObject({
-                params,
-                extraFilters: [`created_at:<='${moment.utc(this._startDate).format('YYYY-MM-DD HH:mm:ss')}'`]
-            });
-            const order = orderParam ? `${orderParam} desc` : `created_at desc`;
-            const includes = ['labels', 'tiers'];
+        this.members = yield this.ellaSparse.array(
+            (range = {}, query = {}) => {
+                const searchQuery = this.getApiQueryObject({
+                    params,
+                    extraFilters: [`created_at:<='${moment.utc(this._startDate).format('YYYY-MM-DD HH:mm:ss')}'`]
+                });
+                const order = orderParam ? `${orderParam} desc` : `created_at desc`;
+                const includes = ['labels', 'tiers'];
 
-            query = Object.assign({
-                include: includes.join(','),
-                order,
-                limit: range.length,
-                page: range.page
-            }, searchQuery, query);
+                query = Object.assign(
+                    {
+                        include: includes.join(','),
+                        order,
+                        limit: range.length,
+                        page: range.page
+                    },
+                    searchQuery,
+                    query
+                );
 
-            return this.store.query('member', query).then((result) => {
-                return {
-                    data: result,
-                    total: result.meta.pagination.total
-                };
-            });
-        }, {
-            limit: 50
-        });
+                return this.store.query('member', query).then((result) => {
+                    return {
+                        data: result,
+                        total: result.meta.pagination.total
+                    };
+                });
+            },
+            {
+                limit: 50
+            }
+        );
     }
 
     // Internal ----------------------------------------------------------------

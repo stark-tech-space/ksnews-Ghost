@@ -1,8 +1,8 @@
 <div class="modal-content">
     <header class="modal-header" data-test-modal="delete-members">
-        <h1>Delete selected members?</h1>
+        <h1>{{t "Manual.Members.Delete selected members"}}?</h1>
     </header>
-    <button class="close" type="button" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">Close</span></button>
+    <button class="close" type="button" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Members.Close"}}</span></button>
 
     {{#if this.hasRun}}
         <div class="gh-content-box pa" data-test-state="delete-complete">

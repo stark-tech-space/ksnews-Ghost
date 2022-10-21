@@ -1,8 +1,8 @@
 <div class="modal-content">
     <header class="modal-header" data-test-modal="add-label-members">
-        <h1>Add Label</h1>
+        <h1>{{t "Manual.Members.Add_Label"}}</h1>
     </header>
-    <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">Close</span></button>
+    <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Members.Close"}}</span></button>
 
     {{#if this.hasRun}}
         <div class="gh-content-box pa" data-test-state="add-complete">

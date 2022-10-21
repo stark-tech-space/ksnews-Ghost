@@ -1244,7 +1244,31 @@
       "Time": "Time",
       "Filter_events": "Filter events",
       "Clear_member": "Clear member",
-      "See_all_details": "See all details"
+      "See_all_details": "See all details",
+      "Export selected members": "Export selected members",
+      "Add label for selected members": "Add label for selected members",
+      "Remove label from selected members": "Remove label from selected members",
+      "Unsubscribe selected members": "Unsubscribe selected members",
+      "Delete selected members": "Delete selected members",
+      "Edit_member": "Edit member",
+      "New": "New",
+      "See_all_member_activity": "See all member activity",
+      "Newsletters": "Newsletters",
+      "Details": "Details",
+      "Offer": "Offer",
+      "Subscription_source": "Subscription source",
+      "Subscription_page": "Subscription page",
+      "Remove_Label": "Remove Label",
+      "Unsubscribe_members_from_email": "Unsubscribe members from email",
+      "from_Ghost.": "from Ghost",
+      "Delete_member_+_Cancel_subscription": "Delete member + Cancel subscription",
+      "Created_on": "Created on",
+      "Signed_up_on": "Signed up on",
+      "Free_trial": "Free trial",
+      "Expires": "Expires",
+      "Ends": "Ends",
+      "member": "member",
+      "members": "members"
     },
     "Integrations": {
       "Active": "Active",
@@ -1992,7 +2016,8 @@
       "Footer text": "Footer text",
       "Enter tag slugs for primary sections": "Enter tag slugs for primary sections",
       "Enter tag slugs for secondary sections": "Enter tag slugs for secondary sections",
-      "Use": "Use"
+      "Use": "Use",
+      "Specific_tier(s)": "Specific tier(s)"
     },
     "View_site": {
       "View_site": "View site",

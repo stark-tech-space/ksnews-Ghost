@@ -13,7 +13,7 @@
     {{#if this.hasMultipleTiers}}
         <LinkTo @route="member" @model={{@member}} class="gh-list-data" data-test-table-data="status">
             {{#if (not (is-empty @member.status))}}
-                <span>{{capitalize @member.status}}</span>
+                <span>{{t (concat "Manual.JS." (capitalize @member.status))}}</span>
             {{else}}
                 <span class="midlightgrey">-</span>
             {{/if}}
@@ -22,7 +22,7 @@
     {{else}}
         <LinkTo @route="member" @model={{@member}} class="gh-list-data" data-test-table-data="status">
             {{#if (not (is-empty @member.status))}}
-                <span>{{capitalize @member.status}}</span>
+                <span>{{t (concat "Manual.JS." (capitalize @member.status))}}</span>
             {{else}}
                 <span class="midlightgrey">-</span>
             {{/if}}
@@ -48,11 +48,11 @@
                 {{#if @member.geolocation.country}}
                     {{@member.geolocation.country}}
                 {{else}}
-                    <span class="midlightgrey">Unknown</span>
+                    <span class="midlightgrey">{{t "Manual.Members.Unknown"}}</span>
                 {{/if}}
             {{/if}}
         {{else}}
-            <span class="midlightgrey">Unknown</span>
+            <span class="midlightgrey">{{t "Manual.Members.Unknown"}}</span>
         {{/if}}
     </LinkTo>
 

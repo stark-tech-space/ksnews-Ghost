@@ -8,32 +8,45 @@ export default class SettingsMembersDefaultPostAccess extends Component {
     @service feature;
     @tracked showSegmentError;
 
+    @service intl;
+
     get options() {
-        return [{
-            name: 'Public',
-            description: 'All site visitors to your site, no login required',
-            value: 'public',
-            icon: 'globe',
-            icon_color: 'green'
-        }, {
-            name: 'Members only',
-            description: 'All logged-in members',
-            value: 'members',
-            icon: 'members-all',
-            icon_color: 'blue'
-        }, {
-            name: 'Paid-members only',
-            description: 'Only logged-in members with an active Stripe subscription',
-            value: 'paid',
-            icon: 'members-paid',
-            icon_color: 'pink'
-        }, {
-            name: 'Specific tier(s)',
-            description: 'Members with any of the selected tiers',
-            value: 'tiers',
-            icon: 'members-segment',
-            icon_color: 'yellow'
-        }];
+        return [
+            {
+                name: 'Public',
+                description: 'All site visitors to your site, no login required',
+                value: 'public',
+                icon: 'globe',
+                icon_color: 'green'
+            },
+            {
+                name: 'Members only',
+                description: 'All logged-in members',
+                value: 'members',
+                icon: 'members-all',
+                icon_color: 'blue'
+            },
+            {
+                name: 'Paid-members only',
+                description: 'Only logged-in members with an active Stripe subscription',
+                value: 'paid',
+                icon: 'members-paid',
+                icon_color: 'pink'
+            },
+            {
+                name: 'Specific tier(s)',
+                description: 'Members with any of the selected tiers',
+                value: 'tiers',
+                icon: 'members-segment',
+                icon_color: 'yellow'
+            }
+        ].map((_) => {
+            return {
+                ..._,
+                name: this.intl.t(`Manual.Settings.${_.name.replace(/ /g, '_')}`),
+                description: this.intl.t(`Manual.Settings.${_.description.replace(/ /g, '_')}`)
+            };
+        });
     }
 
     get hasVisibilityFilter() {
@@ -49,10 +62,10 @@ export default class SettingsMembersDefaultPostAccess extends Component {
 
     get selectedOption() {
         if (this.settings.membersSignupAccess === 'none') {
-            return this.options.find(o => o.value === 'public');
+            return this.options.find((o) => o.value === 'public');
         }
 
-        return this.options.find(o => o.value === this.settings.defaultContentVisibility);
+        return this.options.find((o) => o.value === this.settings.defaultContentVisibility);
     }
 
     @action
