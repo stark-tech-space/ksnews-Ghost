@@ -1,81 +1,81 @@
 <section class="gh-canvas">
     <GhCanvasHeader class="gh-canvas-header">
         <h2 class="gh-canvas-title" data-test-screen-title>
-            Settings
+            {{t "Manual.Settings.Settings"}}
         </h2>
         <section class="view-actions">
             {{#if this.upgradeStatus.message}}
                 <button type="button" class="gh-btn gh-btn-with-notification" {{on "click" (fn this.openAbout null)}} data-tooltip="Update available!">
-                    <span>About Ghost</span>
+                    <span>{{t "Manual.ProfilePicture.About_Ghost"}}</span>
                     <span class="gh-btn-notification-dot green"></span>
                 </button>
             {{else}}
                 <button type="button" class="gh-btn gh-btn-with-notification" {{on "click" (fn this.openAbout null)}}>
-                    <span>About Ghost</span>
+                    <span>{{t "Manual.ProfilePicture.About_Ghost"}}</span>
                 </button>
             {{/if}}
         </section>
     </GhCanvasHeader>
 
     <section class="view-container">
-        <div class="gh-setting-header gh-first-header">Website</div>
+        <div class="gh-setting-header gh-first-header">{{t "Manual.ProfilePicture.Website"}}</div>
         <div class="gh-settings-main-grid">
             <LinkTo class="gh-setting-group" @route="settings.general" data-test-nav="general">
                 <span class="yellow">{{svg-jar "settings"}}</span>
                 <div>
-                    <h4>General</h4>
-                    <p>Basic publication details and site metadata</p>
+                    <h4>{{t "Manual.Settings.General"}}</h4>
+                    <p>{{t "Manual.Settings.Basic_publication_details_and_site_metadata"}}</p>
                 </div>
             </LinkTo>
             <LinkTo class="gh-setting-group" @route="settings.design" data-test-nav="design">
                 <span class="blue">{{svg-jar "paint-palette"}}</span>
                 <div>
-                    <h4>Design</h4>
-                    <p>Customize your site and manage themes</p>
+                    <h4>{{t "Manual.Settings.Design"}}</h4>
+                    <p>{{t "Manual.Others.Customize_your_site_and_manage_themes"}}</p>
                 </div>
             </LinkTo>
             <LinkTo class="gh-setting-group" @route="settings.navigation" data-test-nav="navigation">
                 <span class="pink">{{svg-jar "compass"}}</span>
                 <div>
-                    <h4>Navigation</h4>
-                    <p>Set up primary and secondary menus</p>
+                    <h4>{{t "Manual.Settings.Navigation"}}</h4>
+                    <p>{{t "Manual.Settings.Set_up_primary_and_secondary_menus"}}</p>
                 </div>
             </LinkTo>
 
             <LinkTo class="gh-setting-group" @route="settings.staff" data-test-nav="staff">
                 <span class="green">{{svg-jar "staff"}}</span>
                 <div>
-                    <h4>Staff</h4>
-                    <p>Manage authors, editor and collaborators</p>
+                    <h4>{{t "Manual.Settings.Staff"}}</h4>
+                    <p>{{t "Manual.Settings.Manage_authors,_editor_and_collaborators"}}</p>
                 </div>
             </LinkTo>
         </div>
 
-        <div class="gh-setting-header">Members</div>
+        <div class="gh-setting-header">{{t "Manual.Settings.Members"}}</div>
         <div class="gh-settings-main-grid">
             <LinkTo class="gh-setting-group" @route="settings.membership" data-test-nav="members-membership">
                 <span class="blue">{{svg-jar "members"}}</span>
                 <div>
-                    <h4>Membership</h4>
-                    <p>Access, subscription, and pricing options</p>
+                    <h4>{{t "Manual.Settings.Membership"}}</h4>
+                    <p>{{t "Manual.Settings.Access,_subscription,_and_pricing_options"}}</p>
                 </div>
             </LinkTo>
             <LinkTo class="gh-setting-group" @route="settings.newsletters" data-test-nav="members-email">
                 <span class="yellow">{{svg-jar "email-stroke"}}</span>
                 <div>
-                    <h4>Email newsletter</h4>
-                    <p>Customize emails and set email addresses</p>
+                    <h4>{{t "Manual.Settings.Email_newsletter"}}</h4>
+                    <p>{{t "Manual.Settings.Customize_emails_and_set_email_addresses"}}</p>
                 </div>
             </LinkTo>
         </div>
 
-        <div class="gh-setting-header">Advanced</div>
+        <div class="gh-setting-header">{{t "Manual.Settings.Advanced"}}</div>
         <div class="gh-settings-main-grid">
             <LinkTo class="gh-setting-group" @route="settings.integrations" data-test-nav="integrations">
                 <span class="yellow">{{svg-jar "module"}}</span>
                 <div>
-                    <h4>Integrations</h4>
-                    <p>Make Ghost work with apps and tools</p>
+                    <h4>{{t "Manual.Settings.Integrations"}}</h4>
+                    <p>{{t "Manual.Others.Make_Ghost_work_with_apps_and_tools"}}</p>
                 </div>
             </LinkTo>
 
@@ -83,23 +83,23 @@
                 <span class="green">{{svg-jar "brackets"}}</span>
                 <div>
                     <h4>{{t "Manual.Tags.Code_injection"}}</h4>
-                    <p>Add code to your publication</p>
+                    <p>{{t "Manual.Settings.Add_code_to_your_publication"}}</p>
                 </div>
             </LinkTo>
 
             <LinkTo class="gh-setting-group" @route="settings.labs" data-test-nav="labs">
                 <span class="blue">{{svg-jar "labs"}}</span>
                 <div>
-                    <h4>Labs</h4>
-                    <p>Testing ground for new features</p>
+                    <h4>{{t "Manual.Settings.Labs"}}</h4>
+                    <p>{{t "Manual.Settings.Testing_ground_for_new_features"}}</p>
                 </div>
             </LinkTo>
 
             <LinkTo class="gh-setting-group" @route="settings.history" data-test-nav="history">
                 <span class="pink">{{svg-jar "calendar-stroke"}}</span>
                 <div>
-                    <h4>History</h4>
-                    <p>View system event log</p>
+                    <h4>{{t "Manual.Settings.History"}}</h4>
+                    <p>{{t "Manual.Settings.View_system_event_log"}}</p>
                 </div>
             </LinkTo>
         </div>

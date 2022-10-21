@@ -1534,10 +1534,17 @@
       "Skip_to_main_content": "查看內容",
       "Native": "Native",
       "Enabled": "Enabled",
-      "Invitation_sent": "邀請已發送: {createdAt}, ",
+      "Invitation_sent": "邀請已發送",
       "expired": "過期",
       "expires": "即將過期",
-      "To_use_selected_user_role,_upgrade_to_a_different_plan.": "要使用選定的用戶角色，請升級到另一個計劃。"
+      "To_use_selected_user_role,_upgrade_to_a_different_plan.": "要使用選定的用戶角色，請升級到另一個計劃。",
+      "Profile": "簡介",
+      "Suspended": "暫停",
+      "View_user_activity": "查看用戶活動",
+      "Email_notifications": "電子郵件通知",
+      "Every_time_a_member_comments_on_one_of_your_posts": "每當用戶評論你的文章時",
+      "New_signups": "新的注冊",
+      "Every_time_a_new_free_member_signs_up": "每當新用戶注冊時"
     },
     "Search": {
       "Search_site...": "搜尋本站...",
@@ -1736,7 +1743,7 @@
       "BETA_FEATURES": "測試版功能",
       "Redirects": "重新導向",
       "Configure_redirects_for_old_or_moved_content,_more_info_in_the_docs_1": "替舊的及已移除的內容重新導向，更多資訊請點",
-      "Configure_redirects_for_old_or_moved_content,_more_info_in_the_docs_2": "",
+      "Configure_redirects_for_old_or_moved_content,_more_info_in_the_docs_2": "此處",
       "The_docs": "這份文檔",
       "Upload_redirects_YAML/JSON": "上傳重新導向YAML/JSON",
       "Download_current_redirects": "下載目前的重新導向",
@@ -2024,7 +2031,12 @@
       "enter_tag_slugs_for_primary_sections": "輸入主要區塊的標籤別名",
       "enter_tag_slugs_for_secondary_sections": "輸入次要區塊的標籤別名",
       "Use": "設為",
-      "Specific_tier(s)": "特定等級"
+      "Specific_tier(s)": "特定等級",
+      "History": "曆史",
+      "View_system_event_log": "查看繫統事件日誌",
+      "Actions": "動作",
+      "User": "用戶",
+      "Edit_integration": "修改串接"
     },
     "View_site": {
       "View_site": "查看主頁",

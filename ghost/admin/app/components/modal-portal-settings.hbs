@@ -65,7 +65,7 @@
                                                         {{on "click" (action "togglePlan" "free")}}
                                                     >
                                                     <span class="input-toggle-component"></span>
-                                                    <p>Free</p>
+                                                    <p>{{t "Manual.Settings.Free"}}</p>
                                                 </label>
                                             </div>
                                             {{#each this.tiers as |tier|}}
@@ -196,7 +196,7 @@
                                             </GhFormGroup>
                                             {{#if this.showIconSetting}}
                                                 <GhFormGroup @classNames="space-l">
-                                                    <h4 class="gh-portal-setting-title">Icon</h4>
+                                                    <h4 class="gh-portal-setting-title">{{t "Manual.Components.Icon"}}</h4>
                                                     <GhUploader
                                                         @extensions={{this.iconExtensions}}
                                                         @paramsHash={{hash purpose="image"}}

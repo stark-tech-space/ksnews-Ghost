@@ -30,7 +30,7 @@
                 <GhErrorMessage @errors={{this.price.errors}} @property="description" />
             </GhFormGroup>
             <GhFormGroup @errors={{this.price.errors}} @hasValidated={{this.price.hasValidated}} @property="welcome-page">
-                <label for="welcome-page" class="fw6">Welcome page</label>
+                <label for="welcome-page" class="fw6">{{t "Manual.Settings.Welcome_page"}}</label>
                 <GhUrlInput
                     @value={{readonly this.settings.membersFreeSignupRedirect}}
                     @baseUrl={{readonly this.siteUrl}}

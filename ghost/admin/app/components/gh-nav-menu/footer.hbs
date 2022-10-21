@@ -27,17 +27,17 @@
                         {{#if this.session.user.isContributor}}
                             <li>
                                 <LinkTo @route="posts" @query={{hash entry=null}} class="dropdown-item" @role="menuitem" tabindex="-1" data-test-nav="posts">
-                                    Posts
+                                    {{t "Manual.Others.Posts"}}
                                 </LinkTo>
                             </li>
                             <li>
-                                <a href="{{this.config.blogUrl}}/" class="dropdown-item" role="menuitem" tabindex="-1" title="Open site in new tab" target="_blank" rel="noopener noreferrer">View site</a>
+                                <a href="{{this.config.blogUrl}}/" class="dropdown-item" role="menuitem" tabindex="-1" title="Open site in new tab" target="_blank" rel="noopener noreferrer"> {{t "Manual.Others.View_site"}}</a>
                             </li>
                             <li class="divider" role="separator"></li>
                         {{else}}
                             <li>
                                 <LinkTo @route="whatsnew" @query={{hash entry=null}} class="dropdown-item" @role="menuitem" tabindex="-1" data-test-nav="whatsnew">
-                                    What's new?
+                                     {{t "Manual.Others.What's_new?"}}
                                     {{#if this.whatsNew.hasNew}}
                                         <div class="flex-grow-1 flex justify-end"><span class="dib w2 h2 top-0 right-0 bg-green br-100"></span></div>
                                     {{/if}}
@@ -47,7 +47,7 @@
 
                         <li>
                             <LinkTo @route="settings.staff.user" @model={{this.session.user.slug}} class="dropdown-item" @role="menuitem" tabindex="-1" data-test-nav="user-profile">
-                                Your profile
+                                 {{t "Manual.Others.Your_profile"}}
                             </LinkTo>
                         </li>
                         
@@ -55,12 +55,12 @@
                             <li class="divider" role="separator"></li>
                             <li>
                                 <a class="dropdown-item" role="menuitem" tabindex="-1" href="https://ghost.org/help?utm_source=admin&utm_campaign=help" target="_blank" rel="noopener noreferrer">
-                                    Help center
+                                     {{t "Manual.Others.Help_center"}}
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" role="menuitem" tabindex="-1" href="https://ghost.org/resources?utm_source=admin&utm_campaign=resources" target="_blank" rel="noopener noreferrer">
-                                    Resources & guides
+                                     {{t "Manual.Others.Resources_&_guides"}}
                                 </a>
                             </li>
 
@@ -82,7 +82,7 @@
 
                         <li>
                             <LinkTo @route="signout" class="dropdown-item user-menu-signout" @role="menuitem" tabindex="-1">
-                                Sign out
+                                 {{t "Manual.Others.Sign_out"}}
                             </LinkTo>
                         </li>
                     </ul>

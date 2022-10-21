@@ -3,17 +3,20 @@
         <div class="flex flex-column">
             <div class="gh-canvas-breadcrumb">
                 <LinkTo @route="settings">
-                    Settings
+                    {{t "Manual.Settings.Settings"}}
                 </LinkTo>
                 {{svg-jar "arrow-right-small"}}
                 <LinkTo @route="settings.integrations" data-test-link="integrations-back">
-                    Integrations
+                    {{t "Manual.Settings.Integrations"}}
                 </LinkTo>
                 {{svg-jar "arrow-right-small"}} FirstPromoter
             </div>
         </div>
         <section class="view-actions">
-            <GhTaskButton @task={{this.saveTask}} @class="gh-btn gh-btn-primary gh-btn-icon" data-test-save-button={{true}} />
+            <GhTaskButton @buttonText={{t "Manual.Components.Save"}}
+                @successText={{t "Manual.Components.Saved"}}
+                @runningText={{t "Manual.Components.Saving"}}
+                @task={{this.saveTask}} @class="gh-btn gh-btn-primary gh-btn-icon" data-test-save-button={{true}} />
         </section>
     </GhCanvasHeader>
 
@@ -25,19 +28,19 @@
                 </div>
                 <div class="app-cell">
                     <h3>FirstPromoter</h3>
-                    <p>Launch your own member referral program</p>
+                    <p>{{t "Manual.Integrations.Launch_your_own_member_referral_program"}}</p>
                 </div>
             </div>
         </section>
 
         <div class="gh-main-section">
-        <h4 class="gh-main-section-header small bn">FirstPromoter configuration</h4>
+        <h4 class="gh-main-section-header small bn">{{t "Manual.Integrations.FirstPromoter_configuration"}}</h4>
         <section class="gh-main-section-block">
             <div class="gh-main-section-content grey">
                 <div>
                     <div class="gh-setting-first {{unless this.settings.firstpromoter "gh-setting-last"}}">
                         <div class="gh-setting-content">
-                            <div class="gh-setting-title">Enable FirstPromoter</div>
+                            <div class="gh-setting-title">{{t "Manual.Integrations.Enable_FirstPromoter"}}</div>
                             <div class="gh-setting-desc mb0">Enable <a href="https://firstpromoter.com/?fpr=ghost&fp_sid=admin" target="_blank" rel="noopener noreferrer">FirstPromoter</a> for tracking referrals</div>
                         </div>
                         <div class="gh-setting-action">

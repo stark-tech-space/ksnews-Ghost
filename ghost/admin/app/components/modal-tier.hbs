@@ -198,7 +198,7 @@
                         {{/if}}
                         
                         <GhFormGroup>
-                            <label for="welcomePage" class="fw6">Welcome page</label>
+                            <label for="welcomePage" class="fw6">{{t "Manual.Settings.Welcome_page"}}</label>
                             <GhUrlInput
                                 @id="welcomePage"
                                 @value={{readonly this.model.tier.welcomePageURL}}
@@ -208,7 +208,7 @@
                                 @placeholder={{readonly this.siteUrl}}
                             />
                             {{#if this.isFreeTier}}
-                                <p>Redirect to this URL after signup for a free membership</p>
+                                <p>{{t "Manual.Settings.Redirect_to_this_URL_after_signup_for_a_free_membership"}}</p>
                             {{else}}
                                 <p>Redirect to this URL after signup for premium membership</p>
                             {{/if}}

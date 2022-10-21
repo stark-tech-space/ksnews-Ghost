@@ -1539,7 +1539,14 @@
       "Invitation_sent": "Invitation sent: {createdAt}, ",
       "expired": "expired",
       "expires": "expires",
-      "To_use_selected_user_role,_upgrade_to_a_different_plan.": "To use selected user role, upgrade to a different plan."
+      "To_use_selected_user_role,_upgrade_to_a_different_plan.": "To use selected user role, upgrade to a different plan.",
+      "Profile": "Profile",
+      "Suspended": "Suspended",
+      "View_user_activity": "View user activity",
+      "Email_notifications": "Email notifications",
+      "Every_time_a_member_comments_on_one_of_your_posts": "Every time a member comments on one of your posts",
+      "New_signups": "New signups",
+      "Every_time_a_new_free_member_signs_up": "Every time a new free member signs up"
     },
     "Search": {
       "Search_site...": "Search site...",
@@ -2017,7 +2024,12 @@
       "Enter tag slugs for primary sections": "Enter tag slugs for primary sections",
       "Enter tag slugs for secondary sections": "Enter tag slugs for secondary sections",
       "Use": "Use",
-      "Specific_tier(s)": "Specific tier(s)"
+      "Specific_tier(s)": "Specific tier(s)",
+      "History": "History",
+      "View_system_event_log": "View system event log",
+      "Actions": "Actions",
+      "User": "User",
+      "Edit_integration": "Edit integration"
     },
     "View_site": {
       "View_site": "View site",

@@ -2,8 +2,8 @@
     <GhCanvasHeader class="gh-canvas-header">
         <h2 class="gh-canvas-title" data-test-screen-title>Themes</h2>
         <section class="view-actions">
-            <button type="button" class="mr4 gh-btn gh-advanced " {{on "click" this.toggleAdvanced}} data-test-button="toggle-advanced"><span>{{svg-jar (if this.showAdvanced "arrow-up-small" "arrow-down-small")}}Advanced</span></button>
-            <button type="button" class="gh-btn gh-btn-primary" {{on "click" this.startThemeUpload}} data-test-button="upload-theme"><span>Upload theme</span></button>
+            <button type="button" class="mr4 gh-btn gh-advanced " {{on "click" this.toggleAdvanced}} data-test-button="toggle-advanced"><span>{{svg-jar (if this.showAdvanced "arrow-up-small" "arrow-down-small")}}{{t "Manual.Settings.Advanced"}}</span></button>
+            <button type="button" class="gh-btn gh-btn-primary" {{on "click" this.startThemeUpload}} data-test-button="upload-theme"><span>{{t "Manual.Settings.Upload_theme"}}</span></button>
         </section>
     </GhCanvasHeader>
 
@@ -30,7 +30,7 @@
                                     (Default)
                                 {{/if}}
                                 {{#if theme.isActive}}
-                                    <span class="gh-badge">Active</span>
+                                    <span class="gh-badge">{{t "Manual.Settings.Active"}}</span>
                                 {{/if}}
                             </div>
                             <div class="td-item-category">{{theme.category}}</div>

@@ -4,13 +4,13 @@
             {{#unless this.session.user.isEditor}}
                 <div class="gh-canvas-breadcrumb">
                     <LinkTo @route="settings" data-test-breadcrumb>
-                        Settings
+                        {{t "Manual.Settings.Settings"}}
                     </LinkTo>
-                    {{svg-jar "arrow-right-small"}} Staff
+                    {{svg-jar "arrow-right-small"}} {{t "Manual.Settings.Staff"}}
                 </div>
             {{/unless}}
             <h2 class="gh-canvas-title" data-test-screen-title>
-                Staff
+                {{t "Manual.Settings.Staff"}}
             </h2>
         </div>
 
@@ -27,7 +27,7 @@
                         >
                             <span>
                                 {{svg-jar "settings"}}
-                                <span class="hidden">Actions</span>
+                                <span class="hidden">{{t "Manual.Settings.Actions"}}</span>
                             </span>
                         </GhDropdownButton>
                         <GhDropdown
@@ -37,7 +37,7 @@
                         >
                             <li>
                                 <button type="button" {{on "click" this.toggleResetAllPasswordsModal}}>
-                                    <span>Reset all passwords</span>
+                                    <span>{{t "Manual.Staff.Reset_all_passwords"}}</span>
                                 </button>
                             </li>
                         </GhDropdown>
@@ -65,7 +65,7 @@
     {{#unless this.currentUser.isAuthorOrContributor}}
         {{#if this.invites}}
         <section class="gh-main-section gh-invited-users apps-first-header" data-test-invited-users>
-            <h4 class="gh-main-section-header small">Invited users</h4>
+            <h4 class="gh-main-section-header small">{{t "Manual.Staff.Invited_users"}}</h4>
             <div class="apps-grid">
 
                 {{#each this.invites as |invite|}}
@@ -79,12 +79,12 @@
                                         <p class="apps-card-app-desc">
                                             {{#if invite.pending}}
                                                 <span class="description-error">
-                                                    Invitation not sent - please try again
+                                                    {{t "Manual.Staff.Invitation_not_sent-please_try_again"}}
                                                 </span>
                                             {{else}}
                                                 <span class="description" data-test-invite-description>
-                                                    Invitation sent: {{component.createdAt}},
-                                                    {{if component.isExpired "expired" "expires"}} {{component.expiresAt}}
+                                                    {{t "Manual.Staff.Invitation_sent"}}: {{component.createdAt}},
+                                                    {{if component.isExpired (t "Manual.Staff.expired") (t "Manual.Staff.expires")}} {{component.expiresAt}}
                                                 </span>
                                             {{/if}}
                                         </p>
@@ -93,13 +93,13 @@
                                 <div class="apps-card-right">
                                     <div class="apps-configured">
                                         {{#if component.isSending}}
-                                            <span>Sending Invite...</span>
+                                            <span>{{t "Manual.Staff.Sending_Invite..."}}</span>
                                         {{else}}
                                             <a class="apps-configured-action red-hover" href="#revoke" {{on "click" component.revoke}} data-test-revoke-button>
-                                                Revoke
+                                                {{t "Manual.Staff.Revoke"}}
                                             </a>
                                             <a class="apps-configured-action green-hover" href="#resend" {{on "click" component.resend}} data-test-resend-button>
-                                                Resend
+                                                {{t "Manual.Staff.Resend"}}
                                             </a>
 
                                             <span class="apps-configured-action gh-badge {{invite.role.lowerCaseName}}" data-test-role-name>{{invite.role.name}}</span>
@@ -117,7 +117,7 @@
     {{/unless}}
 
     <section class="gh-main-section gh-active-users {{unless this.invites "apps-first-header"}}" data-test-active-users>
-        <h4 class="gh-main-section-header small">Active users</h4>
+        <h4 class="gh-main-section-header small">{{t "Manual.Staff.ACTIVE_USERS"}}</h4>
         <div class="apps-grid">
             {{!-- For authors/contributors, only show their own user --}}
             {{#if this.currentUser.isAuthorOrContributor}}
@@ -143,7 +143,7 @@
     {{!-- Don't show if we have no suspended users or logged in as an author --}}
     {{#if (and this.suspendedUsers (not this.currentUser.isAuthorOrContributor))}}
     <section class="apps-grid-container gh-active-users" data-test-suspended-users>
-        <span class="apps-grid-title">Suspended users</span>
+        <span class="apps-grid-title">{{t "Manual.Staff.Suspend_User"}}</span>
         <div class="apps-grid">
             {{#each this.suspendedUsers key="id" as |user|}}
                 <GhUserActive @user={{user}} as |component|>

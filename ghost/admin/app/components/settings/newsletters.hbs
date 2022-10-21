@@ -37,7 +37,7 @@
                         <p class="gh-expandable-description">When you publish new content, who do you usually want to send it to?</p>
                     </div>
                     <button type="button" class="gh-btn" {{on "click" (toggle-action "defaultRecipientsOpen" this)}} data-test-toggle-membersemail>
-                        <span>{{if this.defaultRecipientsOpen "Close" "Expand"}}</span>
+                        <span>{{if this.defaultRecipientsOpen (t "Manual.Components.Close") (t "Manual.Settings.Expand")}}</span>
                     </button>
                 </div>
                 <div class="gh-expandable-content">
@@ -80,7 +80,7 @@
                             <p class="gh-expandable-description">The Mailgun API is used for bulk email newsletter delivery. <a href="https://ghost.org/docs/faq/mailgun-newsletters/" target="_blank" rel="noopener noreferrer">Why is this required?</a></p>
                         </div>
                         <button type="button" class="gh-btn" {{on "click" (toggle-action "membersEmailOpen" this)}} data-test-toggle-membersemail>
-                            <span>{{if this.membersEmailOpen "Close" "Expand"}}</span>
+                            <span>{{if this.membersEmailOpen (t "Manual.Components.Close") (t "Manual.Settings.Expand")}}</span>
                         </button>
                     </div>
                     <div class="gh-expandable-content">
@@ -148,7 +148,7 @@
                         <p class="gh-expandable-description">Track how many members are opening emails and clicking links</p>
                     </div>
                     <button type="button" class="gh-btn" {{on "click" (toggle-action "newsletterTrackingOpen" this)}} data-test-toggle-analytics>
-                        <span>{{if this.newsletterTrackingOpen "Close" "Expand"}}</span>
+                        <span>{{if this.newsletterTrackingOpen (t "Manual.Components.Close") (t "Manual.Settings.Expand")}}</span>
                     </button>
                 </div>
                 <div class="gh-expandable-content">

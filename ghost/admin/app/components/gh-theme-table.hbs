@@ -21,7 +21,7 @@
                             <li><button type="button" {{on "click" (fn this.downloadTheme theme.name dd)}} class="darkgrey darkgrey-hover lightgrey-bg-hover" data-test-button="download">Download</button></li>
 
                             {{#if theme.isDeletable}}
-                                <li><button type="button" {{on "click" (fn this.deleteTheme theme.model dd)}} disabled={{theme.active}} class="gh-list-delete" data-test-button="delete">Delete</button></li>
+                                <li><button type="button" {{on "click" (fn this.deleteTheme theme.model dd)}} disabled={{theme.active}} class="gh-list-delete" data-test-button="delete">{{t "Manual.Settings.Delete"}}</button></li>
                             {{/if}}
                         </ul>
                     </dd.Content>

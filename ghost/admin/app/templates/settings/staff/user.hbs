@@ -2,25 +2,25 @@
     <GhCanvasHeader class="gh-canvas-header">
         {{!-- Remove breadcrumbs for Authors and Contributors --}}
         {{#if this.currentUser.isAuthorOrContributor}}
-            <h2 class="gh-canvas-title" data-test-screen-title>Your profile</h2>
+            <h2 class="gh-canvas-title" data-test-screen-title>{{t "Manual.Others.Your_profile"}}</h2>
         {{else}}
             <div class="flex flex-column">
                 <div class="gh-canvas-breadcrumb" data-test-breadcrumb>
                     {{#unless this.session.user.isEditor}}
                         <LinkTo @route="settings">
-                            Settings
+                            {{t "Manual.Settings.Settings"}}
                         </LinkTo>
                         {{svg-jar "arrow-right-small"}}
                     {{/unless}}
                     <LinkTo @route="settings.staff" data-test-staff-link={{true}}>
-                        Staff
+                        {{t "Manual.Settings.Staff"}}
                     </LinkTo>
-                    {{svg-jar "arrow-right-small"}} Profile
+                    {{svg-jar "arrow-right-small"}} {{t "Manual.Staff.Profile"}}
                 </div>
                 <h2 class="gh-canvas-title" data-test-screen-title>
                     {{this.user.name}}
                     {{#if this.user.isSuspended}}
-                        <span class="gh-badge suspended" data-test-suspended-badge>Suspended</span>
+                        <span class="gh-badge suspended" data-test-suspended-badge>{{t "Manual.Staff.Suspended"}}</span>
                     {{/if}}
                 </h2>
             </div>
@@ -32,34 +32,34 @@
                     <GhDropdownButton @dropdownName="user-actions-menu" @classNames="gh-btn gh-btn-white gh-btn-icon icon-only user-actions-cog" @title="User Actions" data-test-user-actions>
                         <span>
                             {{svg-jar "settings"}}
-                            <span class="hidden">User Settings</span>
+                            <span class="hidden">{{t "Manual.Staff.User_settings"}}</span>
                         </span>
                     </GhDropdownButton>
                     <GhDropdown @name="user-actions-menu" @tagName="ul" @classNames="user-actions-menu dropdown-menu dropdown-align-right">
                         {{#if this.canMakeOwner}}
                             <li>
                                 <button type="button" {{on "click" this.transferOwnership}}>
-                                    Make owner
+                                    {{t "Manual.Staff.Make_Owner"}}
                                 </button>
                             </li>
                         {{/if}}
                         {{#if this.deleteUserActionIsVisible}}
                             <li>
                                 <button class="delete" data-test-delete-button type="button" {{on "click" this.deleteUser}}>
-                                    Delete user
+                                    {{t "Manual.Staff.Delete_User"}}
                                 </button>
                             </li>
                             {{#if this.user.isActive}}
                                 <li>
                                     <button class="suspend" data-test-suspend-button type="button" {{on "click" this.suspendUser}}>
-                                        Suspend user
+                                        {{t "Manual.Staff.Suspend_User"}}
                                     </button>
                                 </li>
                             {{/if}}
                             {{#if this.user.isSuspended}}
                                 <li>
                                     <button class="unsuspend" data-test-unsuspend-button type="button" {{on "click" this.unsuspendUser}}>
-                                        Un-suspend user
+                                        {{t "Manual.Staff.Un-suspend_User"}}
                                     </button>
                                 </li>
                             {{/if}}
@@ -67,7 +67,7 @@
 
                         <li>
                             <LinkTo @route="settings.history" @query={{hash user=this.user.id}}>
-                                <span>View user activity</span>
+                                <span>{{t "Manual.Staff.View_user_activity"}}</span>
                             </LinkTo>
                         </li>
                     </GhDropdown>
@@ -79,7 +79,7 @@
     </GhCanvasHeader>
 
     {{#if this.user.isLocked}}
-        <p class="gh-box gh-box-alert">{{svg-jar "info"}}This user account is locked. To sign in, ask this user to perform a password reset on their account.</p>
+        <p class="gh-box gh-box-alert">{{svg-jar "info"}}{{t "Manual.Staff.This_user_account_is_locked._To_sign_in,_ask_this_user_to_perform_a_password_reset_on_their_account"}}</p>
     {{/if}}
 
     {{!-- <div class="bg-"> --}}
@@ -88,19 +88,19 @@
             <form id="user-settings-form" class="user-profile" novalidate="novalidate" autocomplete="off" {{on "submit" (perform this.saveTask)}}>
 
                 <figure class="user-cover" style={{background-image-style this.user.coverImageUrl}}>
-                    <button type="button" class="gh-btn gh-btn-default user-cover-edit" {{on "click" this.changeCoverImage}}><span>Change cover</span></button>
+                    <button type="button" class="gh-btn gh-btn-default user-cover-edit" {{on "click" this.changeCoverImage}}><span>{{t "Manual.ProfilePicture.Change_Cover"}}</span></button>
                 </figure>
 
                 <figure class="user-image bg-whitegrey">
                     <div id="user-image" class="img" style={{background-image-style this.user.profileImageUrl}}><span class="hidden">{{this.user.name}}"s picture</span></div>
-                    <button type="button" class="edit-user-image" {{on "click" this.changeProfileImage}}>Edit picture</button>
+                    <button type="button" class="edit-user-image" {{on "click" this.changeProfileImage}}>{{t "Manual.ProfilePicture.EDIT_PICTURE"}}</button>
                 </figure>
 
                 <div class="pa5">
                     <fieldset class="user-details-bottom">
 
                         <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="name" @class="first-form-group">
-                            <label for="user-name">Full name</label>
+                            <label for="user-name">{{t "Manual.ProfilePicture.Full_Name"}}</label>
                             <input
                                 type="text"
                                 id="user-name"
@@ -114,12 +114,12 @@
                             {{#if this.user.errors.name}}
                                 <GhErrorMessage @errors={{this.user.errors}} @property="name" data-test-error="user-name" />
                             {{else}}
-                                <p>Use your real name so people can recognize you</p>
+                                <p>{{t "Manual.ProfilePicture.Use_your_real_name_so_people_can_recognize_you"}}</p>
                             {{/if}}
                         </GhFormGroup>
 
                         <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="slug">
-                            <label for="user-slug">Slug</label>
+                            <label for="user-slug">{{t "Manual.ProfilePicture.Slug"}}</label>
                             <input
                                 type="text"
                                 id="user-slug"
@@ -136,7 +136,7 @@
                         </GhFormGroup>
 
                         <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="email">
-                            <label for="user-email">Email</label>
+                            <label for="user-email">{{t "Manual.ProfilePicture.Email"}}</label>
                             {{!-- Administrators only see text of Owner's email address but not input --}}
                             {{#if this.canChangeEmail}}
                                 <input
@@ -156,19 +156,19 @@
                             {{else}}
                                 <span>{{this.user.email}}</span>
                             {{/if}}
-                            <p>Used for notifications</p>
+                            <p>{{t "Manual.ProfilePicture.Used_for_notifications"}}</p>
                         </GhFormGroup>
 
                         {{#if this.rolesDropdownIsVisible}}
                             <div class="form-group">
-                                <label for="user-role">Role</label>
+                                <label for="user-role">{{t "Manual.Staff.Role"}}</label>
                                 <button type="button" class="gh-input tl" {{on "click" this.selectRole}}>{{this.user.role.name}}{{svg-jar "arrow-down-small"}}</button>
-                                <p>What permissions should this user have?</p>
+                                <p>{{t "Manual.Staff.What_permissions_should_this_user_have"}}</p>
                             </div>
                         {{/if}}
 
                         <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="location">
-                            <label for="user-location">Location</label>
+                            <label for="user-location">{{t "Manual.Staff.Location"}}</label>
                             <input
                                 type="text"
                                 id="user-location"
@@ -179,11 +179,11 @@
                                 data-test-location-input
                             />
                             <GhErrorMessage @errors={{this.user.errors}} @property="location" data-test-error="user-location" />
-                            <p>Where in the world do you live?</p>
+                            <p>{{t "Manual.Staff.Where_in_the_world_do_you_live"}}</p>
                         </GhFormGroup>
 
                         <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="website">
-                            <label for="user-website">Website</label>
+                            <label for="user-website">{{t "Manual.ProfilePicture.Website"}}</label>
                             <input
                                 type="url"
                                 id="user-website"
@@ -197,11 +197,11 @@
                                 data-test-website-input
                             />
                             <GhErrorMessage @errors={{this.user.errors}} @property="website" data-test-error="user-website" />
-                            <p>Have a website or blog other than this one? Link it!</p>
+                            <p>{{t "Manual.ProfilePicture.Have_a_website_or_blog_other_than_this_one?_Link_it!"}}</p>
                         </GhFormGroup>
 
                         <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="facebook">
-                            <label for="user-facebook">Facebook profile</label>
+                            <label for="user-facebook">{{t "Manual.ProfilePicture.Facebook_Profile"}}</label>
                             <GhFacebookUrlInput
                                 id="user-facebook"
                                 @scratchValue={{this.scratchValues.facebook}}
@@ -210,11 +210,11 @@
                                 @modelProperty="facebook"
                             />
                             <GhErrorMessage @errors={{this.user.errors}} @property="facebook" data-test-error="user-facebook" />
-                            <p>URL of your personal Facebook Profile</p>
+                            <p>{{t "Manual.ProfilePicture.URL_of_your_personal_Facebook_Profile"}}</p>
                         </GhFormGroup>
 
                         <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="twitter">
-                            <label for="user-twitter">Twitter profile</label>
+                            <label for="user-twitter">{{t "Manual.ProfilePicture.Twitter_Profile"}}</label>
                             <GhTwitterUrlInput
                                 id="user-twitter"
                                 @scratchValue={{this.scratchValues.twitter}}
@@ -223,11 +223,11 @@
                                 @modelProperty="twitter"
                             />
                             <GhErrorMessage @errors={{this.user.errors}} @property="twitter" data-test-error="user-twitter" />
-                            <p>URL of your personal Twitter profile</p>
+                            <p>{{t "Manual.ProfilePicture.URL_of_your_personal_Twitter_profile"}}</p>
                         </GhFormGroup>
 
                         <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="bio" @class="bio-container">
-                            <label for="user-bio">Bio</label>
+                            <label for="user-bio">{{t "Manual.ProfilePicture.Bio"}}</label>
                             <textarea
                                 id="user-bio"
                                 class="gh-input"
@@ -237,18 +237,17 @@
                             >{{this.user.bio}}</textarea>
                             <GhErrorMessage @errors={{this.user.errors}} @property="bio" data-test-error="user-bio" />
                             <p>
-                                Recommended: <strong>200</strong> characters.
-                                You've used {{gh-count-down-characters this.user.bio 200}}
+                                {{t "Manual.Settings.Recommended"}}: <strong>200</strong>{{t "Manual.Settings._characters._You’ve_used_"}}{{gh-count-down-characters this.user.bio 200}}
                             </p>
                         </GhFormGroup>
                         {{#if this.membersUtils.isMembersEnabled}}
                         <div class="user-settings-subgroup">
-                            <h4 class="user-settings-heading">Email notifications</h4>
+                            <h4 class="user-settings-heading">{{t "Manual.Staff.Email_notifications"}}</h4>
                             <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="email">
                                 <div class="user-setting-toggle">
                                     <div>
-                                        <label for="user-email">Comments</label>
-                                        <p>Every time a member comments on one of your posts</p>
+                                        <label for="user-email">{{t "Manual.Settings.Comments"}}</label>
+                                        <p>{{t "Manual.Staff.Every_time_a_member_comments_on_one_of_your_posts"}}</p>
                                     </div>
                                     <div class="for-switch small">
                                         <label class="switch" for="comment-notifications">
@@ -268,8 +267,8 @@
                                 {{#if (and this.canToggleMemberAlerts (feature 'emailAlerts'))}}
                                     <div class="user-setting-toggle">
                                         <div>
-                                            <label for="user-email">New signups</label>
-                                            <p>Every time a new free member signs up</p>
+                                            <label for="user-email">{{t "Manual.Staff.New_signups"}}</label>
+                                            <p>{{t "Manual.Staff.Every_time_a_new_free_member_signs_up"}}</p>
                                         </div>
                                         <div class="for-switch small">
                                             <label class="switch" for="free-signup-notifications" data-test-label="free-signup-notifications">
@@ -342,7 +341,7 @@
                         <fieldset class="user-details-form">
                             {{#if this.isOwnProfile}}
                                 <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="password">
-                                    <label for="user-password-old">Old password</label>
+                                    <label for="user-password-old">{{t "Manual.ProfilePicture.Old_Password"}}</label>
                                     <input
                                         type="password"
                                         id="user-password-old"
@@ -358,7 +357,7 @@
                             {{/if}}
 
                             <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="newPassword">
-                                <label for="user-password-new">New password</label>
+                                <label for="user-password-new">{{t "Manual.ProfilePicture.New_Password"}}</label>
                                 <input
                                     type="password"
                                     id="user-password-new"
@@ -373,7 +372,7 @@
                             </GhFormGroup>
 
                             <GhFormGroup @errors={{this.user.errors}} @hasValidated={{this.user.hasValidated}} @property="ne2Password">
-                                <label for="user-new-password-verification">Verify password</label>
+                                <label for="user-new-password-verification">{{t "Manual.ProfilePicture.Verify_Password"}}</label>
                                 <input
                                     type="password"
                                     id="user-new-password-verification"
@@ -399,7 +398,7 @@
                     <div class="pa5">
                         <fieldset class="user-details-form">
                             <GhFormGroup>
-                                <label for="personal-token">Staff access token</label>
+                                <label for="personal-token">{{t "Manual.ProfilePicture.Staff_Access_Token"}}</label>
                                 <div class="relative flex items-center {{unless this.copyContentKeyTask.isRunning "hide-child-instant"}}">
                                     <input
                                         type="text"
@@ -415,18 +414,18 @@
                                         </button>
                                         <button type="button" class="app-button-copy" {{on "click" (perform this.copyContentKeyTask)}}>
                                             {{#if this.copyContentKeyTask.isRunning}}
-                                                {{svg-jar "check-circle" class="w3 v-mid mr2 stroke-white"}} Copied
+                                                {{svg-jar "check-circle" class="w3 v-mid mr2 stroke-white"}} {{t "Manual.Others.Copied"}}
                                             {{else}}
-                                                Copy
+                                                {{t "Manual.ProfilePicture.Copy"}}
                                             {{/if}}
                                         </button>
                                     </div>
                                 </div>
                                 <p>
-                                    Give apps personal access without sharing your email/password.
+                                    {{t "Manual.ProfilePicture.Give_apps_personal_access_without_sharing_your_email/password."}}
                                 </p>
                                 {{#if this.personalTokenRegenerated}}
-                                    <p class="green">Staff access token was successfully regenerated </p>
+                                    <p class="green">{{t "Manual.ProfilePicture.Staff_Access_Token_was_successfully_regenerated"}}</p>
                                 {{/if}}
                             </GhFormGroup>
                         </fieldset>

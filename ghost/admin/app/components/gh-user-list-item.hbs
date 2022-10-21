@@ -16,7 +16,7 @@
             {{/if}}
             <div class="apps-configured">
                 {{#if this.user.isSuspended}}
-                    <span class="gh-badge suspended">Suspended</span>
+                    <span class="gh-badge suspended">{{t "Manual.Staff.Suspended"}}</span>
                 {{else}}
                     {{#unless this.session.user.isAuthorOrContributor}}
                         {{#each this.user.roles as |role|}}
