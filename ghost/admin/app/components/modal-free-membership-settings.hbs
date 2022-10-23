@@ -20,7 +20,7 @@
                 <GhErrorMessage @errors={{this.price.errors}} @property="name" />
             </GhFormGroup>
             <GhFormGroup @errors={{this.price.errors}} @hasValidated={{this.price.hasValidated}} @property="description">
-                <label for="description" class="fw6">Description</label>
+                <label for="description" class="fw6">{{t "Manual.Components.Description"}}</label>
                 <GhTextInput
                     @value={{readonly this.settings.membersFreePriceDescription}}
                     @input={{action "updateDescription" value="target.value"}}
@@ -56,7 +56,7 @@
         {{!-- disable mouseDown so it doesn't trigger focus-out validations --}}
         {{!-- {{action (optional this.noop) on="mouseDown"}} --}}
     >
-        <span>Cancel</span>
+        <span>{{t "Manual.Components.Cancel"}}</span>
     </button>
     <GhTaskButton @buttonText={{t "Manual.Components.Save"}}
         {{!-- @successText={{this.successText}} --}}

@@ -5,8 +5,8 @@
         as |uploader|
     >
     <div>
-        <label class="gh-setting-title" for="publication-cover">Publication cover</label>
-        <div class="gh-setting-desc mb3">An optional large background image for your site</div>
+        <label class="gh-setting-title" for="publication-cover">{{t "Manual.Others.Publication_cover"}}</label>
+        <div class="gh-setting-desc mb3">{{t "Manual.Others.An_optional_large_background_image_for_your_site"}}</div>
         {{#each uploader.errors as |error|}}
             <div class="gh-setting-error" data-test-error="coverImage">{{or error.context error.message}}</div>
         {{/each}}

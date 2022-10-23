@@ -10,7 +10,7 @@
     <div class="modal-body">
         <fieldset>
             <GhFormGroup @errors={{@data.webhook.errors}} @hasValidated={{@data.webhook.hasValidated}} @property="name">
-                <label for="webhook-name" class="fw6">Name</label>
+                <label for="webhook-name" class="fw6">{{t "Manual.Components.Name"}}</label>
                 <input
                     type="text"
                     value={{@data.webhook.name}}
@@ -98,7 +98,7 @@
             {{!-- disable mouseDown so it doesn't trigger focus-out validations --}}
             {{on "mousedown" this.noop}}
         >
-            <span>Cancel</span>
+            <span>{{t "Manual.Components.Cancel"}}</span>
         </button>
         <GhTaskButton
             @buttonText={{this.buttonText}}

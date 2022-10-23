@@ -18,7 +18,8 @@ export const IMAGE_EXTENSIONS = ['gif', 'jpg', 'jpeg', 'png', 'svg', 'svgz', 'we
 export const IMAGE_PARAMS = {purpose: 'image'};
 
 export const ICON_EXTENSIONS = ['gif', 'ico', 'jpg', 'jpeg', 'png', 'svg', 'svgz', 'webp'];
-export const ICON_MIME_TYPES = 'image/x-icon,image/vnd.microsoft.icon,image/gif,image/jpg,image/jpeg,image/png,image/svg+xml,image/webp';
+export const ICON_MIME_TYPES =
+    'image/x-icon,image/vnd.microsoft.icon,image/gif,image/jpg,image/jpeg,image/png,image/svg+xml,image/webp';
 export const ICON_PARAMS = {purpose: 'icon'};
 
 export default Component.extend({
@@ -26,6 +27,7 @@ export default Component.extend({
     config: service(),
     notifications: service(),
     settings: service(),
+    intl: service(),
 
     tagName: 'section',
     classNames: ['gh-image-uploader'],
@@ -82,7 +84,10 @@ export default Component.extend({
     description: computed('text', 'altText', function () {
         let altText = this.altText;
 
-        return this.text || (altText ? `Upload image of "${altText}"` : 'Upload an image');
+        return (
+            this.text ||
+            (altText ? `Upload image of "${altText}"` : this.intl.t(`Manual.ProfilePicture.Upload_an_image`))
+        );
     }),
 
     progressStyle: computed('uploadPercentage', function () {
@@ -174,7 +179,7 @@ export default Component.extend({
         // from Chrome's downloads bar
         if (navigator.userAgent.indexOf('Chrome') > -1) {
             let eA = event.dataTransfer.effectAllowed;
-            event.dataTransfer.dropEffect = (eA === 'move' || eA === 'linkMove') ? 'move' : 'copy';
+            event.dataTransfer.dropEffect = eA === 'move' || eA === 'linkMove' ? 'move' : 'copy';
         }
 
         event.stopPropagation();
@@ -276,19 +281,26 @@ export default Component.extend({
             xhr: () => {
                 let xhr = new window.XMLHttpRequest();
 
-                xhr.upload.addEventListener('progress', (event) => {
-                    this._uploadProgress(event);
-                }, false);
+                xhr.upload.addEventListener(
+                    'progress',
+                    (event) => {
+                        this._uploadProgress(event);
+                    },
+                    false
+                );
 
                 return xhr;
             }
-        }).then((response) => {
-            this._uploadSuccess(response);
-        }).catch((error) => {
-            this._uploadFailed(error);
-        }).finally(() => {
-            this.uploadFinished();
-        });
+        })
+            .then((response) => {
+                this._uploadSuccess(response);
+            })
+            .catch((error) => {
+                this._uploadFailed(error);
+            })
+            .finally(() => {
+                this.uploadFinished();
+            });
     },
 
     _validate(file) {
@@ -301,7 +313,7 @@ export default Component.extend({
 
     _defaultValidator(file) {
         let extensions = this.extensions;
-        let [, extension] = (/(?:\.([^.]+))?$/).exec(file.name);
+        let [, extension] = /(?:\.([^.]+))?$/.exec(file.name);
 
         if (!isArray(extensions)) {
             extensions = extensions.split(',');

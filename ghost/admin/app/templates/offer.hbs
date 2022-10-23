@@ -20,7 +20,11 @@
         </div>
 
         <section class="view-actions">
-            <GhTaskButton @class="gh-btn gh-btn-primary gh-btn-icon" @type="button" @task={{this.saveTask}} @data-test-button="save" />
+            <GhTaskButton 
+            @buttonText={{t "Manual.Components.Save"}}
+            @successText={{t "Manual.Components.Saved"}}
+            @runningText={{t "Manual.Components.Saving"}}
+            @class="gh-btn gh-btn-primary gh-btn-icon" @type="button" @task={{this.saveTask}} @data-test-button="save" />
         </section>
     </GhCanvasHeader>
 
@@ -32,7 +36,7 @@
                         <h4 class="gh-main-section-header small bn">Basic</h4>
                         <div class="gh-main-section-content grey">
                             <GhFormGroup @errors={{this.offer.errors}} @property="name" @hasValidated={{this.offer.hasValidated}} class="no-margin">
-                                <label for="name" class="fw6">Name</label>
+                                <label for="name" class="fw6">{{t "Manual.Components.Name"}}</label>
                                 <GhTextInput
                                     @name="name"
                                     @placeholder="Black Friday"
@@ -235,7 +239,7 @@
                             {{/if}}
                         </div>
 
-                        <h4 class="gh-main-section-header small bn">Portal settings</h4>
+                        <h4 class="gh-main-section-header small bn">{{t "Manual.Settings.Portal_Settings"}}</h4>
                         <div class="gh-main-section-content grey">
                             <div class="form-col2 gh-offer-title-and-code">
                                 <GhFormGroup @errors={{this.offer.errors}} @property="displayTitle" @hasValidated={{this.offer.hasValidated}}>

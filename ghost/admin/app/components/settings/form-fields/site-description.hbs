@@ -1,6 +1,6 @@
 <div ...attributes>
     <div class="flex-grow-1">
-        <label class="gh-setting-title" for="site-description">Site description</label>
+        <label class="gh-setting-title" for="site-description">{{t "Manual.Others.Site_description"}}</label>
         <div class="gh-setting-desc mb3">{{t "Manual.Settings.Used_in_your_theme,_meta_data_and_search_results"}}</div>
         <div class="gh-setting-action" data-test-setting="description">
             <GhFormGroup @errors={{this.settings.errors}} @hasValidated={{this.settings.hasValidated}} @property="description" @class="description-container">

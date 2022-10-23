@@ -2,7 +2,7 @@
     <header class="modal-header" data-test-modal="confirm-newsletter-reactivate">
         <h1>Reactivate newsletter</h1>
     </header>
-    <button type="button" class="close" role="button" title="Close" {{on "click" (fn @close false)}}>{{svg-jar "close"}}<span class="hidden">Close</span></button>
+    <button type="button" class="close" role="button" title="Close" {{on "click" (fn @close false)}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
     <div class="modal-body">
         <p>
@@ -17,7 +17,7 @@
             data-test-button="cancel-newsletter-reactivate"
             {{on "click" (fn @close false)}}
         >
-            <span>Cancel</span>
+            <span>{{t "Manual.Components.Cancel"}}</span>
         </button>
 
         <GhTaskButton

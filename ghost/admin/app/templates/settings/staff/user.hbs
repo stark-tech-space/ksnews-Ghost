@@ -74,7 +74,11 @@
                 </span>
             {{/if}}
 
-            <GhTaskButton @class="gh-btn gh-btn-primary gh-btn-icon" @task={{this.saveTask}} data-test-save-button />
+            <GhTaskButton 
+            @buttonText={{t "Manual.Components.Save"}}
+            @successText={{t "Manual.Components.Saved"}}
+            @runningText={{t "Manual.Components.Saving"}}
+            @class="gh-btn gh-btn-primary gh-btn-icon" @task={{this.saveTask}} data-test-save-button />
         </section>
     </GhCanvasHeader>
 
@@ -386,7 +390,7 @@
                             </GhFormGroup>
 
                             <div class="form-group">
-                                <GhTaskButton @buttonText="Change Password" @idleClass="gh-btn-red" @class="gh-btn gh-btn-icon button-change-password" @task={{this.saveNewPasswordTask}} data-test-save-pw-button="true" />
+                                <GhTaskButton @buttonText={{t "Manual.ProfilePicture.Change_Password"}} @idleClass="gh-btn-red" @class="gh-btn gh-btn-icon button-change-password" @task={{this.saveNewPasswordTask}} data-test-save-pw-button="true" />
                             </div>
                         </fieldset>
                     </div>

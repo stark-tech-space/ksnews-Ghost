@@ -2,7 +2,7 @@
     <header class="modal-header">
         <h1>Regenerate your Staff Access Token</h1>
     </header>
-    <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">Close</span></button>
+    <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
     <div class="modal-body">
         <p>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="modal-footer">
-        <button class="gh-btn" type="button" {{on "click" @close}}><span>Cancel</span></button>
+        <button class="gh-btn" type="button" {{on "click" @close}}><span>{{t "Manual.Components.Cancel"}}</span></button>
         <button class="gh-btn gh-btn-icon gh-btn-red" type="button" {{on "click" this.regenerateStaffToken}}>
             <span>Regenerate your Staff Access Token</span>
         </button>

@@ -192,7 +192,7 @@
             <table class="gh-list small">
                 <thead>
                     <tr class="gh-list-row header">
-                        <th class="gh-list-header">Name</th>
+                        <th class="gh-list-header">{{t "Manual.Components.Name"}}</th>
                         <th class="gh-list-header">Event</th>
                         <th class="gh-list-header">URL</th>
                         <th class="gh-list-header">Last triggered</th>
@@ -219,7 +219,7 @@
                                     <dd.Trigger class="gh-btn gh-btn-action-icon gh-btn-icon gh-btn-outline fill gh-tier-card-actions-button icon-only">
                                         <span data-test-newsletter-menu-trigger>
                                             {{svg-jar "dotdotdot"}}
-                                            <span class="hidden">Actions</span>
+                                            <span class="hidden">{{t "Manual.Settings.Actions"}}</span>
                                         </span>
                                     </dd.Trigger>
                                     <dd.Content class="relative-dropdown-menu gh-newsletter-actions-menu">
@@ -244,12 +244,12 @@
                         <td colspan="5" class="pa5 pt15 pb15 tc midgrey f7">
                             <div class="flex flex-column items-center">
                                 <p class="ma0 pa0 tc midgrey lh-title mb2">
-                                    No webhooks configured
+                                    {{t "Manual.Integrations.No_webhooks_configured"}}
                                 </p>
                                 <LinkTo @route="settings.integration.webhooks.new" @model={{this.integration}} class="flex items-center" data-test-link="add-webhook">
                                 <div class="gh-btn-text green-d1 gh-btn-icon">
                                     {{svg-jar "plus"}}
-                                    <span>Add webhook</span>
+                                    <span>{{t "Manual.Integrations.Add_webhook"}}</span>
                                 </div>
                                 </LinkTo>
                             </div>
@@ -264,7 +264,7 @@
                             <LinkTo @route="settings.integration.webhooks.new" @model={{this.integration}} class="flex items-center" data-test-link="add-webhook">
                             <div class="gh-btn-text green-d1 gh-btn-icon">
                                 {{svg-jar "plus"}}
-                                <span class="f7">Add webhook</span>
+                                <span class="f7">{{t "Manual.Integrations.Add_webhook"}}</span>
                             </div>
                             </LinkTo>
                         </td>
@@ -278,7 +278,7 @@
     <section class="gh-main-section">
         <div class="gh-main-section-block">
             <button class="gh-btn gh-btn-red gh-btn-icon" type="button" {{on "click" this.confirmIntegrationDeletion}} data-test-button="delete-integration">
-                <span> Delete integration </span>
+                <span> {{t "Manual.Integrations.Delete_integration"}} </span>
             </button>
         </div>
     </section>

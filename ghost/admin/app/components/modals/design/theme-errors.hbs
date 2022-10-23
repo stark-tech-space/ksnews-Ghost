@@ -9,7 +9,7 @@
                 {{/unless}}
             </h1>
         </header>
-        <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">Close</span></button>
+        <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
         <div class="modal-body">
             {{#if @data.fatalErrors}}

@@ -3,7 +3,7 @@
         <header class="modal-header">
             <h1>Upgrade to un-suspend this user</h1>
         </header>
-        <button class="close" title="Close" type="button" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">Close</span></button>
+        <button class="close" title="Close" type="button" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
         <div class="modal-body">
             <p>
@@ -13,7 +13,7 @@
 
         <div class="modal-footer">
             <button class="gh-btn" data-test-button="cancel-upgrade" type="button" {{on "click" @close}}>
-                <span>Cancel</span>
+                <span>{{t "Manual.Components.Cancel"}}</span>
             </button>
 
             <button class="gh-btn gh-btn-green" data-test-button="upgrade-plan" type="button" {{on "click" this.upgrade}}>
@@ -26,17 +26,17 @@
         <header class="modal-header">
             <h1>Are you sure you want to un-suspend this user?</h1>
         </header>
-        <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">Close</span></button>
+        <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
         <div class="modal-body">
             <strong>WARNING:</strong> This user will be able to log in again and will have the same permissions they had previously.
         </div>
 
         <div class="modal-footer">
-            <button class="gh-btn" type="button" {{on "click" @close}}><span>Cancel</span></button>
+            <button class="gh-btn" type="button" {{on "click" @close}}><span>{{t "Manual.Components.Cancel"}}</span></button>
             <GhTaskButton
-                @buttonText="Un-suspend"
-                @successText="Suspended"
+                @buttonText={{t "Manual.Staff.Un-suspend"}}
+                @successText={{t "Manual.Staff.Suspended"}}
                 @task={{this.unsuspendUserTask}}
                 @class="gh-btn gh-btn-red gh-btn-icon"
                 data-test-modal-confirm="true"

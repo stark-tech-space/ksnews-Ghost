@@ -10,22 +10,27 @@ export default class CustomThemeSettingsServices extends Service {
     @tracked settings = [];
     @tracked settingGroups = [];
 
+    @service intl;
+
     _hasLoaded = false;
 
-    KNOWN_GROUPS = [{
-        key: 'homepage',
-        name: 'Homepage',
-        icon: 'house',
-        previewType: 'homepage'
-    }, {
-        key: 'post',
-        name: 'Post',
-        icon: 'post',
-        previewType: 'post'
-    }];
+    KNOWN_GROUPS = [
+        {
+            key: 'homepage',
+            name: 'Homepage',
+            icon: 'house',
+            previewType: 'homepage'
+        },
+        {
+            key: 'post',
+            name: 'Post',
+            icon: 'post',
+            previewType: 'post'
+        }
+    ];
 
     get isDirty() {
-        const dirtySetting = this.settings.find(setting => setting.hasDirtyAttributes);
+        const dirtySetting = this.settings.find((setting) => setting.hasDirtyAttributes);
         return !!dirtySetting;
     }
 
@@ -89,7 +94,7 @@ export default class CustomThemeSettingsServices extends Service {
     }
 
     rollback() {
-        this.settings.forEach(setting => setting.rollbackAttributes());
+        this.settings.forEach((setting) => setting.rollbackAttributes());
     }
 
     _buildSettingGroups(settings) {
@@ -97,10 +102,10 @@ export default class CustomThemeSettingsServices extends Service {
             return [];
         }
 
-        const groupKeys = this.KNOWN_GROUPS.map(g => g.key);
+        const groupKeys = this.KNOWN_GROUPS.map((g) => g.key);
         const groups = [];
 
-        const siteWideSettings = settings.filter(setting => !groupKeys.includes(setting.group));
+        const siteWideSettings = settings.filter((setting) => !groupKeys.includes(setting.group));
         if (siteWideSettings.length) {
             groups.push({
                 key: 'site-wide',
@@ -111,13 +116,18 @@ export default class CustomThemeSettingsServices extends Service {
         }
 
         this.KNOWN_GROUPS.forEach((knownGroup) => {
-            const groupSettings = settings.filter(setting => setting.group === knownGroup.key);
+            const groupSettings = settings.filter((setting) => setting.group === knownGroup.key);
 
             if (groupSettings.length) {
                 groups.push(Object.assign({}, knownGroup, {settings: groupSettings}));
             }
         });
 
-        return groups;
+        return groups.map((_) => {
+            return {
+                ..._,
+                name: this.intl.t(`Manual.Components.${_.name}`)
+            };
+        });
     }
 }

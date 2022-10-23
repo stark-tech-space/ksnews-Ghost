@@ -1,7 +1,7 @@
 <header class="modal-header">
     <h1>Regenerate {{capitalize this.apiKey.type}} API Key</h1>
 </header>
-<a class="close" href="" role="button" title="Close" {{action "closeModal"}}>{{svg-jar "close"}}<span class="hidden">Close</span></a>
+<a class="close" href="" role="button" title="Close" {{action "closeModal"}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></a>
 
 <div class="modal-body">
     <p>
@@ -17,6 +17,6 @@
 </div>
 
 <div class="modal-footer">
-    <button class="gh-btn" type="button" {{action "closeModal"}}><span>Cancel</span></button>
+    <button class="gh-btn" type="button" {{action "closeModal"}}><span>{{t "Manual.Components.Cancel"}}</span></button>
     <GhTaskButton @buttonText="Regenerate {{capitalize this.apiKey.type}} API Key" @successText="Regenerated" @task={{this.regenerateKey}} @class="gh-btn gh-btn-icon gh-btn-red" />
 </div>

@@ -1,17 +1,17 @@
 <fieldset class="modal-fullsettings-form-labs">
     <div class="modal-fullsettings-section-labs">
-        <h4 class="modal-fullsettings-section-title">General settings</h4>
+        <h4 class="modal-fullsettings-section-title">{{t "Manual.Settings.General_settings"}}</h4>
 
         {{#let (eq @openSection "name") as |isOpen|}}
             <button class="modal-fullsettings-tab {{if isOpen "active"}}" type="button" {{on "click" (fn @toggleSection "name")}} data-test-nav-toggle="general.name">
-                {{svg-jar "email-name"}} Name and description
+                {{svg-jar "email-name"}} {{t "Manual.Components.Name_and_description"}}
                 <span class="gh-nav-button-expand">{{svg-jar (if isOpen "arrow-up-stroke" "arrow-down-stroke")}}</span>
             </button>
             {{#liquid-if isOpen}}
                 <div class="modal-fullsettings-tab-expanded">
                     <div class="gh-stack">
                         <GhFormGroup @classNames="gh-stack-item" @errors={{@newsletter.errors}} @hasValidated={{@newsletter.hasValidated}} @property="name">
-                            <label for="newsletter-title" class="modal-fullsettings-title">Name</label>
+                            <label for="newsletter-title" class="modal-fullsettings-title">{{t "Manual.Components.Name"}}</label>
                             <input
                                 id="newsletter-title"
                                 type="text"
@@ -24,7 +24,7 @@
                         </GhFormGroup>
 
                         <GhFormGroup @classNames="gh-stack-item" @errors={{@newsletter.errors}} @hasValidated={{@newsletter.hasValidated}} @property="description">
-                            <label for="newsletter-description" class="modal-fullsettings-title">Description</label>
+                            <label for="newsletter-description" class="modal-fullsettings-title">{{t "Manual.Components.Description"}}</label>
                             <textarea
                                 id="newsletter-description"
                                 class="gh-input miw-100 form-text"
@@ -39,14 +39,14 @@
 
         {{#let (eq @openSection "email") as |isOpen|}}
             <button class="modal-fullsettings-tab {{if isOpen "active"}}" type="button" {{on "click" (fn @toggleSection "email")}} data-test-nav-toggle="general.email">
-                {{svg-jar "email-at"}} Email addresses
+                {{svg-jar "email-at"}} {{t "Manual.Components.Email_addresses"}}
                 <span class="gh-nav-button-expand">{{svg-jar (if isOpen "arrow-up-stroke" "arrow-down-stroke")}}</span>
             </button>
             {{#liquid-if isOpen}}
                 <div class="modal-fullsettings-tab-expanded">
                     <div class="gh-stack">
                         <GhFormGroup @classNames="gh-stack-item" @errors={{@newsletter.errors}} @hasValidated={{@newsletter.hasValidated}} @property="senderName">
-                            <label for="newsletter-sender-name" class="modal-fullsettings-title">Sender name</label>
+                            <label for="newsletter-sender-name" class="modal-fullsettings-title">{{t "Manual.Components.Sender_name"}}</label>
                             <input
                                 id="newsletter-sender-name"
                                 type="text"
@@ -60,7 +60,7 @@
 
                         <GhFormGroup @classNames="gh-stack-item"  @errors={{@newsletter.errors}} @hasValidated={{@newsletter.hasValidated}} @property="senderEmail">
                             <span class="flex items-center justify-between">
-                                <label for="newsletter-sender-email" class="modal-fullsettings-title ml2">Sender email address</label>
+                                <label for="newsletter-sender-email" class="modal-fullsettings-title ml2">{{t "Manual.Components.Sender_email_address"}}</label>
                                 <span class="tooltip-top-left" data-tooltip="Defaults to {{full-email-address "noreply"}} if empty">{{svg-jar "info" class="w4 h4"}}</span>
                             </span>
                             <input
@@ -75,15 +75,15 @@
                         </GhFormGroup>
 
                         <GhFormGroup @classNames="gh-stack-item" @errors={{@newsletter.errors}} @hasValidated={{@newsletter.hasValidated}} @property="senderReplyTo">
-                            <label for="newsletter-reply-to" class="modal-fullsettings-title">Reply-to email</label>
+                            <label for="newsletter-reply-to" class="modal-fullsettings-title">{{t "Manual.Components.Reply-to_email"}}</label>
                             <Inputs::Select
                                 id="newsletter-reply-to"
                                 @value={{@newsletter.senderReplyTo}}
                                 @onChange={{fn this.onValueChange "senderReplyTo"}}
                                 as |select|
                             >
-                                <select.option @value="newsletter">Newsletter address ({{full-email-address (or @newsletter.senderEmail "noreply")}})</select.option>
-                                <select.option @value="support">Support address ({{full-email-address this.settings.membersSupportAddress}})</select.option>
+                                <select.option @value="newsletter">{{t "Manual.Components.Newsletter_address"}} ({{full-email-address (or @newsletter.senderEmail "noreply")}})</select.option>
+                                <select.option @value="support">{{t "Manual.Components.Support_address"}} ({{full-email-address this.settings.membersSupportAddress}})</select.option>
                             </Inputs::Select>
                             <GhErrorMessage @errors={{@newsletter.errors}} @property="senderReplyTo" />
                         </GhFormGroup>
@@ -94,14 +94,14 @@
 
         {{#let (eq @openSection "members") as |isOpen|}}
             <button class="modal-fullsettings-tab {{if isOpen "active"}}" type="button" {{on "click" (fn @toggleSection "members")}} data-test-nav-toggle="general.member">
-                {{svg-jar "email-member"}} Member settings
+                {{svg-jar "email-member"}} {{t "Manual.Components.Member_settings"}}
                 <span class="gh-nav-button-expand">{{svg-jar (if isOpen "arrow-up-stroke" "arrow-down-stroke")}}</span>
             </button>
             {{#liquid-if isOpen}}
                 <div class="modal-fullsettings-tab-expanded">
                     <div class="gh-stack">
                         <GhFormGroup @classNames="gh-stack-item gh-setting">
-                            <label for="subscribe-on-signup" class="modal-fullsettings-title" data-test-toggle="subscribeOnSignup">Subscribe new members on signup</label>
+                            <label for="subscribe-on-signup" class="modal-fullsettings-title" data-test-toggle="subscribeOnSignup">{{t "Manual.Components.Subscribe_new_members_on_signup"}}</label>
                             <div class="for-switch small">
                                 <div class="container">
                                     <input
@@ -122,14 +122,14 @@
         {{#if (feature "audienceFeedback")}}
             {{#let (eq @openSection "audienceFeedback") as |isOpen|}}
                 <button class="modal-fullsettings-tab {{if isOpen "active"}}" type="button" {{on "click" (fn @toggleSection "audienceFeedback")}} data-test-nav-toggle="general.audienceFeedback">
-                    {{svg-jar "newsletter-analytics"}} Newsletter analytics
+                    {{svg-jar "newsletter-analytics"}} {{t "Manual.Components.Newsletter_analytics"}}
                     <span class="gh-nav-button-expand">{{svg-jar (if isOpen "arrow-up-stroke" "arrow-down-stroke")}}</span>
                 </button>
                 {{#liquid-if isOpen}}
                     <div class="modal-fullsettings-tab-expanded">
                         <div class="gh-stack">
                             <GhFormGroup @classNames="gh-stack-item gh-setting">
-                                <label for="capture-feedback" class="modal-fullsettings-title" data-test-toggle="feedbackEnabled">Capture feedback on your content</label>
+                                <label for="capture-feedback" class="modal-fullsettings-title" data-test-toggle="feedbackEnabled">{{t "Manual.Components.Capture_feedback_on_your_content"}}</label>
                                 <div class="for-switch small">
                                     <div class="container">
                                         <input

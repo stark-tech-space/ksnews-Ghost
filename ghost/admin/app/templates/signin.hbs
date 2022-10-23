@@ -18,7 +18,7 @@
                     <h1>Sign in to {{this.config.blogTitle}}.</h1>
                 </header>
                 <GhFormGroup @errors={{this.signin.errors}} @hasValidated={{this.hasValidated}} @property="identification">
-                    <label>Email address</label>
+                    <label>{{t "Manual.Staff.Email_address"}}</label>
                     <span class="gh-input-icon gh-icon-mail">
                         <GhTrimFocusInput
                             @class="email"

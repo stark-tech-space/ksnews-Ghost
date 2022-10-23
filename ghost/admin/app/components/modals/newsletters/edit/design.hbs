@@ -1,11 +1,11 @@
 <fieldset class="modal-fullsettings-form-labs">
-    <h4 class="modal-fullsettings-section-title">Design</h4>
+    <h4 class="modal-fullsettings-section-title">{{t "Manual.Settings.Design"}}</h4>
 
     <div class="modal-fullsettings-section-labs">
 
         {{#let (eq @openSection "design-header") as |isOpen|}}
             <button class="modal-fullsettings-tab {{if isOpen "active"}}" type="button" {{on "click" (fn @toggleSection "design-header")}} data-test-nav-toggle="design.header">
-                {{svg-jar "email-header"}} Header
+                {{svg-jar "email-header"}} {{t "Manual.Components.Header"}}
                 <span class="gh-nav-button-expand">{{svg-jar (if isOpen "arrow-up-stroke" "arrow-down-stroke")}}</span>
             </button>
             {{#liquid-if isOpen}}
@@ -20,8 +20,8 @@
                             >
                                 <div class="modal-fullsettings-uploader">
                                     <div class="gh-header-img-desc">
-                                        <label class="modal-fullsettings-title">Header image</label>
-                                        <p>Optional, recommended size 1200x600</p>
+                                        <label class="modal-fullsettings-title">{{t "Manual.Components.Header_image"}}</label>
+                                        <p>{{t "Manual.Components.Optional,_recommended_size_1200x600"}}</p>
                                     </div>
                                     {{#if uploader.isUploading}}
                                         <div class="gh-header-img-container">
@@ -59,7 +59,7 @@
 
                         {{#if this.settings.icon}}
                             <GhFormGroup @classNames="gh-stack-item gh-setting">
-                                <label class="modal-fullsettings-title {{unless this.settings.icon "disabled"}}">Publication icon</label>
+                                <label class="modal-fullsettings-title {{unless this.settings.icon "disabled"}}">{{t "Manual.Components.Publication_icon"}}</label>
                                 <div class="for-switch small {{unless this.settings.icon "disabled"}}">
                                     <label class="switch" for="show-header">
                                         <input
@@ -77,7 +77,7 @@
                         {{/if}}
 
                         <GhFormGroup @classNames="gh-stack-item gh-setting">
-                            <label class="modal-fullsettings-title">Publication title</label>
+                            <label class="modal-fullsettings-title">{{t "Manual.Components.Publication_title"}}</label>
                             <div class="for-switch small">
                                 <label class="switch" for="show-title" data-test-toggle="showHeaderTitle">
                                     <input
@@ -92,7 +92,7 @@
                             </div>
                         </GhFormGroup>
                         <GhFormGroup @classNames="gh-stack-item gh-setting">
-                            <label class="modal-fullsettings-title">Newsletter name</label>
+                            <label class="modal-fullsettings-title">{{t "Manual.Components.Newsletter_name"}}</label>
                             <div class="for-switch small">
                                 <label class="switch" for="show-header-name" data-test-toggle="showHeaderName">
                                     <input
@@ -113,14 +113,14 @@
 
         {{#let (eq @openSection "design-body") as |isOpen|}}
             <button class="modal-fullsettings-tab {{if isOpen "active"}}" type="button" {{on "click" (fn @toggleSection "design-body")}} data-test-nav-toggle="design.body">
-                {{svg-jar "email-body"}} Body
+                {{svg-jar "email-body"}} {{t "Manual.Components.Body"}}
                 <span class="gh-nav-button-expand">{{svg-jar (if isOpen "arrow-up-stroke" "arrow-down-stroke")}}</span>
             </button>
             {{#liquid-if isOpen}}
                 <div class="modal-fullsettings-tab-expanded">
                     <div class="gh-stack">
                         <GhFormGroup @classNames="gh-stack-item">
-                            <label class="modal-fullsettings-title">Newsletter title style</label>
+                            <label class="modal-fullsettings-title">{{t "Manual.Components.Newsletter_title_style"}}</label>
                             <div class="gh-email-design-typography-wrapper header">
                                 <div class="modal-fullsettings-radiogroup gh-email-design-typography" data-test-input="titleFontCategory">
                                     <GhFontSelector
@@ -135,7 +135,7 @@
                             </div>
                         </GhFormGroup>
                         <GhFormGroup @classNames="gh-stack-item">
-                            <label class="modal-fullsettings-title">Body style</label>
+                            <label class="modal-fullsettings-title">{{t "Manual.Components.Body_style"}}</label>
                             <div class="gh-email-design-typography-wrapper">
                                 <div class="modal-fullsettings-radiogroup gh-email-design-typography" data-test-input="bodyFontCategory">
                                     <GhFontSelector
@@ -146,7 +146,7 @@
                             </div>
                         </GhFormGroup>
                         <GhFormGroup @classNames="gh-stack-item gh-setting">
-                            <label class="modal-fullsettings-title">Feature image</label>
+                            <label class="modal-fullsettings-title">{{t "Manual.Components.Feature_image"}}</label>
                             <div class="for-switch small">
                                 <label class="switch" for="show-feature-image">
                                     <input
@@ -167,21 +167,21 @@
 
         {{#let (eq @openSection "design-footer") as |isOpen|}}
             <button class="modal-fullsettings-tab {{if isOpen "active"}}" type="button" {{on "click" (fn @toggleSection "design-footer")}} data-test-nav-toggle="design.footer">
-                {{svg-jar "email-footer"}} Footer
+                {{svg-jar "email-footer"}} {{t "Manual.Components.Footer"}}
                 <span class="gh-nav-button-expand">{{svg-jar (if isOpen "arrow-up-stroke" "arrow-down-stroke")}}</span>
             </button>
             {{#liquid-if isOpen}}
                 <div class="modal-fullsettings-tab-expanded">
                     <div class="gh-stack">
                         <GhFormGroup @classNames="gh-stack-item">
-                            <label class="modal-fullsettings-title">Email footer</label>
+                            <label class="modal-fullsettings-title">{{t "Manual.Components.Email_footer"}}</label>
                             <KoenigBasicHtmlInput
                                 @name="footer"
                                 @html={{@newsletter.footerContent}}
                                 @class="miw-100 form-text gh-members-emailsettings-footer-input"
                                 @onChange={{fn this.changeSetting "footerContent"}}
                             />
-                            <p>Any extra information or legal text</p>
+                            <p>{{t "Manual.Components.Any_extra_information_or_legal_text"}}</p>
                         </GhFormGroup>
                     </div>
                 </div>

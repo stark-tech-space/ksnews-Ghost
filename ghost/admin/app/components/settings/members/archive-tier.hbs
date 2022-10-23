@@ -4,7 +4,7 @@
             type="button"
             {{on "click" this.handleArchiveTier}}
         >
-            <span>Archive</span>
+            <span>{{t "Manual.Settings.Archive"}}</span>
         </button>
     {{/unless}}
 {{else}}
@@ -12,6 +12,6 @@
         type="button"
         {{on "click" this.handleUnarchiveTier}}
     >
-        <span>Reactivate</span>
+        <span>{{t "Manual.Settings.Reactivate"}}</span>
     </button>
 {{/if}}

@@ -2,7 +2,7 @@
     <header class="modal-header">
         <h1>Are you sure you want to delete this label?</h1>
     </header>
-    <a class="close" href="" role="button" title="Close" {{action "closeModal"}}>{{svg-jar "close"}}<span class="hidden">Close</span></a>
+    <a class="close" href="" role="button" title="Close" {{action "closeModal"}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></a>
 
     <div class="modal-body">
         <p>
@@ -11,8 +11,8 @@
     </div>
 
     <div class="modal-footer">
-        <button class="gh-btn" type="button" {{action "closeModal"}}><span>Cancel</span></button>
-        <GhTaskButton @buttonText="Delete" @successText="Deleted" @task={{this.deleteLabel}} @class="gh-btn gh-btn-red gh-btn-icon" />
+        <button class="gh-btn" type="button" {{action "closeModal"}}><span>{{t "Manual.Components.Cancel"}}</span></button>
+        <GhTaskButton @buttonText="Delete" @successText={{t "Manual.Components.Deleted"}} @task={{this.deleteLabel}} @class="gh-btn gh-btn-red gh-btn-icon" />
     </div>
 {{else}}
 
@@ -48,7 +48,7 @@
                 {{!-- disable mouseDown so it doesn't trigger focus-out validations --}}
                 {{action (optional this.noop) on="mouseDown"}}
             >
-                <span>Cancel</span>
+                <span>{{t "Manual.Components.Cancel"}}</span>
             </button>
         {{else}}
             <button

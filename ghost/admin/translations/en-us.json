@@ -1546,7 +1546,9 @@
       "Email_notifications": "Email notifications",
       "Every_time_a_member_comments_on_one_of_your_posts": "Every time a member comments on one of your posts",
       "New_signups": "New signups",
-      "Every_time_a_new_free_member_signs_up": "Every time a new free member signs up"
+      "Every_time_a_new_free_member_signs_up": "Every time a new free member signs up",
+      "Suspend": "Suspend",
+      "Un-suspend": "Un-suspend"
     },
     "Search": {
       "Search_site...": "Search site...",
@@ -2029,7 +2031,23 @@
       "View_system_event_log": "View system event log",
       "Actions": "Actions",
       "User": "User",
-      "Edit_integration": "Edit integration"
+      "Edit_integration": "Edit integration",
+      "Disable_all_member_features,_including_newsletters": "Disable all member features, including newsletters",
+      "Commenting": "Commenting",
+      "Who_can_comment_on_posts?": "Who can comment on posts?",
+      "Disable_commenting_completely": "Disable commenting completely",
+      "Logged-in_members": "Logged-in members",
+      "Default_newsletter": "Default newsletter",
+      "Default_member_selection": "Default member selection",
+      "Newsletter_analytics": "Newsletter analytics",
+      "Track_how_many_members_are_opening_emails_and_clicking_links": "Track how many members are opening emails and clicking links",
+      "Track_newsletter_opens": "Track newsletter opens",
+      "Track_newsletter_link_clicks": "Track newsletter link clicks",
+      "Archived_newsletters": "Archived newsletters",
+      "The_newsletters_below_are_no_longer_visible_to_members.": "The newsletters below are no longer visible to members.",
+      "Active_newsletters": "Active newsletters",
+      "Drag_to_set_the_order_viewed_by_members_on_your_site.": "Drag to set the order viewed by members on your site.",
+      "Reactivate": "Reactivate"
     },
     "View_site": {
       "View_site": "View site",
@@ -2358,7 +2376,9 @@
       "This tag was": "This tag was",
       "will_be": "will be",
       "Page": "Page",
-      "posts": "posts"
+      "posts": "posts",
+      "Capture_feedback_on_your_content": "Capture feedback on your content",
+      "newsletter": "newsletter"
     },
     "Designsandbox": {
       "Components": "Components",

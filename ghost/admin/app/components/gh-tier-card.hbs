@@ -44,14 +44,14 @@
                             <span class="currency">{{currency-symbol this.tierCurrency}}</span>
                             <span class="amount">{{gh-price-amount @tier.monthlyPrice}}</span>
                         </div>
-                        <div class="period">Monthly</div>
+                        <div class="period">{{t "Manual.Dashboard.Monthly"}}</div>
                     </div>
                     <div class="gh-tier-card-price" data-test-yearly-price>
                         <div class="flex items-start">
                             <span class="currency">{{currency-symbol this.tierCurrency}}</span>
                             <span class="amount">{{gh-price-amount @tier.yearlyPrice}}</span>
                         </div>
-                        <div class="period">Yearly</div>
+                        <div class="period">{{t "Manual.Dashboard.Yearly"}}</div>
                     </div>
                 </div>
                 {{#if (and (feature 'freeTrial') this.isFreeTrialEnabled)}}
@@ -73,7 +73,7 @@
             >
                 <span>
                     {{svg-jar "dotdotdot"}}
-                    <span class="hidden">Actions</span>
+                    <span class="hidden">{{t "Manual.Settings.Actions"}}</span>
                 </span>
             </GhDropdownButton>
                 <GhDropdown
@@ -83,7 +83,7 @@
                 >
                     <li>
                         <button class="mr2" type="button" {{on "click" (fn this.openEditTier @tier)}}>
-                            <span>Edit</span>
+                            <span>{{t "Manual.Settings.Edit"}}</span>
                         </button>
                     </li>
                     {{#if this.showArchiveOption}}

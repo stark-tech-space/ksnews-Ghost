@@ -12,6 +12,7 @@ export default ModalComponent.extend(ValidationEngine, {
     router: service(),
     notifications: service(),
     store: service(),
+    intl: service(),
 
     classNames: 'modal-content invite-new-user',
 
@@ -52,34 +53,40 @@ export default ModalComponent.extend(ValidationEngine, {
 
         // TODO: either the validator should check the email's existence or
         // the API should return an appropriate error when attempting to save
-        return new Promise((resolve, reject) => this._super().then(() => RSVP.hash({
-            users: this.store.findAll('user', {reload: true}),
-            invites: this.store.findAll('invite', {reload: true})
-        }).then((data) => {
-            let existingUser = data.users.findBy('email', email);
-            let existingInvite = data.invites.findBy('email', email);
+        return new Promise((resolve, reject) =>
+            this._super().then(
+                () =>
+                    RSVP.hash({
+                        users: this.store.findAll('user', {reload: true}),
+                        invites: this.store.findAll('invite', {reload: true})
+                    }).then((data) => {
+                        let existingUser = data.users.findBy('email', email);
+                        let existingInvite = data.invites.findBy('email', email);
 
-            if (existingUser || existingInvite) {
-                this.errors.clear('email');
-                if (existingUser) {
-                    this.errors.add('email', 'A user with that email address already exists.');
-                } else {
-                    this.errors.add('email', 'A user with that email address was already invited.');
+                        if (existingUser || existingInvite) {
+                            this.errors.clear('email');
+                            if (existingUser) {
+                                this.errors.add('email', 'A user with that email address already exists.');
+                            } else {
+                                this.errors.add('email', 'A user with that email address was already invited.');
+                            }
+
+                            // TODO: this shouldn't be needed, ValidationEngine doesn't mark
+                            // properties as validated when validating an entire object
+                            this.hasValidated.addObject('email');
+                            reject();
+                        } else {
+                            resolve();
+                        }
+                    }),
+                () => {
+                    // TODO: this shouldn't be needed, ValidationEngine doesn't mark
+                    // properties as validated when validating an entire object
+                    this.hasValidated.addObject('email');
+                    reject();
                 }
-
-                // TODO: this shouldn't be needed, ValidationEngine doesn't mark
-                // properties as validated when validating an entire object
-                this.hasValidated.addObject('email');
-                reject();
-            } else {
-                resolve();
-            }
-        }), () => {
-            // TODO: this shouldn't be needed, ValidationEngine doesn't mark
-            // properties as validated when validating an entire object
-            this.hasValidated.addObject('email');
-            reject();
-        }));
+            )
+        );
     },
 
     sendInvitation: task(function* () {
@@ -101,9 +108,17 @@ export default ModalComponent.extend(ValidationEngine, {
             // If sending the invitation email fails, the API will still return a status of 201
             // but the invite's status in the response object will be 'invited-pending'.
             if (invite.get('status') === 'pending') {
-                notifications.showAlert('Invitation email was not sent', {type: 'error', key: 'invite.send.failed', description: 'Please try resending.'});
+                notifications.showAlert('Invitation email was not sent', {
+                    type: 'error',
+                    key: 'invite.send.failed',
+                    description: 'Please try resending.'
+                });
             } else {
-                notifications.showNotification('Invitation sent', {icon: 'send-email', key: 'invite.send.success', description: `${email}`});
+                notifications.showNotification(this.intl.t('Manual.Staff.Invitation_sent'), {
+                    icon: 'send-email',
+                    key: 'invite.send.success',
+                    description: `${email}`
+                });
             }
 
             this.send('closeModal');

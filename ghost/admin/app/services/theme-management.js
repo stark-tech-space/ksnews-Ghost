@@ -20,20 +20,33 @@ export default class ThemeManagementService extends Service {
     @tracked previewType = 'homepage';
     @tracked previewHtml;
 
+    @service intl;
+
     allPosts = this.store.peekAll('post');
 
-    availablePreviewTypes = [{
-        name: 'homepage',
-        label: 'Homepage'
-    }, {
-        name: 'post',
-        label: 'Post'
-    }];
+    availablePreviewTypes = [
+        {
+            name: 'homepage',
+            label: 'Homepage'
+        },
+        {
+            name: 'post',
+            label: 'Post'
+        }
+    ].map((_) => {
+        return {
+            ..._,
+            label: this.intl.t(`Manual.Components.${_.label}`)
+        };
+    });
 
     get latestPublishedPost() {
-        return this.allPosts.toArray().filterBy('status', 'published').sort((a, b) => {
-            return b.publishedAtUTC.valueOf() - a.publishedAtUTC.valueOf();
-        }).lastObject;
+        return this.allPosts
+            .toArray()
+            .filterBy('status', 'published')
+            .sort((a, b) => {
+                return b.publishedAtUTC.valueOf() - a.publishedAtUTC.valueOf();
+            }).lastObject;
     }
 
     @action

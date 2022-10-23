@@ -32,6 +32,6 @@
 
     <div class="modal-footer">
         <button class="gh-btn" type="button" {{on "click" (fn @close false)}}><span>{{t "Manual.Components.Cancel"}}</span></button>
-        <GhTaskButton @buttonText={{if this.shouldCancelSubscriptions (t "Manual.Members.Delete_member_+_Cancel_subscription") (t "Manual.Members.Delete_member")}} @successText="Deleted" @task={{this.deleteMemberTask}} @class="gh-btn gh-btn-red gh-btn-icon" />
+        <GhTaskButton @buttonText={{if this.shouldCancelSubscriptions (t "Manual.Members.Delete_member_+_Cancel_subscription") (t "Manual.Members.Delete_member")}} @successText={{t "Manual.Components.Deleted"}} @task={{this.deleteMemberTask}} @class="gh-btn gh-btn-red gh-btn-icon" />
     </div>
 </div>

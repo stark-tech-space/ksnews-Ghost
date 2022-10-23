@@ -2,7 +2,7 @@
     <h1>Add subscription</h1>
 </header>
 <button type="button" class="close" title="Close" {{on "click" this.close}}>
-    {{svg-jar "close"}}<span class="hidden">Close</span>
+    {{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span>
 </button>
 
 <form>
@@ -73,7 +73,7 @@
         {{on "mousedown" (optional this.noop)}}
         data-test-button="cancel-webhook"
     >
-        <span>Cancel</span>
+        <span>{{t "Manual.Components.Cancel"}}</span>
     </button>
 
 
