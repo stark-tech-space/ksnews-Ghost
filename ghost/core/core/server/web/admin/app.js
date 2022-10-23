@@ -22,20 +22,19 @@ module.exports = function setupAdminApp() {
     //        For reference see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#validation_2
     // @NOTE: the maxAge config passed below are in milliseconds and the config
     //        is specified in seconds. See https://github.com/expressjs/serve-static/issues/150 for more context
-    adminApp.use('/assets', serveStatic(
-        path.join(config.get('paths').adminAssets, 'assets'), {
-            maxAge: (configMaxAge || configMaxAge === 0) ? configMaxAge : constants.ONE_YEAR_MS,
-            immutable: true, 
+    adminApp.use(
+        '/assets',
+        serveStatic(path.join(config.get('paths').adminAssets, 'assets'), {
+            maxAge: configMaxAge || configMaxAge === 0 ? configMaxAge : constants.ONE_YEAR_MS,
+            immutable: true,
             fallthrough: false
-        }
-    ));
+        })
+    );
 
-    adminApp.use('/auth-frame', serveStatic(
-        path.join(config.getContentPath('public'), 'admin-auth')
-    ));
+    adminApp.use('/auth-frame', serveStatic(path.join(config.getContentPath('public'), 'admin-auth')));
 
     // Ember CLI's live-reload script
-    if (config.get('env') === 'development') {
+    if (config.get('env') === 'development' && !config.get('disableLiveReload')) {
         adminApp.get('/ember-cli-live-reload.js', function emberLiveReload(req, res) {
             res.redirect(`http://localhost:4200${urlUtils.getSubdir()}/ghost/ember-cli-live-reload.js`);
         });
