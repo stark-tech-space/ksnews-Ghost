@@ -1,14 +1,14 @@
 <header class="modal-header">
-    <h1>Are you sure you want to disconnect?</h1>
+    <h1>{{t "Manual.Others.Are_you_sure_you_want_to_disconnect"}}</h1>
 </header>
 <a class="close" href="" role="button" title="Close" {{action "closeModal"}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></a>
 
 <div class="modal-body">
-    You're about to disconnect your Stripe account 
+    {{t "Manual.Components.You're_about_to_disconnect_your_Stripe_account"}}
     {{#if this.stripeConnectAccountName}}
         ({{this.stripeConnectAccountName}}) 
     {{/if}}
-    from this site. This will automatically turn off paid memberships on this site.
+    {{t "Manual.Others.from_this_site._This_will_automatically_turn_off_paid_memberships_on_this_site"}}
 </div>
 
 <div class="modal-footer">

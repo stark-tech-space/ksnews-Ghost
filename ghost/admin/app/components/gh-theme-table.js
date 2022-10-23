@@ -9,6 +9,8 @@ export default class GhThemeTableComponent extends Component {
     @service themeManagement;
     @service utils;
 
+    @service intl;
+
     activateTaskInstance = null;
     confirmDeleteModal = null;
 
@@ -53,7 +55,7 @@ export default class GhThemeTableComponent extends Component {
         // displayed and would mess up the duplicate checking if added earlier
         let casper = themes.findBy('name', 'casper');
         if (casper) {
-            casper.label = `${casper.label} (default)`;
+            casper.label = `${casper.label} (${this.intl.t('Manual.Others.default')})`;
             casper.isDefault = true;
             casper.isDeletable = false;
         }
@@ -90,10 +92,12 @@ export default class GhThemeTableComponent extends Component {
     deleteTheme(theme, dropdown) {
         dropdown?.actions.close();
 
-        this.confirmDeleteModal = this.modals.open(ConfirmDeleteThemeModal, {
-            theme
-        }).finally(() => {
-            this.confirmDeleteModal = null;
-        });
+        this.confirmDeleteModal = this.modals
+            .open(ConfirmDeleteThemeModal, {
+                theme
+            })
+            .finally(() => {
+                this.confirmDeleteModal = null;
+            });
     }
 }

@@ -14,35 +14,47 @@ export default class GhSearchInputComponent extends Component {
     @service router;
     @service store;
 
+    @service intl;
+
     content = [];
     contentExpiresAt = false;
     contentExpiry = 30000;
 
-    searchables = [{
-        name: 'Posts',
-        model: 'post',
-        fields: ['id', 'title'],
-        idField: 'id',
-        titleField: 'title'
-    }, {
-        name: 'Pages',
-        model: 'page',
-        fields: ['id', 'title'],
-        idField: 'id',
-        titleField: 'title'
-    }, {
-        name: 'Users',
-        model: 'user',
-        fields: ['slug', 'name'],
-        idField: 'slug',
-        titleField: 'name'
-    }, {
-        name: 'Tags',
-        model: 'tag',
-        fields: ['slug', 'name'],
-        idField: 'slug',
-        titleField: 'name'
-    }];
+    searchables = [
+        {
+            name: 'Posts',
+            model: 'post',
+            fields: ['id', 'title'],
+            idField: 'id',
+            titleField: 'title'
+        },
+        {
+            name: 'Pages',
+            model: 'page',
+            fields: ['id', 'title'],
+            idField: 'id',
+            titleField: 'title'
+        },
+        {
+            name: 'Users',
+            model: 'user',
+            fields: ['slug', 'name'],
+            idField: 'slug',
+            titleField: 'name'
+        },
+        {
+            name: 'Tags',
+            model: 'tag',
+            fields: ['slug', 'name'],
+            idField: 'slug',
+            titleField: 'name'
+        }
+    ].map((_) => {
+        return {
+            ..._,
+            name: this.intl.t(`Manual.JS.${_.name.replace(/\s/g, '_')}`)
+        };
+    });
 
     @action
     openSelected(selected) {
@@ -110,7 +122,7 @@ export default class GhSearchInputComponent extends Component {
         this.searchables.forEach((searchable) => {
             const matchedContent = this.content.filter((item) => {
                 const normalizedTitle = item.title.toString().toLowerCase();
-                return (item.searchable === searchable.name) && (normalizedTitle.indexOf(normalizedTerm) >= 0);
+                return item.searchable === searchable.name && normalizedTitle.indexOf(normalizedTerm) >= 0;
             });
 
             if (!isEmpty(matchedContent)) {
@@ -134,7 +146,7 @@ export default class GhSearchInputComponent extends Component {
         }
 
         const content = [];
-        const promises = this.searchables.map(searchable => this._loadSearchable(searchable, content));
+        const promises = this.searchables.map((searchable) => this._loadSearchable(searchable, content));
 
         try {
             yield RSVP.all(promises);
@@ -152,16 +164,19 @@ export default class GhSearchInputComponent extends Component {
         let url = `${this.store.adapterFor(searchable.model).urlForQuery({}, searchable.model)}/`;
         let query = {fields: searchable.fields, limit: 'all'};
 
-        return this.ajax.request(url, {data: query}).then((response) => {
-            const items = response[pluralize(searchable.model)].map(item => ({
-                id: `${searchable.model}.${item[searchable.idField]}`,
-                title: item[searchable.titleField],
-                searchable: searchable.name
-            }));
+        return this.ajax
+            .request(url, {data: query})
+            .then((response) => {
+                const items = response[pluralize(searchable.model)].map((item) => ({
+                    id: `${searchable.model}.${item[searchable.idField]}`,
+                    title: item[searchable.titleField],
+                    searchable: searchable.name
+                }));
 
-            content.push(...items);
-        }).catch((error) => {
-            this.notifications.showAPIError(error, {key: `search.load${searchable.name}.error`});
-        });
+                content.push(...items);
+            })
+            .catch((error) => {
+                this.notifications.showAPIError(error, {key: `search.load${searchable.name}.error`});
+            });
     }
 }

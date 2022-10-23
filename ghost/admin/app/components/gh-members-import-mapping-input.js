@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 import {action} from '@ember/object';
+import {inject as service} from '@ember/service';
 import {tracked} from '@glimmer/tracking';
 
 const FIELD_MAPPINGS = [
@@ -14,7 +15,13 @@ const FIELD_MAPPINGS = [
 ];
 
 export default class extends Component {
-    @tracked availableFields = FIELD_MAPPINGS;
+    @service intl;
+    @tracked availableFields = FIELD_MAPPINGS.map((_) => {
+        return {
+            ..._,
+            label: this.intl.t(`Manual.JS.${_.label.replace(/ /g, '_')}`)
+        };
+    });
 
     get mapTo() {
         return this.args.mapTo;

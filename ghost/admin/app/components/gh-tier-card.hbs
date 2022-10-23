@@ -7,7 +7,7 @@
         {{#if @tier.description.length}}
             {{@tier.description}}
         {{else}}
-            No description added for this tier.
+            {{t "Manual.Others.No_description_added_for_this_tier"}}
         {{/if}}
         </p>
     </div>
@@ -20,7 +20,7 @@
                 {{/each}}
             </ul>
         {{else}}
-            <p class="gh-tier-card-description">No benefits added for this tier.</p>
+            <p class="gh-tier-card-description">{{t "Manual.Others.No_benefits_added_for_this_tier"}}</p>
         {{/if}}
     </div>
     {{#if (eq @tier.type "free" )}}

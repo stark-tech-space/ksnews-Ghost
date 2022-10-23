@@ -52,8 +52,12 @@
             {{#if @publishOptions.onlyDefaultNewsletter}}
                 <strong>{{t (concat "Manual.Posts." (gh-pluralize countFetcher.count "subscriber" without-count=true))}}</strong>{{#if this.willPublish}}.{{else}},{{/if}}
             {{else}}
-                <strong>{{t (concat "Manual.Posts." (gh-pluralize countFetcher.count "subscriber" without-count=true))}}</strong>
-                of <strong>{{@publishOptions.newsletter.name}}</strong>{{#if this.willPublish}}.{{else}},{{/if}}
+                {{#if this.isZhLocale}}
+                  <strong>{{@publishOptions.newsletter.name}}的訂閱者</strong>{{#if this.willPublish}}.{{else}},{{/if}}
+                {{else}}
+                  <strong>{{t (concat "Manual.Posts." (gh-pluralize countFetcher.count "subscriber" without-count=true))}}</strong>
+                  of <strong>{{@publishOptions.newsletter.name}}</strong>{{#if this.willPublish}}.{{else}},{{/if}}
+                {{/if}}
             {{/if}}
         {{/let}}
 

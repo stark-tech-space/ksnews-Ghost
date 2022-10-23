@@ -1,11 +1,11 @@
 <div class="modal-content">
     <header class="modal-header" data-test-modal="verify-newsletter-email">
         {{#if this.verifyEmailTask.isRunning}}
-            <h1>Verifying newsletter email address</h1>
+            <h1>{{t "Manual.Settings.Verifying_newsletter_email_address"}}</h1>
         {{else if this.newsletter}}
-            <h1>Email address verified</h1>
+            <h1>{{t "Manual.Settings.Email_address_verified"}}</h1>
         {{else if this.error}}
-            <h1>Email address verification failed</h1>
+            <h1>{{t "Manual.Settings.Email_address_verification_failed"}}</h1>
         {{/if}}
     </header>
     <button type="button" class="close" role="button" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
@@ -34,7 +34,7 @@
             {{on "click" @close}}
             {{on-key "Enter"}}
         >
-            <span>Ok</span>
+            <span>{{t "Manual.Components.Ok"}}</span>
         </button>
     </div>
 </div>

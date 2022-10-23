@@ -1,7 +1,10 @@
 import Component from '@glimmer/component';
+import {inject as service} from '@ember/service';
 import {task} from 'ember-concurrency';
 
 export default class UpdateFlowModalComponent extends Component {
+    @service settings;
+
     static modalOptions = {
         className: 'fullscreen-modal-total-overlay publish-modal',
         omitBackdrop: true,
@@ -14,8 +17,11 @@ export default class UpdateFlowModalComponent extends Component {
     get showNewsletterName() {
         const {publishOptions} = this.args.data;
 
-        return !publishOptions.onlyDefaultNewsletter
-            || publishOptions.post.newsletter?.status === 'archived';
+        return !publishOptions.onlyDefaultNewsletter || publishOptions.post.newsletter?.status === 'archived';
+    }
+
+    get isZhLocale() {
+        return this.settings.get('locale') ? this.settings.get('locale').startsWith('zh') : true;
     }
 
     @task

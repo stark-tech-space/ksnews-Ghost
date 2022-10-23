@@ -9,7 +9,7 @@
         </div>
     </div>
     {{#if this.failureMessage}}
-        <button class="gh-btn gh-btn-green" type="button" {{action "reset"}}><span>Try Again</span></button>
+        <button class="gh-btn gh-btn-green" type="button" {{action "reset"}}><span>{{t "Manual.Components.Try_again"}}</span></button>
     {{/if}}
 {{else}}
     {{!-- file selection/drag-n-drop  --}}

@@ -896,7 +896,10 @@
       "Sending": "Sending",
       "Publishing": "Publishing",
       "Scheduling": "Scheduling",
-      "_on": "on"
+      "_on": "on",
+      "This_displayName_was_status_by_email_1": "This ",
+      "This_displayName_was_status_by_email_2": " was ",
+      "This_displayName_was_status_by_email_3": " by email"
     },
     "Pages": {
       "Pages": "Pages",
@@ -1268,7 +1271,13 @@
       "Expires": "Expires",
       "Ends": "Ends",
       "member": "member",
-      "members": "members"
+      "members": "members",
+      "No_activities_match_the_current_filter": "No activities match the current filter",
+      "Show_all_activity": "Show all activity",
+      "No_member_activity_yet": "No member activity yet",
+      "This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._1": "This is an authentication link to sign into ",
+      "This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._2": " as ",
+      "Manual.Members.This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._3": ", you can send it to them if they need it, or use it to sign into their account for customer support."
     },
     "Integrations": {
       "Active": "Active",
@@ -2047,7 +2056,25 @@
       "The_newsletters_below_are_no_longer_visible_to_members.": "The newsletters below are no longer visible to members.",
       "Active_newsletters": "Active newsletters",
       "Drag_to_set_the_order_viewed_by_members_on_your_site.": "Drag to set the order viewed by members on your site.",
-      "Reactivate": "Reactivate"
+      "Reactivate": "Reactivate",
+      "Archiving": "Archiving",
+      "Reactivating": "Reactivating",
+      "Confirm_newsletter_email_address": "Confirm newsletter email address",
+      "Reactivate_newsletter": "Reactivate newsletter",
+      "Verifying_newsletter_email_address": "Verifying newsletter email address",
+      "Email_address_verified": "Email address verified",
+      "Email_address_verification_failed": "Email address verification failed",
+      "Confirm_email_address": "Confirm email address",
+      "Verifying_email_address": "Verifying email address",
+      "Archive_tier": "Archive tier",
+      "Reactivate_tier": "Reactivate tier",
+      "Search_staff": "Search staff",
+      "No_events_match_the_current_filter": "No events match the current filter",
+      "Show_all_events": "Show all events",
+      "No_events_yet": "No events yet",
+      "Filter_user_": "Filter user ",
+      "Clear_search": "Clear search",
+      "Are_you_sure?": "Are you sure?"
     },
     "View_site": {
       "View_site": "View site",
@@ -2378,7 +2405,18 @@
       "Page": "Page",
       "posts": "posts",
       "Capture_feedback_on_your_content": "Capture feedback on your content",
-      "newsletter": "newsletter"
+      "newsletter": "newsletter",
+      "Errors": "Errors",
+      "Warnings": "Warnings",
+      "Archive_newsletter": "Archive newsletter",
+      "webhook": "webhook",
+      "New": "New",
+      "Edit": "Edit",
+      "_webhook": " webhook",
+      "No_newsletters_found": "No newsletters found",
+      "Yep_-_I'm_sure": "Yep - I'm sure",
+      "Signup_source": "Signup source",
+      "Signup_page": "Signup page"
     },
     "Designsandbox": {
       "Components": "Components",
@@ -2657,7 +2695,8 @@
       "Help_center": "Help center",
       "Resources_&_guides": "Resources & guides",
       "Sign_out": "Sign out",
-      "and_sent": "and sent"
+      "and_sent": "and sent",
+      "default": "default"
     },
     "JS": {
       "Drafts": "Draft",
@@ -2776,7 +2815,31 @@
       "Oldest_first": "Oldest first",
       "Recently_updated": "Recently updated",
       "Newest first": "Newest first",
-      "Oldest first": "Oldest first"
+      "Oldest first": "Oldest first",
+      "Added": "Added",
+      "Edited": "Edited",
+      "Deleted": "Deleted",
+      "Posts": "Posts",
+      "Tags": "Tags",
+      "Tiers_&_offers": "Tiers & offers",
+      "Settings_&_staff": "Settings & staff",
+      "Pages": "Pages",
+      "Note": "Note",
+      "Subscribed_to_emails": "Subscribed to emails",
+      "Stripe_Customer_ID": "Stripe Customer ID",
+      "Complimentary_plan": "Complimentary plan",
+      "Labels": "Labels",
+      "Created_at": "Created at",
+      "Users": "Users",
+      "before": "before",
+      "on_or_before": "on or before",
+      "after": "after",
+      "on_or_after": "on or after",
+      "Signed_up_on_post/page": "Signed up on post/page",
+      "Subscription_started_on_post/page": "Subscription started on post/page",
+      "Received_email": "Received email",
+      "Opened_email": "Opened email",
+      "Clicked_email": "Clicked email"
     },
     "Errors": {
       "Please_enter_an_email": "Please enter an email",

@@ -1,13 +1,13 @@
 {{#if this.hostLimitError}}
     <div class="modal-content" data-test-modal="upgrade-unsuspend-user-host-limit">
         <header class="modal-header">
-            <h1>Upgrade to un-suspend this user</h1>
+            <h1>{{t "Manual.Components.Upgrade_to_un-suspend_this_user"}}</h1>
         </header>
         <button class="close" title="Close" type="button" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
         <div class="modal-body">
             <p>
-                {{html-safe this.hostLimitError}} To give this user access to Ghost, upgrade to a different plan.
+                {{html-safe this.hostLimitError}} {{t "Manual.Components.To_give_this_user_access_to_Ghost,_upgrade_to_a_different_plan"}}
             </p>
         </div>
 
@@ -17,19 +17,19 @@
             </button>
 
             <button class="gh-btn gh-btn-green" data-test-button="upgrade-plan" type="button" {{on "click" this.upgrade}}>
-                <span>Upgrade my plan</span>
+                <span>{{t "Manual.Components.Upgrade_my_plan"}}</span>
             </button>
         </div>
     </div>
 {{else}}
     <div class="modal-content" data-test-modal="unsuspend-user">
         <header class="modal-header">
-            <h1>Are you sure you want to un-suspend this user?</h1>
+            <h1>{{t "Manual.Components.Are_you_sure_you_want_to_un-suspend_this_user"}}</h1>
         </header>
         <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
         <div class="modal-body">
-            <strong>WARNING:</strong> This user will be able to log in again and will have the same permissions they had previously.
+            <strong>{{t "Manual.Components.WARNING:"}}</strong> {{t "Manual.Components.This_user_will_be_able_to_log_in_again_and_will_have_the_same_permissions_they_had_previously"}}
         </div>
 
         <div class="modal-footer">

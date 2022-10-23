@@ -1,6 +1,6 @@
 <div class="modal-content">
     <header class="modal-header" data-test-modal="verify-email">
-        <h1>Verifying email address</h1>
+        <h1>{{t "Manual.Settings.Verifying_email_address"}}</h1>
     </header>
     <button type="button" class="close" role="button" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
@@ -26,7 +26,7 @@
             {{on "click" @close}}
             {{on-key "Enter"}}
         >
-            <span>Ok</span>
+            <span>{{t "Manual.Components.Ok"}}</span>
         </button>
     </div>
 </div>

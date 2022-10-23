@@ -2,12 +2,12 @@
     <div class="no-posts">
         {{svg-jar "activity-placeholder" class="gh-members-placeholder"}}
         {{#if @filter}}
-            <h4>No activities match the current filter</h4>
+            <h4>{{t "Manual.Members.No_activities_match_the_current_filter"}}</h4>
             <LinkTo @route="members-activity" @query={{reset-query-params "members-activity"}} class="gh-btn gh-btn-lg">
-                <span>Show all activity</span>
+                <span>{{t "Manual.Members.Show_all_activity"}}</span>
             </LinkTo>
         {{else}}
-            <h4>No member activity yet</h4>
+            <h4>{{t "Manual.Members.No_member_activity_yet"}}</h4>
         {{/if}}
     </div>
 </div>

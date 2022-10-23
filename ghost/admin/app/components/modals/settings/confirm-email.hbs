@@ -1,6 +1,6 @@
 <div class="modal-content" data-test-modal="confirm-email">
     <header class="modal-header">
-        <h1>Confirm email address</h1>
+        <h1>{{t "Manual.Settings.Confirm_email_address"}}</h1>
     </header>
     <button type="button" class="close" role="button" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span
             class="hidden">{{t "Manual.Settings.Close"}}</span></button>
@@ -15,7 +15,7 @@
 
     <div class="modal-footer">
         <button type="button" class="gh-btn" data-test-button="confirm-email" {{on "click" @close}} {{on-key "Enter" }}>
-            <span>Ok</span>
+            <span>{{t "Manual.Components.Ok"}}</span>
         </button>
     </div>
 </div>

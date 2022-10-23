@@ -12,7 +12,7 @@
 
     <div class="modal-footer">
         <button class="gh-btn" type="button" {{action "closeModal"}}><span>{{t "Manual.Components.Cancel"}}</span></button>
-        <GhTaskButton @buttonText="Delete" @successText={{t "Manual.Components.Deleted"}} @task={{this.deleteLabel}} @class="gh-btn gh-btn-red gh-btn-icon" />
+        <GhTaskButton @buttonText={{t "Manual.Components.Delete"}} @successText={{t "Manual.Components.Deleted"}} @task={{this.deleteLabel}} @class="gh-btn gh-btn-red gh-btn-icon" />
     </div>
 {{else}}
 

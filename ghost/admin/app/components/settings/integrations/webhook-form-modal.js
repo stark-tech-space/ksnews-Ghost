@@ -10,10 +10,11 @@ import {tracked} from '@glimmer/tracking';
 export default class WebhookFormModal extends Component {
     @service notifications;
     @service router;
+    @service intl;
 
     availableEvents = AVAILABLE_EVENTS;
-    buttonText = this.args.data.webhook.isNew ? 'Create' : 'Save';
-    successText = this.args.data.webhook.isNew ? 'Created' : 'Saved';
+    buttonText = this.intl.t(`Manual.Components.${this.args.data.webhook.isNew ? 'Create' : 'Save'}`);
+    successText = this.intl.t(`Manual.Components.${this.args.data.webhook.isNew ? 'Created' : 'Saved'}`);
 
     @tracked error = null;
 

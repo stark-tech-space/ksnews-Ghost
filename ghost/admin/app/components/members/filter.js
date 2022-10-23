@@ -25,7 +25,13 @@ const FILTER_PROPERTIES = [
     {label: 'Stripe subscription status', name: 'subscriptions.status', group: 'Subscription'},
     {label: 'Paid start date', name: 'subscriptions.start_date', valueType: 'date', group: 'Subscription'},
     {label: 'Next billing date', name: 'subscriptions.current_period_end', valueType: 'date', group: 'Subscription'},
-    {label: 'Subscription started on post/page', name: 'conversion', group: 'Subscription', valueType: 'array', feature: 'memberAttribution'},
+    {
+        label: 'Subscription started on post/page',
+        name: 'conversion',
+        group: 'Subscription',
+        valueType: 'array',
+        feature: 'memberAttribution'
+    },
 
     // Emails
     {label: 'Emails sent (all time)', name: 'email_count', group: 'Email'},
@@ -127,20 +133,23 @@ class Filter {
     @tracked relation;
     @tracked relationOptions;
 
+    @service intl;
+
     constructor(options) {
         this.type = options.type;
         this.relation = options.relation;
         this.relationOptions = options.relationOptions;
         this.timezone = options.timezone || 'Etc/UTC';
 
-        const filterProperty = FILTER_PROPERTIES.find(prop => this.type === prop.name);
+        const filterProperty = FILTER_PROPERTIES.find((prop) => this.type === prop.name);
 
         // date string values are passed in as UTC strings
         // we need to convert them to the site timezone and make a local date that matches
         // so the date string output in the filter inputs is correct
-        const value = filterProperty.valueType === 'date' && typeof options.value === 'string'
-            ? moment(moment.tz(moment.utc(options.value), this.timezone).format('YYYY-MM-DD')).toDate()
-            : options.value;
+        const value =
+            filterProperty.valueType === 'date' && typeof options.value === 'string'
+                ? moment(moment.tz(moment.utc(options.value), this.timezone).format('YYYY-MM-DD')).toDate()
+                : options.value;
 
         this.value = value;
     }
@@ -151,6 +160,8 @@ export default class MembersFilter extends Component {
     @service session;
     @service settings;
     @service store;
+
+    @service intl;
 
     @tracked filters = new TrackedArray([
         new Filter({
@@ -169,22 +180,21 @@ export default class MembersFilter extends Component {
         const hasMultipleTiers = this.store.peekAll('tier').length > 1;
 
         // exclude any filters that are behind disabled feature flags
-        availableFilters = availableFilters.filter(prop => !prop.feature || this.feature[prop.feature]);
+        availableFilters = availableFilters.filter((prop) => !prop.feature || this.feature[prop.feature]);
 
         // exclude tiers filter if site has only single tier
-        availableFilters = availableFilters
-            .filter((filter) => {
-                return filter.name === 'tier' ? hasMultipleTiers : true;
-            });
+        availableFilters = availableFilters.filter((filter) => {
+            return filter.name === 'tier' ? hasMultipleTiers : true;
+        });
 
         // exclude subscription filters if Stripe isn't connected
         if (!this.settings.paidMembersEnabled) {
-            availableFilters = availableFilters.reject(prop => prop.group === 'Subscription');
+            availableFilters = availableFilters.reject((prop) => prop.group === 'Subscription');
         }
 
         // exclude email filters if email functionality is disabled
         if (this.settings.editorDefaultEmailRecipients === 'disabled') {
-            availableFilters = availableFilters.reject(prop => prop.group === 'Email');
+            availableFilters = availableFilters.reject((prop) => prop.group === 'Email');
         }
 
         return availableFilters;
@@ -199,6 +209,23 @@ export default class MembersFilter extends Component {
 
         this.parseDefaultFilters();
         this.fetchTiers.perform();
+
+        // translate FILTER_RELATIONS_OPTIONS
+        for (const key in FILTER_RELATIONS_OPTIONS) {
+            FILTER_RELATIONS_OPTIONS[key] = FILTER_RELATIONS_OPTIONS[key].map((option) => {
+                return {
+                    ...option,
+                    label: this.intl.t(`Manual.JS.${option.label.replace(/ /g, '_')}`)
+                };
+            });
+        }
+        // translate FILTER_PROPERTIES array
+        FILTER_PROPERTIES.forEach((item, index) => {
+            FILTER_PROPERTIES[index] = {
+                ...item,
+                label: this.intl.t(`Manual.JS.${item.label.replace(/ /g, '_')}`)
+            };
+        });
     }
 
     /**
@@ -222,12 +249,14 @@ export default class MembersFilter extends Component {
 
     @action
     addFilter() {
-        this.filters.push(new Filter({
-            type: 'name',
-            relation: 'is',
-            value: '',
-            relationOptions: FILTER_RELATIONS_OPTIONS.name
-        }));
+        this.filters.push(
+            new Filter({
+                type: 'name',
+                relation: 'is',
+                value: '',
+                relationOptions: FILTER_RELATIONS_OPTIONS.name
+            })
+        );
         this.applySoftFilter();
     }
 
@@ -242,13 +271,13 @@ export default class MembersFilter extends Component {
         let query = '';
         filters.forEach((filter) => {
             const relationStr = this.getFilterRelationOperator(filter.relation);
-            const filterProperty = FILTER_PROPERTIES.find(prop => prop.name === filter.type);
+            const filterProperty = FILTER_PROPERTIES.find((prop) => prop.name === filter.type);
 
             if (filterProperty.valueType === 'array' && filter.value?.length) {
                 const filterValue = '[' + filter.value.join(',') + ']';
                 query += `${filter.type}:${relationStr}${filterValue}+`;
             } else if (filterProperty.valueType === 'text') {
-                const filterValue = '\'' + filter.value.replace(/'/g, '\\\'') + '\'';
+                const filterValue = "'" + filter.value.replace(/'/g, "\\'") + "'";
                 query += `${filter.type}:${relationStr}${filterValue}+`;
             } else if (filterProperty.valueType === 'date') {
                 let filterValue;
@@ -271,7 +300,8 @@ export default class MembersFilter extends Component {
                 filterValue = `'${tzMoment.utc().format(nqlDateFormat)}'`;
                 query += `${filter.type}:${relationStr}${filterValue}+`;
             } else {
-                const filterValue = (typeof filter.value === 'string' && filter.value.includes(' ')) ? `'${filter.value}'` : filter.value;
+                const filterValue =
+                    typeof filter.value === 'string' && filter.value.includes(' ') ? `'${filter.value}'` : filter.value;
                 query += `${filter.type}:${relationStr}${filterValue}+`;
             }
         });
@@ -283,7 +313,7 @@ export default class MembersFilter extends Component {
         const key = keys[0];
         const nqlValue = nqlFilter[key];
 
-        const filterProperty = FILTER_PROPERTIES.find(prop => prop.name === key);
+        const filterProperty = FILTER_PROPERTIES.find((prop) => prop.name === key);
 
         let relation;
         let value;
@@ -392,17 +422,20 @@ export default class MembersFilter extends Component {
             }
         } else if (filters?.$and) {
             const andFilters = filters?.$and || [];
-            filterData = andFilters.filter((nqlFilter) => {
-                const _filterKeys = Object.keys(nqlFilter);
-                if (_filterKeys?.length === 1 && validKeys.includes(_filterKeys[0])) {
-                    return true;
-                }
-                return false;
-            }).map((nqlFilter) => {
-                return this.parseNqlFilterKey(nqlFilter);
-            }).filter((nqlFilter) => {
-                return !!nqlFilter;
-            });
+            filterData = andFilters
+                .filter((nqlFilter) => {
+                    const _filterKeys = Object.keys(nqlFilter);
+                    if (_filterKeys?.length === 1 && validKeys.includes(_filterKeys[0])) {
+                        return true;
+                    }
+                    return false;
+                })
+                .map((nqlFilter) => {
+                    return this.parseNqlFilterKey(nqlFilter);
+                })
+                .filter((nqlFilter) => {
+                    return !!nqlFilter;
+                });
         }
 
         this.filters = new TrackedArray(filterData);
@@ -443,7 +476,7 @@ export default class MembersFilter extends Component {
         if (this.filters.length === 1) {
             this.resetFilter();
         } else {
-            this.filters = new TrackedArray(this.filters.reject(f => f === filter));
+            this.filters = new TrackedArray(this.filters.reject((f) => f === filter));
             this.applySoftFilter();
         }
     }
@@ -454,7 +487,7 @@ export default class MembersFilter extends Component {
             newType = newType.target.value;
         }
 
-        const newProp = FILTER_PROPERTIES.find(prop => prop.name === newType);
+        const newProp = FILTER_PROPERTIES.find((prop) => prop.name === newType);
 
         let defaultValue = this.availableFilterValueOptions[newType]
             ? this.availableFilterValueOptions[newType][0].name
@@ -482,7 +515,7 @@ export default class MembersFilter extends Component {
             timezone: this.settings.timezone
         });
 
-        const filterToSwap = this.filters.find(f => f === filter);
+        const filterToSwap = this.filters.find((f) => f === filter);
         this.filters[this.filters.indexOf(filterToSwap)] = newFilter;
 
         if (newType !== 'label' && defaultValue) {
@@ -547,12 +580,14 @@ export default class MembersFilter extends Component {
     resetFilter() {
         const filters = [];
 
-        filters.push(new Filter({
-            type: 'name',
-            relation: 'is',
-            value: '',
-            relationOptions: FILTER_RELATIONS_OPTIONS.name
-        }));
+        filters.push(
+            new Filter({
+                type: 'name',
+                relation: 'is',
+                value: '',
+                relationOptions: FILTER_RELATIONS_OPTIONS.name
+            })
+        );
 
         this.filters = new TrackedArray(filters);
         this.args.onResetFilter();

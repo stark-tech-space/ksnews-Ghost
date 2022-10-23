@@ -4,7 +4,7 @@
         <div class="failed">
             {{this.failureMessage}}
             <GhFileInput @multiple={{false}} @alt={{this.labelText}} @action={{action "retry"}} @accept={{this.accept}} class="try-again">
-                <span class="red fw5 nl1" data-test-upload-try-again-button>Try again</span>
+                <span class="red fw5 nl1" data-test-upload-try-again-button>{{t "Manual.Components.Try_again"}}</span>
             </GhFileInput>
         </div>
     {{else}}

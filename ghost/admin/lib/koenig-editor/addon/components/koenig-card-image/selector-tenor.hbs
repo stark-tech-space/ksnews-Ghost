@@ -54,7 +54,7 @@
                     <div>
                         <img class="gh-unsplash-error-404" src="assets/img/unsplash-404.png" alt="Network error" />
                         {{!-- template-lint-disable no-triple-curlies --}}
-                        <h4>{{#if this.tenor.htmlError}}{{{this.tenor.htmlError}}}{{else}}{{this.tenor.error}}{{/if}} (<a href="#" {{on "click" this.tenor.retry}}>retry</a>)</h4>
+                        <h4>{{#if this.tenor.htmlError}}{{{this.tenor.htmlError}}}{{else}}{{this.tenor.error}}{{/if}} (<a href="#" {{on "click" this.tenor.retry}}>{{t "Manual.Components.Retry"}}</a>)</h4>
                         {{!-- template-lint-enable no-triple-curlies --}}
                     </div>
                 </section>

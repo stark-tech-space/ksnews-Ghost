@@ -1,21 +1,21 @@
 <div class="gh-member-import-wrapper {{if (or (eq this.state 'MAPPING') (eq this.state 'UPLOADING')) "wide"}}">
     {{#if (eq this.state 'INIT')}}
         <header class="modal-header" data-test-modal="import-members">
-            <h1>Import members</h1>
+            <h1>{{t "Manual.Members.Import_members"}}</h1>
         </header>
         <p class="gh-box gh-box-green">Need some help? <a href="https://ghost.org/help/import-members/" target="_blank" rel="noopener noreferrer">Learn more</a> about importing members or <a href="https://static.ghost.org/v4.0.0/files/member-import-template.csv" target="_blank" rel="noopener noreferrer">download a sample CSV file</a>.</p>
     {{/if}}
 
     {{#if (or (eq this.state 'MAPPING') (eq this.state 'UPLOADING'))}}
         <header class="modal-header" data-test-modal="import-members">
-            <h1>Import members</h1>
+            <h1>{{t "Manual.Members.Import_members"}}</h1>
         </header>
     {{/if}}
 
     {{#if (eq this.state 'PROCESSING')}}
         <header class="modal-header icon-center" data-test-modal="import-members">
             {{svg-jar "import-in-progress" class="gh-import-member-icon"}}
-            <h1>Import in progress</h1>
+            <h1>{{t "Manual.Components.Import_in_progress"}}</h1>
         </header>
     {{/if}}
 
@@ -30,7 +30,7 @@
             {{else}}
                 {{svg-jar "confetti" class="gh-member-import-icon-confetti"}}
             {{/if}}
-            <h1>Import complete</h1>
+            <h1>{{t "Manual.Components.Import_complete"}}</h1>
         </header>
     {{/if}}
 
@@ -63,7 +63,7 @@
         {{#if (eq this.state 'PROCESSING')}}
         <div class="gh-member-import-resultcontainer">
             <div class="gh-member-import-result-summary">
-                <p>Your import is being processed, and you’ll receive a confirmation email as soon as it’s complete. Usually this only takes a few minutes, but larger imports may take longer.</p>
+                <p>{{t "Manual.Components.Your_import_is_being_processed,_and_you’ll_receive_a_confirmation_email_as_soon_as_it’s_complete._Usually_this_only_takes_a_few_minutes,_but_larger_imports_may_take_longer"}}</p>
             </div>
         </div>
         {{/if}}
@@ -120,7 +120,7 @@
                 {{#if this.mappingResult.membersCount}}
                     <span>Import {{format-number this.mappingResult.membersCount}} {{gh-pluralize this.mappingResult.membersCount 'member' without-count=true}}</span>
                 {{else}}
-                    <span>Import members</span>
+                    <span>{{t "Manual.Members.Import_members"}}</span>
                 {{/if}}
             </button>
         {{/if}}
@@ -141,7 +141,7 @@
                 </a>
                 {{#if (eq this.importResponse.importedCount 0)}}
                     <button class="gh-btn gh-btn-black" data-test-button="restart-import-members" type="button" {{action "reset"}}>
-                        <span>Try again</span>
+                        <span>{{t "Manual.Components.Try_again"}}</span>
                     </button>
                 {{else}}
                     <button class="gh-btn gh-btn-black" data-test-button="close-import-members" type="button" {{action "closeModal"}}>
@@ -154,7 +154,7 @@
                         <span>{{t "Manual.Settings.Close"}}</span>
                     </button>
                     <button class="gh-btn gh-btn-black" data-test-button="restart-import-members" type="button" {{action "reset"}}>
-                        <span>Try again</span>
+                        <span>{{t "Manual.Components.Try_again"}}</span>
                     </button>
                 {{else}}
                     <button class="gh-btn" data-test-button="restart-import-members" type="button" {{action "reset"}}>
@@ -179,11 +179,11 @@
         {{#if (eq this.state 'ERROR')}}
             {{#if this.showTryAgainButton}}
                 <button class="gh-btn" data-test-button="restart-import-members" type="button" {{action "reset"}}>
-                    <span>Try again</span>
+                    <span>{{t "Manual.Components.Try_again"}}</span>
                 </button>
             {{/if}}
             <button class="gh-btn gh-btn-black" data-test-button="close-import-members" type="button" {{action "closeModal"}}>
-                <span>OK</span>
+                <span>{{t "Manual.Components.Ok"}}</span>
             </button>
         {{/if}}
     </div>

@@ -14,8 +14,8 @@
         <div class="modal-body">
             {{#if @data.fatalErrors}}
                 <div>
-                    <h2 class="mb0 mt4 f5 fw6 red">Fatal Errors</h2>
-                    <p class="mb2 red">Must-fix to activate theme</p>
+                    <h2 class="mb0 mt4 f5 fw6 red">{{t "Manual.Components.Fatal_Errors"}}</h2>
+                    <p class="mb2 red">{{t "Manual.Components.Must-fix_to_install_theme"}}</p>
                 </div>
                 <ul class="pa0" data-test-theme-fatal-errors>
                     {{#each @data.fatalErrors as |error|}}
@@ -28,8 +28,8 @@
 
             {{#if @data.errors}}
                 <div>
-                    <h2 class="mb0 mt4 f5 fw6">Errors</h2>
-                    <p class="mb2">Highly recommended to fix, functionality <span>could</span> be restricted</p>
+                    <h2 class="mb0 mt4 f5 fw6">{{t "Manual.Components.Errors"}}</h2>
+                    <p class="mb2">{{t "Manual.Components.Highly_recommended_to_fix,_functionality_"}}<strong>{{t "Manual.Components.could"}}</strong>{{t "Manual.Components._be_restricted"}}</p>
                 </div>
 
                 <ul class="pa0" data-test-theme-errors>
@@ -43,7 +43,7 @@
 
             {{#if (and @data.warnings (or @data.fatalErrors @data.errors))}}
                 <div>
-                    <h2 class="mb0 mt4 f5 fw6">Warnings</h2>
+                    <h2 class="mb0 mt4 f5 fw6">{{t "Manual.Components.Warnings"}}</h2>
                 </div>
             {{/if}}
             {{#if @data.warnings}}
@@ -60,7 +60,7 @@
 
     <div class="modal-footer">
         <button type="button" {{on "click" @close}} class="gh-btn" data-test-modal-close-button>
-            <span>Ok</span>
+            <span>{{t "Manual.Components.Ok"}}</span>
         </button>
     </div>
 

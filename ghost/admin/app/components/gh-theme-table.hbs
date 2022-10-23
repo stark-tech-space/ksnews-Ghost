@@ -10,7 +10,7 @@
                     <p class="apps-card-app-desc" data-test-theme-description><span class="description">Version {{theme.version}}</span></p>
                 </div>
                 {{#unless theme.active}}
-                    <button type="button" {{on "click" (fn this.activateTheme theme.model this.dd)}} class="apps-configured-action darkgrey apps-configured-action-activate green-hover green-bg-hover" data-test-button="activate">Activate</button>
+                    <button type="button" {{on "click" (fn this.activateTheme theme.model this.dd)}} class="apps-configured-action darkgrey apps-configured-action-activate green-hover green-bg-hover" data-test-button="activate">{{t "Manual.Settings.Activate"}}</button>
                 {{/unless}}
                 <GhBasicDropdown @verticalPosition="below" @horizontalPosition="right" @buttonPosition="right" as |dd|>
                     <dd.Trigger class="gh-btn gh-btn-icon fill" data-test-button="actions"><span>{{svg-jar "dotdotdot"}}</span></dd.Trigger>
@@ -18,7 +18,7 @@
                     <dd.Content class="relative-dropdown-menu">
                         <ul class="dropdown-menu" data-test-actions-for={{theme.name}}>
 
-                            <li><button type="button" {{on "click" (fn this.downloadTheme theme.name dd)}} class="darkgrey darkgrey-hover lightgrey-bg-hover" data-test-button="download">Download</button></li>
+                            <li><button type="button" {{on "click" (fn this.downloadTheme theme.name dd)}} class="darkgrey darkgrey-hover lightgrey-bg-hover" data-test-button="download">{{t "Manual.Settings.Download"}}</button></li>
 
                             {{#if theme.isDeletable}}
                                 <li><button type="button" {{on "click" (fn this.deleteTheme theme.model dd)}} disabled={{theme.active}} class="gh-list-delete" data-test-button="delete">{{t "Manual.Settings.Delete"}}</button></li>

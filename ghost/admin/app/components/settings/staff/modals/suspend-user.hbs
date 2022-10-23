@@ -1,11 +1,11 @@
 <div class="modal-content">
     <header class="modal-header">
-        <h1>Are you sure you want to suspend this user?</h1>
+        <h1>{{t "Manual.Components.Are_you_sure_you_want_to_suspend_this_user"}}</h1>
     </header>
     <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
     <div class="modal-body">
-        <strong>WARNING:</strong> This user will no longer be able to log in but their posts will be kept.
+        <strong>{{t "Manual.Components.WARNING:"}}</strong> {{t "Manual.Components.This_user_will_no_longer_be_able_to_log_in_but_their_posts_will_be_kept"}}
     </div>
 
     <div class="modal-footer">

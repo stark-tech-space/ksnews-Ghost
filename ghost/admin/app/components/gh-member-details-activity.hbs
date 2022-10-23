@@ -18,7 +18,7 @@
                         {{or @member.name @member.email}}
                         {{#unless (or @member.name @member.email)}}
                             {{#if @member.isNew}}
-                            <span class="midgrey">New member</span>
+                            <span class="midgrey">{{t "Manual.Members.New_member"}}</span>
                             {{/if}}
                         {{/unless}}
                     </h3>

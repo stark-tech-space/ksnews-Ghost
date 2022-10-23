@@ -1,6 +1,6 @@
 <div class="modal-content">
     <header class="modal-header" data-test-modal="confirm-newsletter-archive">
-        <h1>Archive newsletter</h1>
+        <h1>{{t "Manual.Components.Archive_newsletter"}}</h1>
     </header>
     <button type="button" class="close" role="button" title="Close" {{on "click" (fn @close false)}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
@@ -24,8 +24,8 @@
         </button>
 
         <GhTaskButton
-            @buttonText="Archive"
-            @runningText="Archiving"
+            @buttonText={{t "Manual.Settings.Archive"}}
+            @runningText={{t "Manual.Settings.Archiving"}}
             @showSuccess={{false}}
             @task={{@data.archiveNewsletterTask}}
             @taskArgs={{@data.newsletter}}

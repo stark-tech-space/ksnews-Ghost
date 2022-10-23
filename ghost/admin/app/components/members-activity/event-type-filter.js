@@ -16,15 +16,23 @@ const ALL_EVENT_TYPES = [
 export default class MembersActivityEventTypeFilter extends Component {
     @service settings;
     @service feature;
+    @service intl;
 
     get availableEventTypes() {
-        const extended = [...ALL_EVENT_TYPES];
+        let extended = [...ALL_EVENT_TYPES];
         if (this.settings.commentsEnabled !== 'off') {
             extended.push({event: 'comment_event', icon: 'event-comment', name: 'Comments'});
         }
 
+        extended = extended.map((_) => {
+            return {
+                ..._,
+                name: this.intl.t(`Manual.JS.${_.name.replace(/ /g, '_')}`)
+            };
+        });
+
         if (this.args.hiddenEvents?.length) {
-            return extended.filter(t => !this.args.hiddenEvents.includes(t.event));
+            return extended.filter((t) => !this.args.hiddenEvents.includes(t.event));
         } else {
             return extended;
         }
@@ -33,7 +41,7 @@ export default class MembersActivityEventTypeFilter extends Component {
     get eventTypes() {
         const excludedEvents = (this.args.excludedEvents || '').split(',');
 
-        return this.availableEventTypes.map(type => ({
+        return this.availableEventTypes.map((type) => ({
             event: type.event,
             icon: type.icon,
             name: type.name,
@@ -43,7 +51,7 @@ export default class MembersActivityEventTypeFilter extends Component {
 
     @action
     toggleEventType(eventType) {
-        const excludedEvents = new Set(this.eventTypes.reject(type => type.isSelected).map(type => type.event));
+        const excludedEvents = new Set(this.eventTypes.reject((type) => type.isSelected).map((type) => type.event));
 
         if (excludedEvents.has(eventType)) {
             excludedEvents.delete(eventType);

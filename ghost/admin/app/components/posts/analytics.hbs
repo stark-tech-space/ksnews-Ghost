@@ -4,9 +4,9 @@
         <div class="flex flex-column flex-grow-1">
             <div class="gh-canvas-breadcrumb">
                 <LinkTo @route="posts">
-                    Posts
+                    {{t "Manual.Posts.Posts"}}
                 </LinkTo>
-                {{svg-jar "arrow-right-small"}}Analytics
+                {{svg-jar "arrow-right-small"}}{{t "Manual.Components.Analytics"}}
             </div>
             <h2 class="gh-canvas-title gh-post-title">
                 {{this.post.title}}

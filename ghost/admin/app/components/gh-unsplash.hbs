@@ -24,7 +24,7 @@
                         type="text"
                         class="gh-unsplash-search"
                         name="searchKeyword"
-                        placeholder="Search free high-resolution photos"
+                        placeholder={{t "Manual.Pages.Search_free_high-resolution_photos"}}
                         tabindex="0"
                         autocorrect="off"
                         value={{readonly this.unsplash.searchTerm}}
@@ -64,7 +64,7 @@
                         <section class="gh-unsplash-error h-100 flex items-center justify-center pb30">
                             <div>
                                 <img class="gh-unsplash-error-404" src="assets/img/unsplash-404.png" alt="Network error" />
-                                <h4>{{this.unsplash.error}} (<a href="#" {{on "click" this.retry}}>retry</a>)</h4>
+                                <h4>{{this.unsplash.error}} (<a href="#" {{on "click" this.retry}}>{{t "Manual.Components.Retry"}}</a>)</h4>
                             </div>
                         </section>
                     {{/if}}

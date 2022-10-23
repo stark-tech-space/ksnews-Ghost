@@ -1,12 +1,12 @@
 <div class="modal-content" data-test-modal="delete-webhook">
     <header class="modal-header">
-        <h1>Are you sure?</h1>
+        <h1>{{t "Manual.Settings.Are_you_sure?"}}</h1>
     </header>
     <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
     <div class="modal-body">
         <p>
-            Deleting this webhook may prevent the integration from functioning.
+            {{t "Manual.Components.Deleting_this_webhook_may_prevent_the_integration_from_functioning"}}
         </p>
     </div>
 

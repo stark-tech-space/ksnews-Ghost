@@ -1,7 +1,7 @@
 
 <div class="modal-content" {{on-key "Enter" (perform this.unarchiveTask)}}>
     <header class="modal-header">
-        <h1>Reactivate tier</h1>
+        <h1>{{t "Manual.Settings.Reactivate_tier"}}</h1>
     </header>
     <button type="button" class="close" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
@@ -17,7 +17,7 @@
     <div class="modal-footer">
         <button type="button" class="gh-btn" {{on "click" @close}}><span>{{t "Manual.Components.Cancel"}}</span></button>
         <GhTaskButton
-            @buttonText="Reactivate"
+            @buttonText={{t "Manual.Settings.Reactivate"}}
             @task={{this.unarchiveTask}}
             @class="gh-btn gh-btn-black gh-btn-icon"
         />

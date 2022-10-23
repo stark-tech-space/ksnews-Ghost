@@ -1,6 +1,6 @@
 <div class="modal-content" data-test-modal="webhook-form">
     <header class="modal-header" data-test-modal="webhook-form">
-        <h1 data-test-text="title">{{if @data.webhook.isNew "New" "Edit"}} webhook</h1>
+        <h1 data-test-text="title">{{if @data.webhook.isNew (t "Manual.Components.New") (t "Manual.Components.Edit")}}{{t "Manual.Components._webhook"}}</h1>
     </header>
     {{!-- template-lint-disable no-down-event-binding --}}
     <button class="close" href title="Close" type="button" {{on "click" @close}} {{on "mousedown" this.noop}}>
@@ -28,7 +28,7 @@
         </fieldset>
         <fieldset>
             <GhFormGroup @errors={{@data.webhook.errors}} @hasValidated={{@data.webhook.hasValidated}} @property="event">
-                <label for="webhook-event" class="fw6">Event</label>
+                <label for="webhook-event" class="fw6">{{t "Manual.Integrations.Event"}}</label>
                 <span class="gh-select">
                     <OneWaySelect
                         @value={{@data.webhook.event}}
@@ -51,7 +51,7 @@
         </fieldset>
         <fieldset>
             <GhFormGroup @errors={{@data.webhook.errors}} @hasValidated={{@data.webhook.hasValidated}} @property="targetUrl">
-                <label for="webhook-targetUrl" class="fw6">Target URL</label>
+                <label for="webhook-targetUrl" class="fw6">{{t "Manual.Integrations.Target_URL"}}</label>
                 <input
                     type="text"
                     value={{@data.webhook.targetUrl}}
@@ -70,7 +70,7 @@
         {{#if (enable-developer-experiments)}}
             <fieldset>
                 <GhFormGroup @errors={{@data.webhook.errors}} @hasValidated={{@data.webhook.hasValidated}} @property="secret">
-                    <label for="webhook-secret" class="fw6">Secret</label>
+                    <label for="webhook-secret" class="fw6">{{t "Manual.Integrations.Secret"}}</label>
                     <input
                         type="text"
                         value={{@data.webhook.secret}}

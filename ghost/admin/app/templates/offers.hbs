@@ -15,7 +15,7 @@
                         @matchTriggerWidth={{false}}
                         as |type|
                     >
-                        {{#if type.name}}{{type.name}} offers{{else}}<span class="red">Unknown type</span>{{/if}}
+                        {{#if type.name}}{{type.name}} offers{{else}}<span class="red">{{t "Manual.Others.Unknown_type"}}</span>{{/if}}
                     </PowerSelect>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                             {{gh-pluralize this.filteredOffers.length "archived offer"}}
                         {{/if}}
                     </th>
-                    <th class="gh-list-header">Tier</th>
+                    <th class="gh-list-header">{{t "Manual.Others.Tier"}}</th>
                     <th class="gh-list-header">Terms</th>
                     <th class="gh-list-header">Price</th>
                     <th class="gh-list-header">Redemptions</th>

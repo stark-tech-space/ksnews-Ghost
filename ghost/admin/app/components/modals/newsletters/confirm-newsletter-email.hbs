@@ -1,6 +1,6 @@
 <div class="modal-content" data-test-modal="confirm-newsletter-email">
     <header class="modal-header">
-        <h1>Confirm newsletter email address</h1>
+        <h1>{{t "Manual.Settings.Confirm_newsletter_email_address"}}</h1>
     </header>
     <button type="button" class="close" role="button" title="Close" {{on "click" @close}}>{{svg-jar "close"}}<span class="hidden">{{t "Manual.Settings.Close"}}</span></button>
 
@@ -21,7 +21,7 @@
             {{on "click" @close}}
             {{on-key "Enter"}}
         >
-            <span>Ok</span>
+            <span>{{t "Manual.Components.Ok"}}</span>
         </button>
     </div>
 </div>
