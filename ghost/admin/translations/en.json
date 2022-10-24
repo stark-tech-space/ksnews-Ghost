@@ -1420,7 +1420,8 @@
       "Failed_to_send_email.": "Failed to send email.",
       "Sign_in": "Sign in ->",
       "Sign_in_with_Google": "Sign in with Google",
-      "or": "or"
+      "or": "or",
+      "Welcome_to_Ghost.": "Welcome to Ghost."
     },
     "ProfilePicture": {
       "About_Ghost": "About Ghost",
@@ -2074,7 +2075,9 @@
       "No_events_yet": "No events yet",
       "Filter_user_": "Filter user ",
       "Clear_search": "Clear search",
-      "Are_you_sure?": "Are you sure?"
+      "Are_you_sure?": "Are you sure?",
+      "Reset_your_password.": "Reset your password.",
+      "Save_new_password": "Save new password"
     },
     "View_site": {
       "View_site": "View site",

@@ -2,13 +2,13 @@
     <div class="gh-flow-content">
         <header>
             {{svg-jar "ghost-orb" alt="Ghost"}}
-            <h1>Welcome to Ghost.</h1>
+            <h1>{{t "Manual.Login.Welcome_to_Ghost."}}</h1>
             <p>All over the world, people have started 3,000,000+ incredible sites with Ghost. Today, we’re starting yours.</p>
         </header>
 
         <form id="setup" class="gh-flow-form">
             <GhFormGroup @errors={{this.errors}} @hasValidated={{this.hasValidated}} @property="blogTitle">
-                <label for="blog-title">Site title</label>
+                <label for="blog-title">{{t "Manual.Settings.Site_title"}}</label>
                 <span class="gh-input-icon gh-icon-content">
                     <GhTrimFocusInput
                         @type="text"
@@ -25,7 +25,7 @@
             </GhFormGroup>
 
             <GhFormGroup @errors={{this.errors}} @hasValidated={{this.hasValidated}} @property="name">
-                <label for="name">Full name</label>
+                <label for="name">{{t "Manual.ProfilePicture.Full_Name"}}</label>
                 <span class="gh-input-icon gh-icon-user">
                     <GhTextInput
                         @id="name"
@@ -60,7 +60,7 @@
             </GhFormGroup>
 
             <GhFormGroup @errors={{this.errors}} @hasValidated={{this.hasValidated}} @property="password">
-                <label for="password">Password</label>
+                <label for="password">{{t "Manual.Login.Password"}}</label>
                 <span class="gh-input-icon gh-icon-lock">
                     <GhTextInput
                         @type="password"

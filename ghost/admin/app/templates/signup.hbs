@@ -4,12 +4,12 @@
         <section class="gh-flow-content">
             <header>
                 <div class="gh-site-icon" style={{site-icon-style}}></div>
-                <h1>Create your account.</h1>
+                <h1>{{t "Manual.ProfilePicture.Create_your_account"}}.</h1>
             </header>
 
             <form id="signup" class="gh-signup" method="post" novalidate="novalidate" {{on "submit" this.submit}}>
                 <GhFormGroup @errors={{this.signupDetails.errors}} @hasValidated={{this.signupDetails.hasValidated}} @property="name">
-                    <label for="name">Full name</label>
+                    <label for="name">{{t "Manual.ProfilePicture.Full_Name"}}</label>
                     <span class="gh-input-icon gh-icon-user">
                         <input
                             type="text"
@@ -50,7 +50,7 @@
                 </GhFormGroup>
 
                 <GhFormGroup @errors={{this.signupDetails.errors}} @hasValidated={{this.signupDetails.hasValidated}} @property="password">
-                    <label for="password">Password</label>
+                    <label for="password">{{t "Manual.Login.Password"}}</label>
                     <span class="gh-input-icon gh-icon-lock">
                         <input
                             type="password"
@@ -70,8 +70,8 @@
                 </GhFormGroup>
 
                 <GhTaskButton
-                    @buttonText="Create Account &rarr;"
-                    @runningText="Creating"
+                    @buttonText={{t "Manual.Login.Create_Account"}}
+                    @runningText={{t "Manual.Components.Creating"}}
                     @task={{this.signupTask}}
                     @defaultClick={{true}}
                     @showSuccess={{false}}

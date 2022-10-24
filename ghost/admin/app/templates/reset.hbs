@@ -4,14 +4,14 @@
             <form id="reset" class="gh-signin" method="post" novalidate="novalidate" {{on "submit" (perform this.resetPasswordTask)}}>
                 <header>
                     <div class="gh-site-icon" style={{site-icon-style}}></div>
-                    <h1>Reset your password.</h1>
+                    <h1>{{t "Manual.Settings.Reset_your_password."}}</h1>
                 </header>
                 <GhFormGroup @errors={{this.errors}} @hasValidated={{this.hasValidated}} @property="newPassword">
                     <span class="gh-input-icon gh-icon-lock">
                         <input
                             type="password"
                             name="newPassword"
-                            placeholder="New password"
+                            placeholder={{t "Manual.ProfilePicture.New_Password"}}
                             aria-label="New password"
                             class="gh-input password reset-password"
                             autocorrect="off"
@@ -26,7 +26,7 @@
                         <input
                             type="password"
                             name="ne2Password"
-                            placeholder="Confirm new password"
+                            placeholder={{t "Manual.ProfilePicture.Confirm_new_password"}}
                             aria-label="Confirm new password"
                             class="gh-input password reset-password"
                             autocorrect="off"
@@ -36,7 +36,7 @@
                     </span>
                 </GhFormGroup>
 
-                <GhTaskButton @buttonText="Save new password" @task={{this.resetPasswordTask}} @class="gh-btn gh-btn-reset gh-btn-block gh-btn-icon" @type="submit" @autoWidth="false" />
+                <GhTaskButton @buttonText={{t "Manual.Settings.Save_new_password"}} @task={{this.resetPasswordTask}} @class="gh-btn gh-btn-reset gh-btn-block gh-btn-icon" @type="submit" @autoWidth="false" />
             </form>
 
             <p class="main-error">{{this.flowErrors}}&nbsp;</p>

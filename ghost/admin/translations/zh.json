@@ -1416,9 +1416,11 @@
       "We_need_your_email_address_to_reset_your_password!": "我們需要你的電子郵件地址來重置你的密碼!",
       "There_was_a_problem_with_the_reset,_please_try_again.": "重置密碼出了問題，請再試一次。",
       "Failed_to_send_email.": "發送電子郵件失敗。",
-      "Sign_in": "登入 ->",
+      "Sign_in": "登入 →",
       "Sign_in_with_Google": "用Google登錄",
-      "or": "或"
+      "or": "或",
+      "Welcome_to_Ghost.": "歡迎來到Ghost",
+      "Update_your_password.": "Update your password."
     },
     "ProfilePicture": {
       "About_Ghost": "關於",
@@ -2081,7 +2083,9 @@
       "No_events_yet": "No events yet",
       "Filter_user_": "Filter user ",
       "Clear_search": "Clear search",
-      "Are_you_sure?": "你確定嗎？"
+      "Are_you_sure?": "你確定嗎？",
+      "Reset_your_password.": "重置你的密碼",
+      "Save_new_password": "保存新密碼"
     },
     "View_site": {
       "View_site": "查看主頁",
