@@ -1276,7 +1276,10 @@
       "No_member_activity_yet": "沒有會員動態",
       "This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._1": "這是一個登錄",
       "This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._2": "的",
-      "Manual.Members.This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._3": "認證鏈接，如果他們需要，你可以把它發給他們，或者用它來登錄他們的賬戶以獲得客戶支持。"
+      "Manual.Members.This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._3": "認證鏈接，如果他們需要，你可以把它發給他們，或者用它來登錄他們的賬戶以獲得客戶支持。",
+      "on": "於",
+      "commented": "留言",
+      "replied_to_comment": "回覆留言"
     },
     "Integrations": {
       "Active": "使用中",
@@ -2057,14 +2060,14 @@
       "Logged-in_members": "所有登入的會員",
       "Default_newsletter": "預設電子報",
       "Default_member_selection": "預設會員選擇",
-      "Newsletter_analytics": "Newsletter analytics",
-      "Track_how_many_members_are_opening_emails_and_clicking_links": "Track how many members are opening emails and clicking links",
-      "Track_newsletter_opens": "Track newsletter opens",
-      "Track_newsletter_link_clicks": "Track newsletter link clicks",
+      "Newsletter_analytics": "電子報分析",
+      "Track_how_many_members_are_opening_emails_and_clicking_links": "追蹤多少會員打開了email及點擊連結",
+      "Track_newsletter_opens": "追蹤電子報開啟",
+      "Track_newsletter_link_clicks": "追蹤電子報連結點擊",
       "Archived_newsletters": "Archived newsletters",
       "The_newsletters_below_are_no_longer_visible_to_members.": "The newsletters below are no longer visible to members.",
-      "Active_newsletters": "Active newsletters",
-      "Drag_to_set_the_order_viewed_by_members_on_your_site.": "Drag to set the order viewed by members on your site.",
+      "Active_newsletters": "活躍中電子報",
+      "Drag_to_set_the_order_viewed_by_members_on_your_site.": "以拖移的方式，來調整您的會員在網站上所看到的電子報呈現順序",
       "Reactivate": "重新啟動",
       "Archiving": "封存中",
       "Reactivating": "重新啟動中",
@@ -2844,7 +2847,8 @@
       "Subscription_started_on_post/page": "Subscription started on post/page",
       "Received_email": "Received email",
       "Opened_email": "Opened email",
-      "Clicked_email": "Clicked email"
+      "Clicked_email": "Clicked email",
+      "on": "於"
     },
     "Errors": {
       "Please_enter_an_email": "請輸入電子郵件",

@@ -1277,7 +1277,10 @@
       "No_member_activity_yet": "No member activity yet",
       "This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._1": "This is an authentication link to sign into ",
       "This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._2": " as ",
-      "Manual.Members.This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._3": ", you can send it to them if they need it, or use it to sign into their account for customer support."
+      "Manual.Members.This_is_an_authentication_link_to_sign_into_(site)_as_(email),_you_can_send_it_to_them_if_they_need_it,_or_use_it_to_sign_into_their_account_for_customer_support._3": ", you can send it to them if they need it, or use it to sign into their account for customer support.",
+      "on": "on",
+      "commented": "commented",
+      "replied_to_comment": "replied to comment"
     },
     "Integrations": {
       "Active": "Active",
@@ -2842,7 +2845,8 @@
       "Subscription_started_on_post/page": "Subscription started on post/page",
       "Received_email": "Received email",
       "Opened_email": "Opened email",
-      "Clicked_email": "Clicked email"
+      "Clicked_email": "Clicked email",
+      "on": "on"
     },
     "Errors": {
       "Please_enter_an_email": "Please enter an email",

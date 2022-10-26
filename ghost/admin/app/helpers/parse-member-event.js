@@ -7,6 +7,8 @@ export default class ParseMemberEventHelper extends Helper {
     @service feature;
     @service utils;
 
+    @service intl;
+
     compute([event, hasMultipleNewsletters]) {
         const subject = event.data.member.name || event.data.member.email;
         const icon = this.getIcon(event);
@@ -91,17 +93,21 @@ export default class ParseMemberEventHelper extends Helper {
         return 'event-' + icon + (this.feature.get('memberAttribution') ? '--feature-attribution' : '');
     }
 
+    getTranslatedAction(raw) {
+        return this.intl.t(`Manual.Members.${raw.replace(/ /g, '_')}`);
+    }
+
     getAction(event, hasMultipleNewsletters) {
         if (event.type === 'signup_event') {
-            return 'signed up';
+            return this.getTranslatedAction('signed up');
         }
 
         if (event.type === 'login_event') {
-            return 'logged in';
+            return this.getTranslatedAction('logged in');
         }
 
         if (event.type === 'payment_event') {
-            return 'made payment';
+            return this.getTranslatedAction('made payment');
         }
 
         if (event.type === 'newsletter_event') {
@@ -111,9 +117,9 @@ export default class ParseMemberEventHelper extends Helper {
             }
 
             if (event.data.subscribed) {
-                return 'subscribed to ' + newsletter;
+                return this.getTranslatedAction('subscribed to') + newsletter;
             } else {
-                return 'unsubscribed from ' + newsletter;
+                return this.getTranslatedAction('unsubscribed from') + newsletter;
             }
         }
 
@@ -151,9 +157,9 @@ export default class ParseMemberEventHelper extends Helper {
 
         if (event.type === 'comment_event') {
             if (event.data.parent) {
-                return 'replied to comment';
+                return this.getTranslatedAction('replied to comment');
             }
-            return 'commented';
+            return this.getTranslatedAction('commented');
         }
 
         if (event.type === 'click_event') {
@@ -173,13 +179,13 @@ export default class ParseMemberEventHelper extends Helper {
     getJoin(event) {
         if (event.type === 'signup_event' || event.type === 'subscription_event') {
             if (event.data.attribution?.title) {
-                return 'on';
+                return this.getTranslatedAction('on');
             }
         }
 
         if (event.type === 'comment_event') {
             if (event.data.post) {
-                return 'on';
+                return this.getTranslatedAction('on');
             }
         }
 
