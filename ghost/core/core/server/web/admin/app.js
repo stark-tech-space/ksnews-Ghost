@@ -9,10 +9,14 @@ const shared = require('../shared');
 const errorHandler = require('@tryghost/mw-error-handler');
 const sentry = require('../../../shared/sentry');
 const redirectAdminUrls = require('./middleware/redirect-admin-urls');
+const cors = require('./middleware/cors');
 
 module.exports = function setupAdminApp() {
     debug('Admin setup start');
     const adminApp = express('admin');
+
+    // enable CORS headers (allows localhost and microfrontends to hit admin pages)
+    adminApp.use(cors);
 
     // Admin assets
     // @TODO ensure this gets a local 404 error handler
