@@ -219,8 +219,13 @@ module.exports = function (defaults) {
             }
         },
         autoImport: {
-            publicAssetURL: isTesting ? undefined : 'assets/',
+            publicAssetURL: isTesting ? undefined : 'https://ksnews.ctripintl.com/ghost/assets/',
             webpack: {
+                // output: {
+                //     library: `${packageName}-[name]`,
+                //     libraryTarget: 'umd',
+                //     jsonpFunction: `webpackJsonp_${packageName}`
+                // },
                 resolve: {
                     fallback: {
                         util: require.resolve('util'),
