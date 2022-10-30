@@ -17,9 +17,9 @@ export default function () {
     let path = window.location.pathname;
     let subdir = path.substr(0, path.search('/ghost/'));
 
-    let adminRoot = `https://ksnews.ctripintl.com/ghost${subdir}/ghost/`;
-    let assetRoot = `https://ksnews.ctripintl.com/ghost${subdir}/ghost/assets/`;
-    let apiRoot = `https://ksnews.ctripintl.com/ghost${subdir}/ghost/api/admin`;
+    let adminRoot = `/ghost/`;
+    let assetRoot = `/ghost/assets/`;
+    let apiRoot = `https://ksnews.ctripintl.com/ghost/api/admin`;
 
     function assetUrl(src) {
         return subdir + src;

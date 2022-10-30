@@ -56,31 +56,28 @@
     {{content-for "body-footer"}}
 
     <script>
-        const render = () => {
-            const vendor = document.createElement('script')
-            vendor.src = '{{rootURL}}assets/vendor.js'
-            const ghost = document.createElement('script')
-            ghost.src = '{{rootURL}}assets/ghost.js'
-
-            document.body.appendChild(vendor)
-            document.body.appendChild(ghost)
+        // 修复微前端聚合错误，十分重要，请勿删除
+        const noAction = () => {}
+        window.require = {}
+        window.define = noAction
+        window.runningTests = false
+        window.requirejs = noAction
+    </script>
+    <script>
+        if (!window.__POWERED_BY_QIANKUN__) {
+            window.require = function (...args) {
+                console.log(...args)
+            }
         }
-
-        // if (!window.__POWERED_BY_QIANKUN__) {
-        //     render()
-        // }
         ((global) => {
             global['GhostAdmin'] = {
                 bootstrap() {
-                    console.log(11111);
                     return Promise.resolve();
                 },
                 mount() {
-                    console.log(33333)
                     return Promise.resolve();
                 },
                 unmount() {
-                    console.log(11111);
                     return Promise.resolve();
                 }
             };
@@ -88,5 +85,8 @@
     </script>
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/ghost.js"></script>
+
+<script>
+</script>
 </body>
 </html>

@@ -221,11 +221,12 @@ module.exports = function (defaults) {
         autoImport: {
             publicAssetURL: isTesting ? undefined : 'https://ksnews.ctripintl.com/ghost/assets/',
             webpack: {
-                // output: {
-                //     library: `${packageName}-[name]`,
-                //     libraryTarget: 'umd',
-                //     jsonpFunction: `webpackJsonp_${packageName}`
-                // },
+                output: {
+                    library: `${'GhostAdmin'}-[name]`,
+                    libraryTarget: 'umd',
+                    chunkLoadingGlobal: `webpackJsonp_${'GhostAdmin'}`,
+                    globalObject: 'window'
+                },
                 resolve: {
                     fallback: {
                         util: require.resolve('util'),
