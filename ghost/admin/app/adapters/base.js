@@ -33,6 +33,11 @@ export default RESTAdapter.extend(AjaxServiceSupport, {
     buildURL() {
         // Ensure trailing slashes
         let url = this._super(...arguments);
+        
+        // fix: 修复微前端聚合错误
+        url = url.replace('ttps://ksnews.ctripintl.com/', '')
+        url = url.replace('http://localhost:8080', 'https://ksnews.ctripintl.com')
+
         let parsedUrl = new URL(url);
 
         if (!parsedUrl.pathname.endsWith('/')) {
