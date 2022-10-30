@@ -173,9 +173,13 @@ class ajaxService extends AjaxService {
     skipSessionDeletion = false;
 
     get headers() {
+        const auth = window.__POWERED_BY_QIANKUN__ ? {
+            'authorization': `OTA ${localStorage.getItem('ghostToken') || ''}`
+        } : {}
         return {
             'X-Ghost-Version': config.APP.version,
-            'App-Pragma': 'no-cache'
+            'App-Pragma': 'no-cache',
+            ...auth
         };
     }
 
