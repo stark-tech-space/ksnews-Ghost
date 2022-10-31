@@ -33,7 +33,7 @@ function corsOptionsDelegate(req, callback) {
     // https://url.spec.whatwg.org/#url-class
 
     // allow all localhost and 127.0.0.1 requests no matter the port
-    if (originUrl.hostname === 'localhost' || originUrl.hostname === '127.0.0.1') {
+    if (originUrl.hostname === 'localhost' || originUrl.hostname === '127.0.0.1' || originUrl.hostname === 'admin-test.tripintl.com') {
         corsOptions.origin = true;
     }
 
