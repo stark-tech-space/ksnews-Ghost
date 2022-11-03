@@ -81,6 +81,7 @@ export default Route.extend(ShortcutsRoute, {
         },
 
         authorizationFailed() {
+            if (window.__POWERED_BY_QIANKUN__) return // disable redirect in micro front
             windowProxy.replaceLocation(AuthConfiguration.rootURL);
         },
 
