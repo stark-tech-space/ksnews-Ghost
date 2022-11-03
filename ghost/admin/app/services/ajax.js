@@ -191,6 +191,11 @@ class ajaxService extends AjaxService {
     }
 
     async _makeRequest(hash) {
+        // 修复微前端聚合导致的请求头丢失BUG
+        hash.headers = {
+            ...hash.headers,
+            ...this.headers
+        }
         // ember-ajax recognizes `application/vnd.api+json` as a JSON-API request
         // and formats appropriately, we want to handle `application/json` the same
         if (isJSONContentType(hash.contentType) && hash.type !== 'GET') {
