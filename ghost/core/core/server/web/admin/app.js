@@ -8,7 +8,7 @@ const urlUtils = require('../../../shared/url-utils');
 const shared = require('../shared');
 const errorHandler = require('@tryghost/mw-error-handler');
 const sentry = require('../../../shared/sentry');
-const redirectAdminUrls = require('./middleware/redirect-admin-urls');
+// const redirectAdminUrls = require('./middleware/redirect-admin-urls');
 const cors = require('./middleware/cors');
 
 module.exports = function setupAdminApp() {
@@ -50,14 +50,14 @@ module.exports = function setupAdminApp() {
 
     // Add in all trailing slashes & remove uppercase
     // must happen AFTER asset loading and BEFORE routing
-    adminApp.use(shared.middleware.prettyUrls);
+    // adminApp.use(shared.middleware.prettyUrls);
 
     // Cache headers go last before serving the request
     // Admin is currently set to not be cached at all
     adminApp.use(shared.middleware.cacheControl('private'));
 
     // Special redirects for the admin (these should have their own cache-control headers)
-    adminApp.use(redirectAdminUrls);
+    // adminApp.use(redirectAdminUrls);
 
     // Finally, routing
     adminApp.get('*', require('./controller'));

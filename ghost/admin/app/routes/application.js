@@ -51,6 +51,7 @@ export default Route.extend(ShortcutsRoute, {
         this.router.on('routeDidChange', () => {
             this.notifications.displayDelayed();
         });
+        window.router = this.router // 注入全局router，方便微前端调用
 
         this.ui.initBodyDragHandlers();
     },

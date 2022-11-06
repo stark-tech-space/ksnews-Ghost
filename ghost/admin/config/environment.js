@@ -6,7 +6,7 @@ module.exports = function (environment) {
         modulePrefix: 'ghost-admin',
         environment,
         rootURL: 'https://ksnews.ctripintl.com/ghost',
-        locationType: 'trailing-hash',
+        locationType: 'history',
         EmberENV: {
             FEATURES: {
                 // Here you can enable experimental features on an ember canary build
