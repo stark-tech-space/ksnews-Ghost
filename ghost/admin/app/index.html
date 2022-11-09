@@ -89,18 +89,10 @@
         const navigate = () => {
             if (window.router) {
                 const path = location.pathname.replace('/ghost', '')
-                const match = {
-                    '/posts/': ['posts'],
-                    '/posts/draft/': ['posts', {type: 'draft'}],
-                    '/posts/scheduled/': ['posts', {type: 'scheduled'}],
-                    '/posts/published/': ['posts', {type: 'published'}],
-                    '/editor/post/': ['editor.new']
-                }
-                router.transitionTo(...match[path])
+                router.transitionTo(path + location.search)
             }
         }
-
-        setTimeout(() => navigate, 500)
+        setTimeout(navigate, 500)
     </script>
 <script>
 </script>
