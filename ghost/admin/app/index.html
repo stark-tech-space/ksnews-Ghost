@@ -70,8 +70,15 @@
             }
         }
         ((global) => {
-            const navigate = () => {
-                if (window.router) {
+            const navigate = (redirect) => {
+                if (!window.router) {
+                    console.error('router not found')
+                    return
+                }
+
+                if (redirect) {
+                    router.transitionTo(redirect)
+                } else {
                     const path = location.pathname.replace('/ghost', '')
                     router.transitionTo(path + location.search)
                 }
@@ -86,8 +93,7 @@
 
                     // 订阅路由变化
                     props.onGlobalStateChange((state, prev) => {
-                        // state: 变更后的状态; prev 变更前的状态
-                        console.log(state, prev, 3333);
+                        navigate(state.location)
                     });
                     return Promise.resolve();
                 },
