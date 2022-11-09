@@ -70,11 +70,25 @@
             }
         }
         ((global) => {
+            const navigate = () => {
+                if (window.router) {
+                    const path = location.pathname.replace('/ghost', '')
+                    router.transitionTo(path + location.search)
+                }
+            }
+
             global['GhostAdmin'] = {
                 bootstrap() {
                     return Promise.resolve();
                 },
-                mount() {
+                mount(props) {
+                    navigate() // 初始化路由跳转
+
+                    // 订阅路由变化
+                    props.onGlobalStateChange((state, prev) => {
+                        // state: 变更后的状态; prev 变更前的状态
+                        console.log(state, prev, 3333);
+                    });
                     return Promise.resolve();
                 },
                 unmount() {
@@ -85,15 +99,6 @@
     </script>
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/ghost.js"></script>
-    <script>
-        const navigate = () => {
-            if (window.router) {
-                const path = location.pathname.replace('/ghost', '')
-                router.transitionTo(path + location.search)
-            }
-        }
-        setTimeout(navigate, 500)
-    </script>
 <script>
 </script>
 </body>
