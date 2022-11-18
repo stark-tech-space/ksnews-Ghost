@@ -5,7 +5,7 @@ module.exports = function (environment) {
     let ENV = {
         modulePrefix: 'ghost-admin',
         environment,
-        rootURL: 'https://ksnews.ctripintl.com/ghost',
+        rootURL: '/ghost',
         locationType: 'history',
         EmberENV: {
             FEATURES: {

@@ -219,7 +219,7 @@ module.exports = function (defaults) {
             }
         },
         autoImport: {
-            publicAssetURL: isTesting ? undefined : 'https://ksnews.ctripintl.com/ghost/assets/',
+            publicAssetURL: isTesting ? undefined : '/ghost/assets/',
             webpack: {
                 output: {
                     library: `${'GhostAdmin'}-[name]`,

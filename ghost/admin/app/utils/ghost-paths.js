@@ -19,7 +19,7 @@ export default function () {
 
     let adminRoot = `/ghost/`;
     let assetRoot = `/ghost/assets/`;
-    let apiRoot = `https://ksnews.ctripintl.com/ghost/api/admin`;
+    let apiRoot = `/ghost/api/admin`;
 
     function assetUrl(src) {
         return subdir + src;
