@@ -35,9 +35,9 @@ export default RESTAdapter.extend(AjaxServiceSupport, {
         let url = this._super(...arguments);
 
         // fix: 修复微前端聚合错误
-        url = url.replace('ttps://ksnews.ctripintl.com/', '')
-        url = url.replace('http://localhost:8080', 'https://ksnews.ctripintl.com')
-        url = url.replace('https://admin-test.tripintl.com', 'https://ksnews.ctripintl.com')
+        url = url.replace('ttps://content.kktrip.com.tw/', '')
+        url = url.replace('http://localhost:8080', 'https://content.kktrip.com.tw')
+        url = url.replace('https://admin-test.tripintl.com', 'https://content.kktrip.com.tw')
 
         let parsedUrl = new URL(url);
 
