@@ -194,7 +194,7 @@ module.exports = function (defaults) {
                 ]
             }
         },
-        sourcemaps: {enabled: true},
+        sourcemaps: {enabled: false},
         svgJar: {
             strategy: 'inline',
             stripPath: false,
