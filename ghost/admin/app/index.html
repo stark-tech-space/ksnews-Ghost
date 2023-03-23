@@ -55,8 +55,6 @@
 
     {{content-for "body-footer"}}
 
-    <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/ghost.js"></script>
     <script>
         // 修复微前端聚合错误，十分重要，请勿删除
         const noAction = () => {}
@@ -105,6 +103,8 @@
             };
         })(window);
     </script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/ghost.js"></script>
 <script>
 </script>
 </body>
