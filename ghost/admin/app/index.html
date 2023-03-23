@@ -69,39 +69,42 @@
                 console.log(...args)
             }
         }
-        ((global) => {
-            const navigate = (redirect) => {
-                if (!window.router) {
-                    console.error('router not found')
-                    return
+
+        window.onload = () => {
+            ((global) => {
+                const navigate = (redirect) => {
+                    if (!window.router) {
+                        console.error('router not found')
+                        return
+                    }
+
+                    if (redirect) {
+                        router.transitionTo(redirect)
+                    } else {
+                        const path = location.pathname.replace('/ghost', '')
+                        router.transitionTo(path + location.search)
+                    }
                 }
 
-                if (redirect) {
-                    router.transitionTo(redirect)
-                } else {
-                    const path = location.pathname.replace('/ghost', '')
-                    router.transitionTo(path + location.search)
-                }
-            }
+                global['GhostAdmin'] = {
+                    bootstrap() {
+                        return Promise.resolve();
+                    },
+                    mount(props) {
+                        navigate() // 初始化路由跳转
 
-            global['GhostAdmin'] = {
-                bootstrap() {
-                    return Promise.resolve();
-                },
-                mount(props) {
-                    navigate() // 初始化路由跳转
-
-                    // 订阅路由变化
-                    props.onGlobalStateChange((state, prev) => {
-                        navigate(state.location)
-                    });
-                    return Promise.resolve();
-                },
-                unmount() {
-                    return Promise.resolve();
-                }
-            };
-        })(window);
+                        // 订阅路由变化
+                        props.onGlobalStateChange((state, prev) => {
+                            navigate(state.location)
+                        });
+                        return Promise.resolve();
+                    },
+                    unmount() {
+                        return Promise.resolve();
+                    }
+                };
+            })(window)
+        }
     </script>
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/ghost.js"></script>
