@@ -219,7 +219,7 @@ module.exports = function (defaults) {
             }
         },
         autoImport: {
-            publicAssetURL: isTesting ? undefined : 'https://test.kktrip.com.tw/blog/ghost/assets/',
+            publicAssetURL: isTesting ? undefined : 'https://test.kktrip.com.tw/ghost/assets/',
             webpack: {
                 output: {
                     library: `${'GhostAdmin'}-[name]`,
