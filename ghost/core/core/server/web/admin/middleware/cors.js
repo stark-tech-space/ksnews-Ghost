@@ -11,11 +11,19 @@ const config = require('../../../../shared/config');
  */
 function corsOptionsDelegate(req, callback) {
     const origin = req.header('Origin');
+
     const corsOptions = {
         origin: false, // disallow cross-origin requests by default
         credentials: true, // required to allow admin-client to login to private sites
         maxAge: config.get('caching:cors:maxAge')
     };
+
+    // allow all requests if cors is disabled
+    const enableCors = config.get('cors:enabled');
+    if (!enableCors) {
+        corsOptions.origin = true;
+        return callback(null, corsOptions);
+    }
 
     if (!origin || origin === 'null') {
         return callback(null, corsOptions);
@@ -33,7 +41,11 @@ function corsOptionsDelegate(req, callback) {
     // https://url.spec.whatwg.org/#url-class
 
     // allow all localhost and 127.0.0.1 requests no matter the port
-    if (originUrl.hostname === 'localhost' || originUrl.hostname === '127.0.0.1' || originUrl.hostname === 'admin-test.tripintl.com') {
+    if (
+        originUrl.hostname === 'localhost' ||
+        originUrl.hostname === '127.0.0.1' ||
+        originUrl.hostname === 'admin-test.tripintl.com'
+    ) {
         corsOptions.origin = true;
     }
 
