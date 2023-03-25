@@ -14,8 +14,15 @@ function corsOptionsDelegate(req, callback) {
     const corsOptions = {
         origin: false, // disallow cross-origin requests by default
         credentials: true, // required to allow admin-client to login to private sites
-        maxAge: config.get('caching:cors:maxAge'),
+        maxAge: config.get('caching:cors:maxAge')
     };
+
+    // allow all requests if cors is disabled
+    const enableCors = config.get('cors:enabled');
+    if (!enableCors) {
+        corsOptions.origin = true;
+        return callback(null, corsOptions);
+    }
 
     if (!origin || origin === 'null') {
         return callback(null, corsOptions);
