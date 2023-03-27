@@ -23,7 +23,7 @@ function getExpressSessionMiddleware() {
                 domain: config.get('cookie:domain') || '.kktrip.com.tw',
                 maxAge: constants.SIX_MONTH_MS,
                 httpOnly: true,
-                path: config.get('cookie:domain') || urlUtils.getSubdir() + '/ghost',
+                path: config.get('cookie:path') || urlUtils.getSubdir() + '/ghost',
                 sameSite: urlUtils.isSSL(config.get('url')) ? 'none' : 'lax',
                 secure: urlUtils.isSSL(config.get('url'))
             }

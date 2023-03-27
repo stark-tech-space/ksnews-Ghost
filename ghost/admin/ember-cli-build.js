@@ -63,9 +63,7 @@ const codemirrorAssets = function () {
 };
 
 const simplemdeAssets = function () {
-    let simplemdeFiles = [
-        'debug/simplemde.js'
-    ];
+    let simplemdeFiles = ['debug/simplemde.js'];
 
     if (environment === 'test') {
         return {import: simplemdeFiles};
@@ -109,9 +107,7 @@ module.exports = function (defaults) {
     let app = new EmberApp(defaults, {
         addons: {denylist},
         babel: {
-            plugins: [
-                require.resolve('babel-plugin-transform-react-jsx')
-            ]
+            plugins: [require.resolve('babel-plugin-transform-react-jsx')]
         },
         'ember-cli-babel': {
             optional: ['es6.spec.symbols'],
@@ -198,10 +194,7 @@ module.exports = function (defaults) {
         svgJar: {
             strategy: 'inline',
             stripPath: false,
-            sourceDirs: [
-                'public/assets/icons',
-                'lib/koenig-editor/public/icons'
-            ],
+            sourceDirs: ['public/assets/icons', 'lib/koenig-editor/public/icons'],
             optimizer: {
                 plugins: [
                     {prefixIds: true},
@@ -211,15 +204,17 @@ module.exports = function (defaults) {
                     {removeXMLNS: true},
                     // Transforms on groups are necessary to work around Firefox
                     // not supporting transform-origin on line/path elements.
-                    {convertPathData: {
-                        applyTransforms: false
-                    }},
+                    {
+                        convertPathData: {
+                            applyTransforms: false
+                        }
+                    },
                     {moveGroupAttrsToElems: false}
                 ]
             }
         },
         autoImport: {
-            publicAssetURL: isTesting ? undefined : 'https://test.kktrip.com.tw/ghost/assets/',
+            publicAssetURL: isTesting ? undefined : '/ghost/assets/',
             webpack: {
                 output: {
                     library: `${'GhostAdmin'}-[name]`,
