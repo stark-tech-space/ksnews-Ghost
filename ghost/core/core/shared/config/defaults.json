@@ -166,8 +166,8 @@
     "version": "1.1"
   },
   "comments": {
-    "url": "/public/comments-ui.min.js",
-    "styles": "/public/comments-ui.min.css",
+    "url": "https://test.kktrip.com.tw/blog/public/comments-ui.min.js",
+    "styles": "https://test.kktrip.com.tw/blog/public/comments-ui.min.css",
     "version": "0.10"
   },
   "editor": {
