@@ -16,7 +16,8 @@
     "scope": "@tryghost"
   },
   "eslintIgnore": [
-    "**/node_modules/**"
+    "**/node_modules/**",
+    "ghost/core/content/public/**"
   ],
   "scripts": {
     "build": "yarn workspace ghost run build",
