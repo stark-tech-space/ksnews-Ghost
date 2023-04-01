@@ -68,18 +68,58 @@ module.exports = function setupSiteApp(routerConfig) {
     siteApp.use(mw.servePublicFile('static', 'sitemap.xsl', 'text/xsl', config.get('caching:sitemapXSL:maxAge')));
 
     // Serve stylesheets for default templates
-    siteApp.use(mw.servePublicFile('static', 'public/ghost.css', 'text/css', config.get('caching:publicAssets:maxAge')));
-    siteApp.use(mw.servePublicFile('static', 'public/ghost.min.css', 'text/css', config.get('caching:publicAssets:maxAge')));
+    siteApp.use(
+        mw.servePublicFile('static', 'public/ghost.css', 'text/css', config.get('caching:publicAssets:maxAge'))
+    );
+    siteApp.use(
+        mw.servePublicFile('static', 'public/ghost.min.css', 'text/css', config.get('caching:publicAssets:maxAge'))
+    );
 
     // Card assets
-    siteApp.use(mw.servePublicFile('built', 'public/cards.min.css', 'text/css', config.get('caching:publicAssets:maxAge')));
-    siteApp.use(mw.servePublicFile('built', 'public/cards.min.js', 'application/javascript', config.get('caching:publicAssets:maxAge')));
+    siteApp.use(
+        mw.servePublicFile('built', 'public/cards.min.css', 'text/css', config.get('caching:publicAssets:maxAge'))
+    );
+    siteApp.use(
+        mw.servePublicFile(
+            'built',
+            'public/cards.min.js',
+            'application/javascript',
+            config.get('caching:publicAssets:maxAge')
+        )
+    );
 
     // Comment counts
-    siteApp.use(mw.servePublicFile('built', 'public/comment-counts.min.js', 'application/javascript', config.get('caching:publicAssets:maxAge')));
+    siteApp.use(
+        mw.servePublicFile(
+            'built',
+            'public/comment-counts.min.js',
+            'application/javascript',
+            config.get('caching:publicAssets:maxAge')
+        )
+    );
+
+    // Comment ui
+    siteApp.use(
+        mw.servePublicFile('built', 'public/comments-ui.min.css', 'text/css', config.get('caching:publicAssets:maxAge'))
+    );
+    siteApp.use(
+        mw.servePublicFile(
+            'built',
+            'public/comments-ui.min.js',
+            'application/javascript',
+            config.get('caching:publicAssets:maxAge')
+        )
+    );
 
     // Member attribution
-    siteApp.use(mw.servePublicFile('built', 'public/member-attribution.min.js', 'application/javascript', config.get('caching:publicAssets:maxAge')));
+    siteApp.use(
+        mw.servePublicFile(
+            'built',
+            'public/member-attribution.min.js',
+            'application/javascript',
+            config.get('caching:publicAssets:maxAge')
+        )
+    );
 
     // Serve site images using the storage adapter
     siteApp.use(STATIC_IMAGE_URL_PREFIX, mw.handleImageSizes, storage.getStorage('images').serve());
@@ -134,14 +174,23 @@ module.exports = function setupSiteApp(routerConfig) {
         if (req.member || res.isPrivateBlog) {
             return shared.middleware.cacheControl('private')(req, res, next);
         } else {
-            return shared.middleware.cacheControl('public', {maxAge: config.get('caching:frontend:maxAge')})(req, res, next);
+            return shared.middleware.cacheControl('public', {maxAge: config.get('caching:frontend:maxAge')})(
+                req,
+                res,
+                next
+            );
         }
     });
 
     siteApp.use(function (req, res, next) {
         if (req.member) {
             // This event needs memberLastSeenAt to avoid doing un-necessary database queries when updating `last_seen_at`
-            DomainEvents.dispatch(MemberPageViewEvent.create({url: req.url, memberId: req.member.id, memberLastSeenAt: req.member.last_seen_at}, new Date()));
+            DomainEvents.dispatch(
+                MemberPageViewEvent.create(
+                    {url: req.url, memberId: req.member.id, memberLastSeenAt: req.member.last_seen_at},
+                    new Date()
+                )
+            );
         }
         next();
     });
