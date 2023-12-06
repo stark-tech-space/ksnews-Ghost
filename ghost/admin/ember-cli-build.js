@@ -1,3 +1,4 @@
+
 /* eslint-env node */
 'use strict';
 
@@ -10,7 +11,7 @@ const webpack = require('webpack');
 const environment = EmberApp.env();
 const isDevelopment = environment === 'development';
 const isProduction = environment === 'production';
-const isTesting = environment === 'test';
+// const isTesting = environment === 'test';
 
 const postcssImport = require('postcss-import');
 const postcssCustomProperties = require('postcss-custom-properties');
@@ -29,7 +30,7 @@ const codemirrorAssets = function () {
     ];
 
     if (environment === 'test') {
-        return {import: codemirrorFiles};
+        return { import: codemirrorFiles };
     }
 
     let config = {};
@@ -42,7 +43,7 @@ const codemirrorAssets = function () {
                 outputFile: 'assets/codemirror/codemirror.js',
                 headerFiles: ['lib/codemirror.js'],
                 inputFiles: ['mode/**/*'],
-                sourceMapConfig: {enabled: false}
+                sourceMapConfig: { enabled: false }
             });
 
             if (isProduction) {
@@ -50,7 +51,7 @@ const codemirrorAssets = function () {
             }
 
             let mergedTree = mergeTrees([tree, jsTree]);
-            return new Funnel(mergedTree, {include: ['assets/**/*', 'theme/**/*']});
+            return new Funnel(mergedTree, { include: ['assets/**/*', 'theme/**/*'] });
         }
     };
 
@@ -68,7 +69,7 @@ const simplemdeAssets = function () {
     ];
 
     if (environment === 'test') {
-        return {import: simplemdeFiles};
+        return { import: simplemdeFiles };
     }
 
     let config = {};
@@ -80,7 +81,7 @@ const simplemdeAssets = function () {
             let jsTree = concat(tree, {
                 outputFile: 'assets/simplemde/simplemde.js',
                 inputFiles: ['debug/simplemde.js'],
-                sourceMapConfig: {enabled: false}
+                sourceMapConfig: { enabled: false }
             });
 
             if (isProduction) {
@@ -88,7 +89,7 @@ const simplemdeAssets = function () {
             }
 
             let mergedTree = mergeTrees([tree, jsTree]);
-            return new Funnel(mergedTree, {include: ['assets/**/*']});
+            return new Funnel(mergedTree, { include: ['assets/**/*'] });
         }
     };
 
@@ -107,7 +108,7 @@ if (process.env.CI) {
 
 module.exports = function (defaults) {
     let app = new EmberApp(defaults, {
-        addons: {denylist},
+        addons: { denylist },
         babel: {
             plugins: [
                 require.resolve('babel-plugin-transform-react-jsx')
@@ -194,7 +195,7 @@ module.exports = function (defaults) {
                 ]
             }
         },
-        sourcemaps: {enabled: false},
+        sourcemaps: { enabled: false },
         svgJar: {
             strategy: 'inline',
             stripPath: false,
@@ -204,22 +205,24 @@ module.exports = function (defaults) {
             ],
             optimizer: {
                 plugins: [
-                    {prefixIds: true},
-                    {cleanupIds: false},
-                    {removeDimensions: true},
-                    {removeTitle: !isDevelopment},
-                    {removeXMLNS: true},
+                    { prefixIds: true },
+                    { cleanupIds: false },
+                    { removeDimensions: true },
+                    { removeTitle: !isDevelopment },
+                    { removeXMLNS: true },
                     // Transforms on groups are necessary to work around Firefox
                     // not supporting transform-origin on line/path elements.
-                    {convertPathData: {
-                        applyTransforms: false
-                    }},
-                    {moveGroupAttrsToElems: false}
+                    {
+                        convertPathData: {
+                            applyTransforms: false
+                        }
+                    },
+                    { moveGroupAttrsToElems: false }
                 ]
             }
         },
         autoImport: {
-            publicAssetURL: isTesting ? undefined : 'https://test.kktrip.com.tw/ghost/assets/',
+            // publicAssetURL: isTesting ? undefined : 'https://test.kktrip.com.tw/ghost/assets/',
             webpack: {
                 output: {
                     library: `${'GhostAdmin'}-[name]`,
@@ -263,8 +266,8 @@ module.exports = function (defaults) {
     // pull things we rely on via lazy-loading into the test-support.js file so
     // that tests don't break when running via http://localhost:4200/tests
     if (app.env === 'development') {
-        app.import('vendor/codemirror/lib/codemirror.js', {type: 'test'});
-        app.import('vendor/simplemde/debug/simplemde.js', {type: 'test'});
+        app.import('vendor/codemirror/lib/codemirror.js', { type: 'test' });
+        app.import('vendor/simplemde/debug/simplemde.js', { type: 'test' });
     }
 
     return app.toTree();

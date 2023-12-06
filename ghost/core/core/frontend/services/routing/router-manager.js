@@ -82,7 +82,6 @@ class RouterManager {
         if (routeSettings) {
             this.start(routeSettings);
         }
-
         return this.siteRouter.router();
     }
 

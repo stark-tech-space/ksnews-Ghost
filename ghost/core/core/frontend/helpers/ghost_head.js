@@ -2,8 +2,8 @@
 // Usage: `{{ghost_head}}`
 //
 // Outputs scripts and other assets at the top of a Ghost theme
-const {metaData, settingsCache, config, blogIcon, urlUtils, labs, getFrontendKey} = require('../services/proxy');
-const {escapeExpression, SafeString} = require('../services/handlebars');
+const { metaData, settingsCache, config, blogIcon, urlUtils, labs, getFrontendKey } = require('../services/proxy');
+const { escapeExpression, SafeString } = require('../services/handlebars');
 
 // BAD REQUIRE
 // @TODO fix this require
@@ -13,9 +13,9 @@ const logging = require('@tryghost/logging');
 const _ = require('lodash');
 const debug = require('@tryghost/debug')('ghost_head');
 const templateStyles = require('./tpl/styles');
-const {getFrontendAppConfig, getDataAttributes} = require('../utils/frontend-apps');
+const { getFrontendAppConfig, getDataAttributes } = require('../utils/frontend-apps');
 
-const {get: getMetaData, getAssetUrl} = metaData;
+const { get: getMetaData, getAssetUrl } = metaData;
 
 function writeMetaTag(property, content, type) {
     type = type || property.substring(0, 7) === 'twitter' ? 'name' : 'property';
@@ -48,13 +48,13 @@ function getMembersHelper(data, frontendKey) {
     if (!settingsCache.get('members_enabled')) {
         return '';
     }
-    const {scriptUrl} = getFrontendAppConfig('portal');
+    const { scriptUrl } = getFrontendAppConfig('portal');
 
     const colorString = (_.has(data, 'site._preview') && data.site.accent_color) ? data.site.accent_color : '';
     const attributes = {
         ghost: urlUtils.getSiteUrl(),
         key: frontendKey,
-        api: urlUtils.urlFor('api', {type: 'content'}, true)
+        api: urlUtils.urlFor('api', { type: 'content' }, true)
     };
     if (colorString) {
         attributes['accent-color'] = colorString;
@@ -71,7 +71,7 @@ function getMembersHelper(data, frontendKey) {
 
 function getSearchHelper(frontendKey) {
     const adminUrl = urlUtils.getAdminUrl() || urlUtils.getSiteUrl();
-    const {scriptUrl, stylesUrl} = getFrontendAppConfig('sodoSearch');
+    const { scriptUrl, stylesUrl } = getFrontendAppConfig('sodoSearch');
     const attrs = {
         key: frontendKey,
         styles: stylesUrl,
@@ -79,7 +79,6 @@ function getSearchHelper(frontendKey) {
     };
     const dataAttrs = getDataAttributes(attrs);
     let helper = `<script defer src="${scriptUrl}" ${dataAttrs} crossorigin="anonymous"></script>`;
-
     return helper;
 }
 
