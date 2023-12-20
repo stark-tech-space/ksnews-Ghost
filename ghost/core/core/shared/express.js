@@ -22,7 +22,11 @@ const searchRouterInit = () => {
 
         esClient.search({
             query: {
-                match: { title: searchKey },
+                multi_match: {
+                    query: searchKey,
+                    type: 'phrase',
+                    fields: ['title', 'plaintext']
+                },
             },
             size: Number(limit),
         }).then(searchResults => {
