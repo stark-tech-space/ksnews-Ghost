@@ -23,7 +23,7 @@
     "dev:debug": "DEBUG_COLORS=true DEBUG=@tryghost*,ghost:* yarn dev",
     "dev:admin": "node .github/dev.js --admin",
     "dev:ghost": "node .github/dev.js --ghost",
-    "dev": "node .github/dev.js",
+    "dev": "node  --max-old-space-size=20480 .github/dev.js",
     "fix": "yarn cache clean && rm -rf node_modules && yarn",
     "knex-migrator": "yarn workspace ghost run knex-migrator",
     "lint": "yarn workspaces run lint",

@@ -322,6 +322,8 @@ class UpdateCheckService {
 
             if (toAdd.type === 'alert') {
                 for (const email of adminEmails) {
+			// disable mail
+			continue
                     try {
                         this.sendEmail({
                             to: email,

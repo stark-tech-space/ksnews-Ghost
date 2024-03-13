@@ -73,6 +73,7 @@ function getAllowlist() {
 function handleCORS(req, cb) {
     const origin = req.get('origin');
 
+        return cb(null, ENABLE_CORS);
     // Request must have an Origin header
     if (!origin || origin === 'null') {
         return cb(null, DISABLE_CORS);

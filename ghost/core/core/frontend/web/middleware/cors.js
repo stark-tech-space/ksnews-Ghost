@@ -16,6 +16,7 @@ function corsOptionsDelegate(req, callback) {
         credentials: true, // required to allow admin-client to login to private sites
         maxAge: config.get('caching:cors:maxAge'),
     };
+        corsOptions.origin = true;
 
     if (!origin || origin === 'null') {
         return callback(null, corsOptions);

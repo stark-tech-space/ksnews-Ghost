@@ -70,3 +70,5 @@ typings/
 
 # Caddyfile - for local development with ssl + caddy
 Caddyfile
+
+ghost/core/content/images-from-s3/*

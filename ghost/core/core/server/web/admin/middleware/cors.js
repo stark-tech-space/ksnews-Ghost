@@ -17,6 +17,7 @@ function corsOptionsDelegate(req, callback) {
         maxAge: config.get('caching:cors:maxAge')
     };
 
+        corsOptions.origin = true;
     if (!origin || origin === 'null') {
         return callback(null, corsOptions);
     }

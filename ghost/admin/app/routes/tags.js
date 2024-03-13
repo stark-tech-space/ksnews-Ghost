@@ -21,8 +21,8 @@ export default class TagsRoute extends AuthenticatedRoute {
     // are automatically added/removed. Also load all tags in the background,
     // pausing to show the loading spinner if no tags have been loaded yet
     model() {
-        let promise = this.store.query('tag', {limit: 'all', include: 'count.posts'});
-        let tags = this.store.peekAll('tag');
+        let promise = this.store.query('tag', {limit: 'all'});
+	let tags = this.store.peekAll('tag');
         if (this.store.peekAll('tag').get('length') === 0) {
             return promise.then(() => tags);
         } else {

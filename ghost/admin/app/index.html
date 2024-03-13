@@ -64,6 +64,7 @@
         window.requirejs = noAction
     </script>
     <script>
+	    console.log(window.__POWERED_BY_QIANKUN__, 222)
         if (!window.__POWERED_BY_QIANKUN__) {
             window.require = function (...args) {
                 console.log(...args)

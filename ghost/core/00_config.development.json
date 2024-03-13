@@ -1,0 +1,42 @@
+{
+    "url": "https://news.kktrip.tw/",
+    "server": {
+      "port": 2368,
+      "host": "127.0.0.1"
+    },
+    "database": {
+      "client": "mysql",
+      "connection": {
+        "host": "",
+	"user": "",
+        "password": "",
+        "database": ""
+      }
+    },
+    "mail": {
+      "transport": "SMTP",
+      "from": "",
+      "options": {
+        "host": "",
+        "port": 465,
+        "auth": {
+          "user": "",
+          "pass": ""
+        }
+      }
+    },
+    "enableDeveloperExperiments": true,
+    "microFrontend": {
+      "url": "https://admin.kktrip.com.tw"
+    },
+    "disableLiveReload": true,
+    "caching":{
+      "contentAPI": {
+        "maxAge": 86400
+      },
+      "frontend": {
+        "maxAge": 86400
+      }
+    }
+
+}
