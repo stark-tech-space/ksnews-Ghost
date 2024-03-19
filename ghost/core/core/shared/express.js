@@ -7,7 +7,7 @@ const esClient = new Client({
     node: "http://localhost:9200",
     auth: {
         username: "elastic",
-        password: "Ksnews123...",
+        password: "Xz123...",
     },
 });
 
@@ -24,7 +24,7 @@ const searchRouterInit = () => {
                 multi_match: {
                     query: searchKey,
                     type: 'phrase',
-                    fields: ['title', 'plaintext']
+                    fields: ['title', 'plaintext'],
                 },
             },
             size: Number(limit),
