@@ -40,6 +40,9 @@ const searchRouterInit = () => {
            res.contentType('application/json');
            res.write(JSON.stringify({ posts }))
            res.end()
+       }).catch(e => {
+            console.log('elasticsearch error:');
+            console.log(e)
        })
    })
    return router;
